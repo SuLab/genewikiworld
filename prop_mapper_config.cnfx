@@ -110,6 +110,13 @@ attribute 3<y:LabelModel>
       </target>
       <conversion type="asIs"/>
     </mapping>
+    <mapping>
+      <source name="URL" origin="customProperty" type="string"/>
+      <target name="url" type="string">
+        <hints/>
+      </target>
+      <conversion type="asIs"/>
+    </mapping>
   </style>
   <style name="label" scope="edge" selectionOnly="false">
     <mapping>
@@ -118,6 +125,13 @@ attribute 3<y:LabelModel>
         <hints>
           <hint type="int">0</hint>
         </hints>
+      </target>
+      <conversion type="asIs"/>
+    </mapping>
+    <mapping>
+      <source name="URL" origin="customProperty" type="string"/>
+      <target name="url" type="string">
+        <hints/>
       </target>
       <conversion type="asIs"/>
     </mapping>

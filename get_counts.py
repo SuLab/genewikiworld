@@ -4,7 +4,7 @@ Get counts for all items we care about, and some we don't ....
 import functools
 
 import requests
-from networkx.readwrite.graphml import write_graphml
+from networkx.readwrite.graphml import write_graphml as _write_graphml
 from requests import HTTPError
 from tqdm import tqdm
 from wikidataintegrator.wdi_core import WDItemEngine
@@ -56,9 +56,9 @@ attribute_nodes = {
 subclass_nodes = {'Q4936952': 'anatomical structure',
                   # niosh symptoms are mess, half are not instance of anything, a quarter have no instance of or subclass # http://tinyurl.com/y98bk69x
                   'Q169872': 'symptom',
-                  'Q21167512': 'chemical hazard', # this too. look into subclass* hazard (Q1132455)
+                  'Q21167512': 'chemical hazard',  # this too. look into subclass* hazard (Q1132455)
                   'Q15304597': 'sequence variant',  # TODO: andra needs to change this to use instance of
-                  'Q68685': 'metabolic pathway', # todo: same
+                  'Q68685': 'metabolic pathway',  # todo: same
                   }
 
 # seed nodes get everything that links off of them.
@@ -69,10 +69,9 @@ seed_nodes = {k: v for k, v in seed_nodes.items() if k not in skip_types}
 
 # instance of subject, subclass of object
 special_edges = [('Q11173', 'P1542', 'Q21167512'),  # chemical, cause of, chemical hazard
-                 ('Q12136', 'P780', 'Q169872'), # disease, symptom, symptom
-                 ('Q12136', 'P780', 'Q1441305'), # disease, symptom, medical sign
+                 ('Q12136', 'P780', 'Q169872'),  # disease, symptom, symptom
+                 ('Q12136', 'P780', 'Q1441305'),  # disease, symptom, medical sign
                  ('Q21167512', 'P780', 'Q169872')]  # chemical hazard, symptom, symptom
-
 
 
 def chunks(l, n):
@@ -207,10 +206,7 @@ def get_connecting_types(qid, pid, direction='out', use_subclass_subject=False, 
     return {x['type']['value'].replace("http://www.wikidata.org/entity/", ""): int(x['count']['value']) for x in d}
 
 
-if __name__ == "__main__":
-
-    prop_labels = get_prop_labels()
-
+def generate_graph_data():
     # get all node counts for my special types
     print("Getting type counts")
     type_count = get_type_count(attribute_nodes)
@@ -312,14 +308,20 @@ if __name__ == "__main__":
 
     print("really special edges")
     for qid, pid, qid2 in special_edges:
-        conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=True, include_subclass_object=True)
+        conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=True,
+                                          include_subclass_object=True)
         print(conn_types[qid2])
         spo[qid][pid] = conn_types
     print("Done")
+    return type_count, type_prop_id, spo, spo_in
 
+
+def create_graph(type_count, type_prop_id, spo, spo_in):
     ############
     # construct the network
     ############
+    prop_labels = get_prop_labels()
+
     G = nx.MultiDiGraph()
     for qid, count in type_count.items():
         G.add_node(qid, {'count': count})
@@ -331,7 +333,8 @@ if __name__ == "__main__":
         for pid, conn_types in pid_conn_types.items():
             for conn_qid, conn_count in conn_types.items():
                 if (qid, pid, conn_qid) in special_edges or conn_count > MIN_COUNT:
-                    G.add_edge(qid, conn_qid, count=conn_count, label=prop_labels[pid])
+                    G.add_edge(qid, conn_qid, count=conn_count, label=prop_labels[pid], pid=pid,
+                               URL="https://www.wikidata.org/wiki/Property:" + pid)
     for qid, pid_conn_types in spo_in.items():
         for pid, conn_types in pid_conn_types.items():
             for conn_qid, conn_count in conn_types.items():
@@ -339,8 +342,10 @@ if __name__ == "__main__":
                     # don't add duplicate edges
                     continue
                 if conn_count > MIN_COUNT:
-                    G.add_edge(conn_qid, qid, count=conn_count, label=prop_labels[pid])
+                    G.add_edge(conn_qid, qid, count=conn_count, label=prop_labels[pid], pid=pid,
+                               URL="https://www.wikidata.org/wiki/Property:" + pid)
     node_labels = getConceptLabels(G.nodes())
+    nx.set_node_attributes(G, 'URL', {qid: "https://www.wikidata.org/wiki/" + qid for qid in node_labels})
     nx.set_node_attributes(G, 'label', node_labels)
     nx.set_node_attributes(G, 'NodeLabel', node_labels)
     nx.set_node_attributes(G, 'labelcount',
@@ -352,20 +357,17 @@ if __name__ == "__main__":
     nx.set_edge_attributes(G, 'labelcount', {k: edge_label[k] + " (" + str(edge_count[k]) + ")" for k in edge_label})
 
     # make a multiline string for the node properties text from the external ids and counts
-    exclude = {'count', 'NodeLabel', 'label', 'labelcount'}
-    node_prop_text = {qid: '\n'.join({"{}: {}".format(prop_labels[k], v) for k, v in G.node[qid].items() if k not in exclude}) for
-                      qid in
-                      G.node}
+    exclude = {'count', 'NodeLabel', 'label', 'labelcount', 'URL', 'node_prop_text'}
+    node_prop_text = {
+    qid: '\n'.join({"{}: {}".format(prop_labels[k], v) for k, v in G.node[qid].items() if k not in exclude}) for
+    qid in G.node}
     nx.set_node_attributes(G, 'node_prop_text', node_prop_text)
 
     # specify node types
     nx.set_node_attributes(G, 'node_type',
                            {qid: 'detail' if node_prop_text[qid] else 'simple' for qid in node_prop_text})
 
-    write_graphml(G, "tmp.graphml")
-    s = open("tmp.graphml").read().replace('attr.type="long"', 'attr.type="int"')  # yEd nonsense
-    with open("tmp.graphml", "w") as f:
-        f.write(s)
+    return G
 
 
 def plot(G, show_box=False):
@@ -386,3 +388,17 @@ def plot(G, show_box=False):
             plt.text(x, y - 0.05, s=label, bbox=dict(facecolor='red', alpha=0.5), verticalalignment='top',
                      horizontalalignment='center')
     plt.show()
+
+
+def write_graphml(G, filename):
+    _write_graphml(G, filename)
+    s = open(filename).read().replace('attr.type="long"', 'attr.type="int"')  # yEd nonsense
+    with open(filename, "w") as f:
+        f.write(s)
+
+
+if __name__ == "__main__":
+    type_count, type_prop_id, spo, spo_in = generate_graph_data()
+    G = create_graph(type_count, type_prop_id, spo, spo_in)
+    filename = "tmp.graphml"
+    write_graphml(G, filename)
