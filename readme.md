@@ -1,5 +1,5 @@
 ## Gene Wiki World
-#### Show a plot of all items we care about, and some we don't....
+#### Generate a network of all items we care about, and some we don't....
 
 ### Usage
 1. Run ```python3 get_counts.py```

@@ -12,6 +12,7 @@ import networkx as nx
 from matplotlib import pyplot as plt
 
 from wikidataintegrator.wdi_config import config
+
 # don't retry failed sparql queries. let them time out, and we'll skip
 config['BACKOFF_MAX_TRIES'] = 1
 
@@ -22,14 +23,14 @@ execute_sparql_query = functools.partial(execute_sparql_query,
 
 MIN_COUNT = 200
 
-# these are the "special" nodes that will have their external ID counts displayed,
-# and are the seed nodes to get everything that links off of them.
-# the labels aren't used. only for me
-qid_label = {
+# these are the special nodes that will have their external ID counts displayed,
+# the labels aren't used. only for my sanity
+attribute_nodes = {
     'Q12136': 'disease',
     'Q7187': 'gene',
     'Q8054': 'protein',
     'Q37748': 'chromosome',
+    'Q215980': 'ribosomal RNA',
     'Q11173': 'chemical_compound',
     'Q12140': 'pharmaceutical_drug',
     'Q28885102': 'pharmaceutical_product',
@@ -40,15 +41,38 @@ qid_label = {
     'Q5058355': 'cellular_component',
     'Q3273544': 'structural_motif',
     'Q7644128': 'supersecondary_structure',
-    'Q14633912': 'post-translational_protein_modification',
     'Q616005': 'binding_site',
     'Q423026': 'active_site',
     'Q16521': 'taxon',
     'Q13442814': 'scientific_article',
-    'Q68685': 'metabolic pathway',
-    'Q15304597': 'sequence variant'  # TODO: andra needs to change this to use instance of
+    'Q4936952': 'anatomical structure',
+    'Q169872': 'symptom',
+    'Q621636': 'route of admin',
 }
-#skip_types = {'Q13442814', 'Q16521'}
+
+# subclass nodes
+# these are "special" because they don't use the instance of = type system, because they were done by others
+# we'll have to get items that are subclass of these
+subclass_nodes = {'Q4936952': 'anatomical structure',
+                  # niosh symptoms are mess, half are not instance of anything, a quarter have no instance of or subclass # http://tinyurl.com/y98bk69x
+                  'Q169872': 'symptom',
+                  'Q21167512': 'chemical hazard', # this too. look into subclass* hazard (Q1132455)
+                  'Q15304597': 'sequence variant',  # TODO: andra needs to change this to use instance of
+                  'Q68685': 'metabolic pathway', # todo: same
+                  }
+
+# seed nodes get everything that links off of them.
+skip_types = {'Q13442814', 'Q16521'}
+# skip: scientific article, taxon
+seed_nodes = dict(attribute_nodes.items() | subclass_nodes.items())
+seed_nodes = {k: v for k, v in seed_nodes.items() if k not in skip_types}
+
+# instance of subject, subclass of object
+special_edges = [('Q11173', 'P1542', 'Q21167512'),  # chemical, cause of, chemical hazard
+                 ('Q12136', 'P780', 'Q169872'), # disease, symptom, symptom
+                 ('Q12136', 'P780', 'Q1441305'), # disease, symptom, medical sign
+                 ('Q21167512', 'P780', 'Q169872')]  # chemical hazard, symptom, symptom
+
 
 
 def chunks(l, n):
@@ -67,7 +91,6 @@ def getConceptLabels(qids):
         this_qids = "|".join({qid.replace("wd:", "") if qid.startswith("wd:") else qid for qid in chunk})
         params = {'action': 'wbgetentities', 'ids': this_qids, 'languages': 'en', 'format': 'json', 'props': 'labels'}
         r = requests.get("https://www.wikidata.org/w/api.php", params=params)
-        print(r.url)
         r.raise_for_status()
         wd = r.json()['entities']
         out.update({k: v['labels']['en']['value'] for k, v in wd.items()})
@@ -87,94 +110,69 @@ def get_prop_labels():
     return d
 
 
-def get_type_count(qids):
+def get_type_count(qids, use_subclass=False):
     """
     For each qid, get the number of items that are instance of (types) this qid
     """
-    # fails doing them all at once....
-    # wds = " ".join(["wd:" + x for x in qid_label.keys()])
+    p = "P279" if use_subclass else "P31"
     dd = dict()
     for qid in tqdm(qids):
         s = """
-        SELECT ?instance (COUNT(?item) as ?c) WHERE {
-          values ?instance {wds}
-          ?item wdt:P31 ?instance .
-          ?item wdt:P31 ?instance .
-        } GROUP BY ?instance
-        """.replace("wds", "wd:" + qid)
+        SELECT (COUNT(?item) as ?c) WHERE {
+          ?item wdt:{p} {wds}
+        }
+        """.replace("{wds}", "wd:" + qid).replace("{p}", p)
         d = execute_sparql_query(s)['results']['bindings']
-        d = {x['instance']['value'].replace("http://www.wikidata.org/entity/", ""): int(x['c']['value']) for x in d}
+        d = {qid: int(x['c']['value']) for x in d}
         dd.update(d)
     return dd
 
 
-def get_type_edge_frequency_out(type_qid):
+def get_type_edge_frequency(type_qid, direction='out', use_subclass=False):
     """
-    Another version of get_types_props. returns about the same results
-    gets properties on items that are an instance of type_qid
-    does not filter by prop type. You need to do that after
+    gets properties on items that are an instance of type_qid. returns all kinds of props, (i.e. including
+        externalid and wditem). Filtering by item type causes query timeouts
+    if direction = "in": returns "incoming"/"reverse"/"what links here" edges, gets properties on items that are the
+        subjects where the object is an instance of type_qid
     """
+    assert direction in {'in', 'out'}
+    p = "P279" if use_subclass else "P31"
+    subject = "subject"
+    if direction == "in":
+        subject = "object"
     s = """SELECT ?property ?count WHERE {
               {
-              SELECT ?property (COUNT(*) AS ?count)
-                 WHERE {
-                    ?item wdt:P31 wd:{xxx} .
-                    ?item ?property ?value .
-                   # FILTER(regex(str(?property), "http://www.wikidata.org/prop/direct"))
-                   # FILTER(regex(str(?value), "http://www.wikidata.org/entity"))
+              SELECT ?property (COUNT(*) AS ?count) WHERE {
+                    ?{subject} wdt:{p} wd:{xxx} .
+                    ?subject ?property ?object .
                  } GROUP BY ?property
               }
-            } ORDER BY DESC (?count)""".replace("{xxx}", type_qid)
+            } ORDER BY DESC (?count)""".replace("{xxx}", type_qid).replace("{p}", p).replace("{subject}", subject)
     d = execute_sparql_query(s)['results']['bindings']
     r = {x['property']['value'].replace("http://www.wikidata.org/prop/direct/", ""):
              int(x['count']['value']) for x in d if 'http://www.wikidata.org/prop/direct' in x['property']['value']}
     return r
 
 
-def get_type_edge_frequency_in(type_qid):
-    """
-    Same format as get_type_edge_frequency_out, but returns "incoming"/"reverse"/"what links here" edges
-    gets properties on items that are the subjects where the object is an instance of type_qid
-    does not filter by prop type. You need to do that after
-    """
-    s_rev = """SELECT ?property ?count WHERE {
-              {
-              SELECT ?property (COUNT(*) AS ?count)
-                 WHERE {
-                    ?value wdt:P31 wd:{xxx} .
-                    ?item ?property ?value .
-                   # FILTER(regex(str(?property), "http://www.wikidata.org/prop/direct"))
-                 } GROUP BY ?property
-              }
-            } ORDER BY DESC (?count)""".replace("{xxx}", type_qid)
-    d_rev = execute_sparql_query(s_rev)['results']['bindings']
-    r_rev = {x['property']['value'].replace("http://www.wikidata.org/prop/direct/", ""):
-                 int(x['count']['value']) for x in d_rev if
-             'http://www.wikidata.org/prop/direct' in x['property']['value']}
-    return r_rev
-
-
-def get_types_props(type_qid, prop_type):
+def get_external_ids(type_qid, use_subclass=False):
     """
     Given the qid of a type, get all external id props for items of this type
     ranked by usage count
     :param type_qid: QID of item type
-    :param prop_type: ExternalId or WikibaseItem
-    :return:
     """
-    assert prop_type in {'ExternalId', 'WikibaseItem'}
+    p = "P279" if use_subclass else "P31"
     s = """
     SELECT ?property ?propertyLabel ?propertyDescription ?count WHERE {
       {
         select ?propertyclaim (COUNT(*) AS ?count) where {
-          ?item wdt:P31 wd:{xxx} .
+          ?item wdt:{p} wd:{type_qid} .
           ?item ?propertyclaim [] .
         } group by ?propertyclaim
       }
-      ?property wikibase:propertyType wikibase:{yyy} .
+      ?property wikibase:propertyType wikibase:ExternalId .
       ?property wikibase:claim ?propertyclaim .
       SERVICE wikibase:label {bd:serviceParam wikibase:language "en" .}
-    } ORDER BY DESC (?count)""".replace("{xxx}", type_qid).replace("{yyy}", prop_type)
+    } ORDER BY DESC (?count)""".replace("{type_qid}", type_qid).replace("{p}", p)
 
     d = execute_sparql_query(s)['results']['bindings']
     return [(x['property']['value'].replace("http://www.wikidata.org/entity/", ""),
@@ -182,54 +180,31 @@ def get_types_props(type_qid, prop_type):
              int(x['count']['value'])) for x in d]
 
 
-def get_connecting_types_out(qid, pid, ret='label', include_subclass=False):
+def get_connecting_types(qid, pid, direction='out', use_subclass_subject=False, include_subclass_object=False):
     """
     Given a subject item type (by its qid, ex: Q12136 (disease))
     and a property (by its pid, ex: P2176 (drug used for treatment))
     Get me the types of objects it connects to, grouped by counts
+    :param qid: subject items are of type "qid"
+    :param pid: subject items are connected to object using this predicate's pid
+    :param direction: {'in', 'out'} incoming or outgoing (default) edges
+    :param use_subclass_subject: subject items are "subclasss of" type "qid", instead of "instance of"
+    :param include_subclass_object: predicate items are "subclasss of" OR "instance of" type
     """
-    assert ret in {'label', 'qid'}
-    s = """select ?type ?typeLabel (COUNT(*) AS ?count) where {
-      ?item wdt:P31 wd:{xxx} .
-      ?item wdt:{yyy} ?other_item .
-      ?other_item wdt:P31 ?type .
-      OPTIONAL { ?type rdfs:label ?typeLabel. FILTER(LANG(?typeLabel) = "en"). }
-    } group by ?type ?typeLabel""".replace("{xxx}", qid).replace("{yyy}", pid)
-    if include_subclass:
-        s = """select ?type ?typeLabel (COUNT(*) AS ?count) where {
-              ?item wdt:P31 wd:{xxx} .
-              ?item wdt:{yyy} ?other_item .
-              ?other_item wdt:P31|wdt:P279 ?type .  #  <------ this is the secret sauce
-              OPTIONAL { ?type rdfs:label ?typeLabel. FILTER(LANG(?typeLabel) = "en"). }
-            } group by ?type ?typeLabel""".replace("{xxx}", qid).replace("{yyy}", pid)
-    d = execute_sparql_query(s)['results']['bindings']
-    if ret == 'qid':
-        return {x['type']['value'].replace("http://www.wikidata.org/entity/", ""): int(x['count']['value']) for x in d}
-    else:
-        return {x['typeLabel']['value']: int(x['count']['value']) for x in d}
+    assert direction in {'in', 'out'}
+    p_sub = "P279" if use_subclass_subject else "P31"
+    left, right = 'subject', 'object'
+    if direction == 'in':
+        left, right = right, left
+    p_obj = "wdt:P31|wdt:P279" if include_subclass_object else "wdt:P31"
 
-
-def get_connecting_types_in(qid, pid, ret='label'):
-    """
-    Given a subject item type (by its qid, ex: Q12136 (disease))
-    and a property (by its pid, ex: P2176 (drug used for treatment))
-    Get me the types of objects that connects to it, grouped by counts
-    :param qid:
-    :param pid:
-    :return:
-    """
-    assert ret in {'label', 'qid'}
-    s = """select ?type ?typeLabel (COUNT(*) AS ?count) where {
-      ?item wdt:P31 wd:{xxx} .
-      ?other_item wdt:{yyy} ?item .
-      ?other_item wdt:P31 ?type .
-      OPTIONAL { ?type rdfs:label ?typeLabel. FILTER(LANG(?typeLabel) = "en"). }
-    } group by ?type ?typeLabel""".replace("{xxx}", qid).replace("{yyy}", pid)
+    s = """select ?type (COUNT(*) AS ?count) where {{
+      ?subject wdt:{p_sub} wd:{qid} .
+      ?{left} wdt:{pid} ?{right} .
+      ?object {p_obj} ?type .
+    }} group by ?type""".format(p_sub=p_sub, qid=qid, pid=pid, p_obj=p_obj, left=left, right=right)
     d = execute_sparql_query(s)['results']['bindings']
-    if ret == 'qid':
-        return {x['type']['value'].replace("http://www.wikidata.org/entity/", ""): int(x['count']['value']) for x in d}
-    else:
-        return {x['typeLabel']['value']: int(x['count']['value']) for x in d}
+    return {x['type']['value'].replace("http://www.wikidata.org/entity/", ""): int(x['count']['value']) for x in d}
 
 
 if __name__ == "__main__":
@@ -238,94 +213,116 @@ if __name__ == "__main__":
 
     # get all node counts for my special types
     print("Getting type counts")
-    type_count = get_type_count(qid_label)
+    type_count = get_type_count(attribute_nodes)
+    type_count_sub = get_type_count(subclass_nodes, use_subclass=True)
+    type_count.update(type_count_sub)
     print("Getting type counts: Done")
 
     # for each types of item, get the external ID props items of this type use
     print("Getting type external ids props")
     type_prop_id = dict()
-    for qid in tqdm(type_count):
-        try:
-            props = get_types_props(qid, 'ExternalId')
-        except HTTPError:
-            type_prop_id[qid] = {}
-            continue
-        props = {x[1]: x[2] for x in props}  # label: count
+    for qid in tqdm(attribute_nodes):
+        props = get_external_ids(qid)
+        props = {x[0]: x[2] for x in props}  # id: count
+        type_prop_id[qid] = props
+    for qid in tqdm(subclass_nodes):
+        props = get_external_ids(qid, use_subclass=True)
+        props = {x[0]: x[2] for x in props}  # id: count
         type_prop_id[qid] = props
     print("Getting type external ids props: Done")
 
-    # for each types of item, get the WikibaseItem props it uses
-    print("Getting type item props")
+    # for each types of item, get the WikibaseItem props it uses (using the seed nodes)
+    print("Getting outgoing props for each type")
     type_props_out = dict()
-    for qid in tqdm(type_count):
-        try:
-            props = get_type_edge_frequency_out(qid)
-        except HTTPError:
-            type_props_out[qid] = {}
-            continue
+    for qid in tqdm(seed_nodes):
+        props = get_type_edge_frequency(qid, direction='out')
+        # remove external id props
+        props = {k: v for k, v in props.items() if k not in type_prop_id[qid]}
         type_props_out[qid] = props
     # and incoming
+    print("Getting incoming props for each type")
     type_props_in = dict()
-    for qid in tqdm(type_count):
-        try:
-            props = get_type_edge_frequency_in(qid)
-        except HTTPError:
-            type_props_in[qid] = {}
-            continue
+    for qid in tqdm(seed_nodes):
+        props = get_type_edge_frequency(qid, direction='in')
         type_props_in[qid] = props
-    print("Getting type item props: Done")
+    print("Done")
+
+    # same as above, special dealing with subclass
+    for qid in subclass_nodes:
+        props = get_type_edge_frequency(qid, direction='out', use_subclass=True)
+        # remove external id props
+        props = {k: v for k, v in props.items() if k not in type_prop_id[qid]}
+        type_props_out[qid] = props
+    for qid in subclass_nodes:
+        props = get_type_edge_frequency(qid, direction='in', use_subclass=True)
+        type_props_in[qid] = props
 
     # get the types of items that each subject -> property edge connects to
-    print("Getting type item props objects")
+    print("Getting type of objects each (subject, predicate) connects to")
     spo = dict()
-    for qid, props in tqdm(type_props_out.items()):
+    t = tqdm(type_props_out.items())
+    for qid, props in t:
+        t.set_description(seed_nodes[qid])
+        t.refresh()
         spo[qid] = dict()
-        # speed this up
         props = {k: v for k, v in props.items() if v > MIN_COUNT}
         for pid, count in tqdm(props.items()):
-            conn_types = get_connecting_types_out(qid, pid, ret='qid')
+            conn_types = get_connecting_types(qid, pid, direction='out')
             spo[qid][pid] = conn_types
     # and incoming
+    print("Getting type of objects each (subject, predicate) connects from")
     spo_in = dict()
-    for qid, props in tqdm(type_props_in.items()):
+    t = tqdm(type_props_in.items())
+    for qid, props in t:
+        t.set_description(seed_nodes[qid])
+        t.refresh()
         spo_in[qid] = dict()
-        # speed this up
         props = {k: v for k, v in props.items() if v > MIN_COUNT}
         for pid, count in tqdm(props.items()):
-            conn_types = get_connecting_types_in(qid, pid, ret='qid')
+            conn_types = get_connecting_types(qid, pid, direction='in')
             spo_in[qid][pid] = conn_types
-    print("Getting type item props objects: Done")
+    print("Done")
 
-    """
-    This is a little hacky, but bear with me
-    Not everying in wikidata is using the "instance of" ~= type system.
-
-    For example "chemical compounds" have 594 "cause of"s (type_props['Q11173'])
-    but only to a total of 5 items that are in instance of something (spo['Q11173']['P1542'])
-    Find these, and check the subclasses
-    """
-    print("getting special edges")
-    special_edges = []
-    for qid, props in type_props_out.items():
-        for pid, count in props.items():
-            if pid not in {'P31', 'P279', 'P680', 'P682', 'P681'} and count > MIN_COUNT and sum(spo[qid][pid].values()) < count * .75:
-                #print(qid, pid, prop_labels[pid])
-                special_edges.append((qid, pid))
-    for qid, pid in tqdm(special_edges):
-        conn_types = get_connecting_types_out(qid, pid, ret='qid', include_subclass=True)
-        if conn_types:
-            print(qid, pid, prop_labels[pid])
-            conn_types = {k: v for k, v in conn_types.items() if v > MIN_COUNT}
-            print(conn_types)
+    ## special dealing with subclass
+    print("Getting type of objects each (subject, predicate) connects to SUBCLASS")
+    t = tqdm(type_props_out.items())
+    for qid, props in t:
+        if qid not in subclass_nodes:
+            continue
+        t.set_description(seed_nodes[qid])
+        t.refresh()
+        spo[qid] = dict()
+        props = {k: v for k, v in props.items() if v > MIN_COUNT}
+        for pid, count in tqdm(props.items()):
+            conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=True)
             spo[qid][pid] = conn_types
-    print("getting special edges: Done")
+    # and incoming
+    print("Getting type of objects each (subject, predicate) connects from SUBCLASS")
+    t = tqdm(type_props_in.items())
+    for qid, props in t:
+        if qid not in subclass_nodes:
+            continue
+        t.set_description(seed_nodes[qid])
+        t.refresh()
+        spo_in[qid] = dict()
+        props = {k: v for k, v in props.items() if v > MIN_COUNT}
+        for pid, count in tqdm(props.items()):
+            conn_types = get_connecting_types(qid, pid, direction='in', use_subclass_subject=True)
+            spo_in[qid][pid] = conn_types
+
+    print("really special edges")
+    for qid, pid, qid2 in special_edges:
+        conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=True, include_subclass_object=True)
+        print(conn_types[qid2])
+        spo[qid][pid] = conn_types
+    print("Done")
+
     ############
     # construct the network
     ############
     G = nx.MultiDiGraph()
     for qid, count in type_count.items():
-        label = qid_label[qid]
-        G.add_node(qid, {'count': count, 'label': label})
+        G.add_node(qid, {'count': count})
     for qid, props in type_prop_id.items():
         G.node[qid].update({k: v for k, v in props.items() if v > MIN_COUNT})
         if len(props) <= 2:
@@ -333,11 +330,14 @@ if __name__ == "__main__":
     for qid, pid_conn_types in spo.items():
         for pid, conn_types in pid_conn_types.items():
             for conn_qid, conn_count in conn_types.items():
-                if conn_count > MIN_COUNT:
+                if (qid, pid, conn_qid) in special_edges or conn_count > MIN_COUNT:
                     G.add_edge(qid, conn_qid, count=conn_count, label=prop_labels[pid])
     for qid, pid_conn_types in spo_in.items():
         for pid, conn_types in pid_conn_types.items():
             for conn_qid, conn_count in conn_types.items():
+                if conn_qid in spo and pid in spo[conn_qid] and qid in spo[conn_qid][pid]:
+                    # don't add duplicate edges
+                    continue
                 if conn_count > MIN_COUNT:
                     G.add_edge(conn_qid, qid, count=conn_count, label=prop_labels[pid])
     node_labels = getConceptLabels(G.nodes())
@@ -353,12 +353,14 @@ if __name__ == "__main__":
 
     # make a multiline string for the node properties text from the external ids and counts
     exclude = {'count', 'NodeLabel', 'label', 'labelcount'}
-    node_prop_text = {qid: '\n'.join({"{}: {}".format(k, v) for k, v in G.node[qid].items() if k not in exclude}) for qid in
+    node_prop_text = {qid: '\n'.join({"{}: {}".format(prop_labels[k], v) for k, v in G.node[qid].items() if k not in exclude}) for
+                      qid in
                       G.node}
     nx.set_node_attributes(G, 'node_prop_text', node_prop_text)
 
     # specify node types
-    nx.set_node_attributes(G, 'node_type', {qid: 'detail' if node_prop_text[qid] else 'simple' for qid in node_prop_text})
+    nx.set_node_attributes(G, 'node_type',
+                           {qid: 'detail' if node_prop_text[qid] else 'simple' for qid in node_prop_text})
 
     write_graphml(G, "tmp.graphml")
     s = open("tmp.graphml").read().replace('attr.type="long"', 'attr.type="int"')  # yEd nonsense
@@ -366,7 +368,7 @@ if __name__ == "__main__":
         f.write(s)
 
 
-def plot(G, show_box = False):
+def plot(G, show_box=False):
     pos = nx.spring_layout(G)
     nx.draw(G, pos)
     labels = nx.get_node_attributes(G, 'label')
