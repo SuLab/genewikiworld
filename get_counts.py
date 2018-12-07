@@ -48,17 +48,18 @@ attribute_nodes = {
     'Q4936952': 'anatomical structure',
     'Q169872': 'symptom',
     'Q621636': 'route of admin',
+    'Q4936952': 'anatomical structure',
+    'Q169872': 'symptom',
+    'Q15304597': 'sequence variant',
+    'Q4915012': 'biological pathway',
 }
 
 # subclass nodes
 # these are "special" because they don't use the instance of = type system, because they were done by others
 # we'll have to get items that are subclass of these
-subclass_nodes = {'Q4936952': 'anatomical structure',
+subclass_nodes = {
                   # niosh symptoms are mess, half are not instance of anything, a quarter have no instance of or subclass # http://tinyurl.com/y98bk69x
-                  'Q169872': 'symptom',
                   'Q21167512': 'chemical hazard',  # this too. look into subclass* hazard (Q1132455)
-                  'Q15304597': 'sequence variant',  # TODO: andra needs to change this to use instance of
-                  'Q68685': 'metabolic pathway',  # todo: same
                   }
 
 # seed nodes get everything that links off of them.
@@ -87,11 +88,16 @@ def getConceptLabel(qid):
 def getConceptLabels(qids):
     out = dict()
     for chunk in chunks(list(set(qids)), 50):
-        this_qids = "|".join({qid.replace("wd:", "") if qid.startswith("wd:") else qid for qid in chunk})
+        this_qids = {qid.replace("wd:", "") if qid.startswith("wd:") else qid for qid in chunk}
+        # Found Some results that begin with 't' and cause request to return no results
+        bad_ids = {qid for qid in this_qids if not qid.startswith('Q')}
+        this_qids = '|'.join(this_qids - bad_ids)
         params = {'action': 'wbgetentities', 'ids': this_qids, 'languages': 'en', 'format': 'json', 'props': 'labels'}
         r = requests.get("https://www.wikidata.org/w/api.php", params=params)
         r.raise_for_status()
         wd = r.json()['entities']
+        # Use empty labels for the bad ids
+        wd.update({bad_id: {'labels': {'en': {'value': ""}}} for bad_id in bad_ids})
         out.update({k: v['labels']['en']['value'] for k, v in wd.items()})
     return out
 
@@ -105,7 +111,8 @@ def get_prop_labels():
         SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
     }"""
     d = execute_sparql_query(s)['results']['bindings']
-    d = {x['property']['value'].replace("http://www.wikidata.org/entity/", ""): x['propertyLabel']['value'] for x in d}
+    d = {x['property']['value'].replace("http://www.wikidata.org/entity/", ""):
+                x['propertyLabel']['value'] for x in d}
     return d
 
 
@@ -148,7 +155,7 @@ def get_type_edge_frequency(type_qid, direction='out', use_subclass=False):
               }
             } ORDER BY DESC (?count)""".replace("{xxx}", type_qid).replace("{p}", p).replace("{subject}", subject)
     d = execute_sparql_query(s)['results']['bindings']
-    r = {x['property']['value'].replace("http://www.wikidata.org/prop/direct/", ""):
+    r = {x['property']['value'].split('/')[-1]:
              int(x['count']['value']) for x in d if 'http://www.wikidata.org/prop/direct' in x['property']['value']}
     return r
 
