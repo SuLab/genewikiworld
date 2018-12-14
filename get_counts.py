@@ -71,22 +71,49 @@ def get_prop_labels():
     return d
 
 
+def is_subclass(qid):
+    p0 = "wdt:P31"
+    p1 = "wdt:P279"
+
+    s = """
+    SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
+      ?item {p} {wds}
+    }
+        """
+
+    s_both = """
+    SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
+      ?item {p0} {wds} .
+      ?item {p1} {wds} .
+    }
+    """
+
+    instance = execute_sparql_query(s.replace("{wds}", "wd:" + qid).replace("{p}", p0))['results']['bindings']
+    instance = {qid: int(x['c']['value']) for x in instance}.popitem()[1]
+
+    subclass = execute_sparql_query(s.replace("{wds}", "wd:" + qid).replace("{p}", p1))['results']['bindings']
+    subclass = {qid: int(x['c']['value']) for x in subclass}.popitem()[1]
+
+    both = \
+    execute_sparql_query(s_both.replace("{wds}", "wd:" + qid).replace("{p0}", p0).replace("{p1}", p1))['results'][
+        'bindings']
+    both = {qid: int(x['c']['value']) for x in both}.popitem()[1]
+
+    return subclass - both > instance
+
+
 def get_type_count(qids, use_subclass=False):
     """
     For each qid, get the number of items that are instance of (types) this qid
     """
-    p = "wdt:P31/wdt:P279*|wdt:P279" if use_subclass else "wdt:P31"
-    dd = dict()
-    for qid in tqdm(qids):
-        s = """
-        SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
-          ?item {p} {wds}
-        }
-        """.replace("{wds}", "wd:" + qid).replace("{p}", p)
-        d = execute_sparql_query(s)['results']['bindings']
-        d = {qid: int(x['c']['value']) for x in d}
-        dd.update(d)
-    return dd
+    p = "wdt:P279*" if use_subclass else "wdt:P31/wdt:P279*"
+    s = """
+    SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
+      ?item {p} {wds}
+    }
+    """.replace("{wds}", "wd:" + qid).replace("{p}", p)
+    d = execute_sparql_query(s)['results']['bindings']
+    return {qid: int(x['c']['value']) for x in d}.popitem()[1]
 
 
 def get_type_edge_frequency(type_qid, direction='out', use_subclass=False, extend_subclass=True):
@@ -189,25 +216,34 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
                                 max_size_for_expansion=200000):
     # Make set for easy operations
     skip_types = set(skip_types)
+
+    # Determine which nodes are 'insatnce of' and which are 'subclass of'
+    subclass_nodes = {qid: is_subclass(qid) for qid in tqdm(seed_nodes)}
+
     # get all node counts for my special types
+    type_count = dict()
     print("Getting type counts")
     time.sleep(0.5) # Sometimes TQDM prints early, so sleep will endure messages are printed before TQDM starts
-    type_count = get_type_count(seed_nodes, use_subclass=True)
+    t = tqdm(subclass_nodes.items())
+    for qid, is_sub in t:
+        t.set_description(seed_nodes[qid])
+        t.refresh()
+        type_count[qid] = get_type_count(qid, is_sub)
     print("Getting type counts: Done")
+
+    # for each types of item, get the external ID props items of this type use
     print("Getting type external ids props")
     time.sleep(0.5)
     type_prop_id = dict()
-    t = tqdm(seed_nodes.keys())
-    for qid in t:
+    t = tqdm(subclass_nodes.items())
+    for qid, is_sub in t:
         t.set_description(seed_nodes[qid])
         t.refresh()
-        use_subclass = type_count[qid] < max_size_for_expansion
-        props = get_external_ids(qid, use_subclass=use_subclass)
+        extend_subclass = type_count[qid] < max_size_for_expansion
+        props = get_external_ids(qid, use_subclass=is_sub, extend_subclass=extend_subclass)
         props = {x[0]: x[2] for x in props}  # id: count
         type_prop_id[qid] = props
     print("Getting type external ids props: Done")
-    # for each types of item, get the external ID props items of this type use
-
 
     # for each types of item, get the WikibaseItem props it uses (using the seed nodes)
     print("Getting outgoing props for each type")
@@ -217,11 +253,14 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
     for qid in t:
         t.set_description(seed_nodes[qid])
         t.refresh()
-        use_subclass = type_count[qid] < max_size_for_expansion
-        props = get_type_edge_frequency(qid, direction='out', use_subclass=use_subclass)
+        # Don't extend subclasses (e.g. P279* or P31/P279*) for large nodes... results in memory error
+        extend_subclass = type_count[qid] < max_size_for_expansion
+        props = get_type_edge_frequency(qid, direction='out', use_subclass=subclass_nodes[qid],
+                                        extend_subclass=extend_subclass)
         # remove external id props
         props = {k: v for k, v in props.items() if k not in type_prop_id[qid]}
         type_props_out[qid] = props
+
     # and incoming
     print("Getting incoming props for each type")
     time.sleep(0.5)
@@ -230,8 +269,9 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
     for qid in t:
         t.set_description(seed_nodes[qid])
         t.refresh()
-        use_subclass = type_count[qid] < max_size_for_expansion
-        props = get_type_edge_frequency(qid, direction='in', use_subclass=use_subclass)
+        extend_subclass = type_count[qid] < max_size_for_expansion
+        props = get_type_edge_frequency(qid, direction='in', use_subclass=subclass_nodes[qid],
+                                        extend_subclass=extend_subclass)
         type_props_in[qid] = props
     print("Done")
 
@@ -244,12 +284,12 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
         t.set_description(seed_nodes[qid])
         t.refresh()
         spo[qid] = dict()
-        subclass_sub = type_count[qid] < max_size_for_expansion
+        extend_subclass = type_count[qid] < max_size_for_expansion
         props = {k: v for k, v in props.items() if v > min_counts}
         for pid, count in tqdm(props.items()):
             subclass_obj = (qid, pid) in [q[:2] for q in special_starts]
-            conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=subclass_sub,
-                                              include_subclass_object=subclass_obj)
+            conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=subclass_nodes[qid],
+                                              include_subclass_object=subclass_obj, extend_subclass=extend_subclass)
             spo[qid][pid] = conn_types
     # and incoming
     print("Getting type of objects each (subject, predicate) connects from")
@@ -260,12 +300,12 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
         t.set_description(seed_nodes[qid])
         t.refresh()
         spo_in[qid] = dict()
-        subclass_sub = type_count[qid] < max_size_for_expansion
+        extend_subclass = type_count[qid] < max_size_for_expansion
         props = {k: v for k, v in props.items() if v > min_counts}
         for pid, count in tqdm(props.items()):
             subclass_obj = (qid, pid) in [q[:2] for q in special_starts]
-            conn_types = get_connecting_types(qid, pid, direction='in', use_subclass_subject=subclass_sub,
-                                              include_subclass_object=subclass_obj)
+            conn_types = get_connecting_types(qid, pid, direction='in', use_subclass_subject=subclass_nodes[qid],
+                                              include_subclass_object=subclass_obj, extend_subclass=extend_subclass)
             spo_in[qid][pid] = conn_types
     print("Done")
 
