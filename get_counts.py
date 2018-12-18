@@ -3,6 +3,7 @@ Get counts for all items we care about, and some we don't ....
 """
 import time
 import functools
+import numpy as np
 
 import requests
 from networkx.readwrite.graphml import write_graphml_xml as _write_graphml
@@ -71,42 +72,48 @@ def get_prop_labels():
     return d
 
 
-def is_subclass(qid):
-    p0 = "wdt:P31"
-    p1 = "wdt:P279"
+def determine_p(use_subclass, extend=True):
+    p = "wdt:P279*" if use_subclass else "wdt:P31/wdt:P279*"
+    # Option to not extend down 'subclass_of' edges (useful for highly populated node types)
+    if not extend:
+        p = p.replace('/wdt:P279*', '').replace('*', '')
+    return p
 
-    s = """
-    SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
-      ?item {p} {wds}
-    }
+
+def is_subclass(qid, return_val=False):
+    instance = get_type_count(qid, use_subclass=False, extend_subclass=False)
+    subclass = get_type_count(qid, use_subclass=True, extend_subclass=False)
+
+    # If the numbers are close, we need to determine if its because some have both subclass and instance of values
+    if instance != 0 and subclass != 0 and abs(np.log10(instance) - np.log10(subclass)) >= 1:
+
+        p0 = "wdt:P31"
+        p1 = "wdt:P279"
+
+        s_both = """
+        SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
+          ?item {p0} {wds} .
+          ?item {p1} {wds} .
+        }
         """
+        both = execute_sparql_query(s_both.replace("{wds}", "wd:" + qid)
+                                    .replace("{p0}", p0).replace("{p1}", p1))['results']['bindings']
+        both = {qid: int(x['c']['value']) for x in both}.popitem()[1]
 
-    s_both = """
-    SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
-      ?item {p0} {wds} .
-      ?item {p1} {wds} .
-    }
-    """
+        is_sub = subclass - both > instance
+    else:
+        is_sub = subclass > instance
 
-    instance = execute_sparql_query(s.replace("{wds}", "wd:" + qid).replace("{p}", p0))['results']['bindings']
-    instance = {qid: int(x['c']['value']) for x in instance}.popitem()[1]
-
-    subclass = execute_sparql_query(s.replace("{wds}", "wd:" + qid).replace("{p}", p1))['results']['bindings']
-    subclass = {qid: int(x['c']['value']) for x in subclass}.popitem()[1]
-
-    both = \
-    execute_sparql_query(s_both.replace("{wds}", "wd:" + qid).replace("{p0}", p0).replace("{p1}", p1))['results'][
-        'bindings']
-    both = {qid: int(x['c']['value']) for x in both}.popitem()[1]
-
-    return subclass - both > instance
+    if return_val:
+        return is_sub, subclass if is_sub else instance
+    return is_sub
 
 
-def get_type_count(qids, use_subclass=False):
+def get_type_count(qid, use_subclass=False, extend_subclass=True):
     """
     For each qid, get the number of items that are instance of (types) this qid
     """
-    p = "wdt:P279*" if use_subclass else "wdt:P31/wdt:P279*"
+    p = determine_p(use_subclass, extend_subclass)
     s = """
     SELECT (COUNT(DISTINCT ?item) as ?c) WHERE {
       ?item {p} {wds}
@@ -124,10 +131,7 @@ def get_type_edge_frequency(type_qid, direction='out', use_subclass=False, exten
         subjects where the object is an instance of type_qid
     """
     assert direction in {'in', 'out'}
-    p = "wdt:P279*" if use_subclass else "wdt:P31/wdt:P279*"
-    # Option to not extend down 'subclass_of' edges (useful for highly populated node types)
-    if not extend_subclass:
-        p = p.replace('/wdt:P279*', '').replace('*', '')
+    p = determine_p(use_subclass, extend_subclass)
     subject = "subject"
     if direction == "in":
         subject = "object"
@@ -153,10 +157,7 @@ def get_external_ids(type_qid, use_subclass=False, extend_subclass=True):
     ranked by usage count
     :param type_qid: QID of item type
     """
-    p = "wdt:P279*" if use_subclass else "wdt:P31/wdt:P279*"
-    # Option to not extend down 'subclass_of' edges (useful for highly populated node types)
-    if not extend_subclass:
-        p = p.replace('/wdt:P279*', '').replace('*', '')
+    p = determine_p(use_subclass, extend_subclass)
     s = """
     SELECT ?property ?propertyLabel ?propertyDescription ?count WHERE {
       {
@@ -193,10 +194,8 @@ def get_connecting_types(qid, pid, direction='out', use_subclass_subject=False, 
     :param use_subclass_subject: subject items are "subclasss of" type "qid", instead of "instance of"
     :param include_subclass_object: predicate items are "subclasss of" OR "instance of" type
     """
-    assert direction in {'in', 'out'}
-    p_sub = "wdt:P279*" if use_subclass_subject else "wdt:P31/wdt:P279*"
-    if not extend_subclass:
-        p_sub = p_sub.replace('/wdt:P279*', '').replace('*', '')
+    p_sub = determine_p(use_subclass_subject, extend_subclass)
+
     left, right = 'subject', 'object'
     if direction == 'in':
         left, right = right, left
@@ -212,23 +211,43 @@ def get_connecting_types(qid, pid, direction='out', use_subclass_subject=False, 
     return {x['type']['value'].replace("http://www.wikidata.org/entity/", ""): int(x['count']['value']) for x in d}
 
 
+def determine_node_type_and_get_counts(node_ids, name_map=dict(), max_size_for_expansion=200000):
+    # get all node counts for my special types
+    subclass_nodes = dict()
+    expand_nodes = dict()
+    type_count = dict()
+
+    t = tqdm(node_ids)
+    for qid in t:
+        t.set_description(name_map.get(qid, qid))
+        t.refresh()
+        is_sub, count = is_subclass(qid, True)
+        subclass_nodes[qid] = is_sub
+
+        # Don't extend subclasses (e.g. P279* or P31/P279*) for large nodes... results in memory error
+        expand_nodes[qid] = count <= max_size_for_expansion
+        if expand_nodes[qid]:
+            # Small number of nodes, so expand the sublcass...
+            count_ext = get_type_count(qid, use_subclass=is_sub, extend_subclass=True)
+            # Ensure this is still ok (some will baloon like chemical Compound)
+            expand_nodes[qid] = count_ext <= max_size_for_expansion
+            # If its still ok, update the counts
+            if expand_nodes[qid]:
+                count = count_ext
+        type_count[qid] = count
+    return type_count, subclass_nodes, expand_nodes
+
+
 def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), min_counts=200,
                                 max_size_for_expansion=200000):
     # Make set for easy operations
     skip_types = set(skip_types)
 
-    # Determine which nodes are 'insatnce of' and which are 'subclass of'
-    subclass_nodes = {qid: is_subclass(qid) for qid in tqdm(seed_nodes)}
-
-    # get all node counts for my special types
-    type_count = dict()
     print("Getting type counts")
-    time.sleep(0.5) # Sometimes TQDM prints early, so sleep will endure messages are printed before TQDM starts
-    t = tqdm(subclass_nodes.items())
-    for qid, is_sub in t:
-        t.set_description(seed_nodes[qid])
-        t.refresh()
-        type_count[qid] = get_type_count(qid, is_sub)
+    time.sleep(0.5)  # Sometimes TQDM prints early, so sleep will endure messages are printed before TQDM starts
+    type_count, subclass_nodes, expand_nodes = determine_node_type_and_get_counts(seed_nodes.keys(),
+                                                                                  seed_nodes,
+                                                                                  max_size_for_expansion)
     print("Getting type counts: Done")
 
     # for each types of item, get the external ID props items of this type use
@@ -239,8 +258,7 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
     for qid, is_sub in t:
         t.set_description(seed_nodes[qid])
         t.refresh()
-        extend_subclass = type_count[qid] < max_size_for_expansion
-        props = get_external_ids(qid, use_subclass=is_sub, extend_subclass=extend_subclass)
+        props = get_external_ids(qid, use_subclass=is_sub, extend_subclass=expand_nodes[qid])
         props = {x[0]: x[2] for x in props}  # id: count
         type_prop_id[qid] = props
     print("Getting type external ids props: Done")
@@ -253,10 +271,8 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
     for qid in t:
         t.set_description(seed_nodes[qid])
         t.refresh()
-        # Don't extend subclasses (e.g. P279* or P31/P279*) for large nodes... results in memory error
-        extend_subclass = type_count[qid] < max_size_for_expansion
         props = get_type_edge_frequency(qid, direction='out', use_subclass=subclass_nodes[qid],
-                                        extend_subclass=extend_subclass)
+                                        extend_subclass=expand_nodes[qid])
         # remove external id props
         props = {k: v for k, v in props.items() if k not in type_prop_id[qid]}
         type_props_out[qid] = props
@@ -269,9 +285,8 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
     for qid in t:
         t.set_description(seed_nodes[qid])
         t.refresh()
-        extend_subclass = type_count[qid] < max_size_for_expansion
         props = get_type_edge_frequency(qid, direction='in', use_subclass=subclass_nodes[qid],
-                                        extend_subclass=extend_subclass)
+                                        extend_subclass=expand_nodes[qid])
         type_props_in[qid] = props
     print("Done")
 
@@ -284,12 +299,11 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
         t.set_description(seed_nodes[qid])
         t.refresh()
         spo[qid] = dict()
-        extend_subclass = type_count[qid] < max_size_for_expansion
         props = {k: v for k, v in props.items() if v > min_counts}
         for pid, count in tqdm(props.items()):
             subclass_obj = (qid, pid) in [q[:2] for q in special_starts]
             conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=subclass_nodes[qid],
-                                              include_subclass_object=subclass_obj, extend_subclass=extend_subclass)
+                                              include_subclass_object=subclass_obj, extend_subclass=expand_nodes[qid])
             spo[qid][pid] = conn_types
     # and incoming
     print("Getting type of objects each (subject, predicate) connects from")
@@ -300,19 +314,18 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
         t.set_description(seed_nodes[qid])
         t.refresh()
         spo_in[qid] = dict()
-        extend_subclass = type_count[qid] < max_size_for_expansion
         props = {k: v for k, v in props.items() if v > min_counts}
         for pid, count in tqdm(props.items()):
             subclass_obj = (qid, pid) in [q[:2] for q in special_starts]
             conn_types = get_connecting_types(qid, pid, direction='in', use_subclass_subject=subclass_nodes[qid],
-                                              include_subclass_object=subclass_obj, extend_subclass=extend_subclass)
+                                              include_subclass_object=subclass_obj, extend_subclass=expand_nodes[qid])
             spo_in[qid][pid] = conn_types
     print("Done")
 
     return type_count, type_prop_id, spo, spo_in
 
 
-def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_val=0.01):
+def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_edge=0.01, filt_props=0.05):
     ############
     # construct the network
     ############
@@ -327,6 +340,8 @@ def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_val
     G = nx.MultiDiGraph()
     for qid, count in type_count.items():
         G.add_node(qid, count=count)
+
+    # this may be unnecessary... need to test...
     for qid, props in type_prop_id.items():
         G.node[qid].update({k: v for k, v in props.items() if v > min_counts})
         if len(props) <= 2:
@@ -338,8 +353,8 @@ def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_val
                 # must have more than Min_counts and more than filt_val * num_nodes... for either seed node...
                 if (qid, pid, conn_qid) in special_edges or \
                         (conn_count > min_counts and
-                            (conn_count > type_count[qid] * filt_val or
-                             conn_count > type_count.get(conn_qid, conn_count/filt_val + 1) * filt_val)):
+                            (conn_count > type_count[qid] * filt_edge or
+                             conn_count > type_count.get(conn_qid, conn_count / filt_edge + 1) * filt_edge)):
 
                     G.add_edge(qid, conn_qid, key=next(keygen), count=conn_count, label=prop_labels[pid], pid=pid,
                                URL="https://www.wikidata.org/wiki/Property:" + pid)
@@ -350,10 +365,10 @@ def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_val
                     # don't add duplicate edges
                     continue
 
-                if (qid, pid, conn_qid) in special_edges or \
+                if (conn_qid, pid, qid) in special_edges or \
                         (conn_count > min_counts and
-                            (conn_count > type_count[qid] * filt_val or
-                             conn_count > type_count.get(conn_qid, conn_count/filt_val + 1) * filt_val)):
+                            (conn_count > type_count[qid] * filt_edge or
+                             conn_count > type_count.get(conn_qid, conn_count / filt_edge + 1) * filt_edge)):
 
                     G.add_edge(conn_qid, qid, key=next(keygen), count=conn_count, label=prop_labels[pid], pid=pid,
                                URL="https://www.wikidata.org/wiki/Property:" + pid)
@@ -378,7 +393,7 @@ def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_val
         # Grab non-excluded props
         this_props = []
         for k, v in G.node[qid].items():
-            if k not in exclude:
+            if k not in exclude and v > G.node[qid].get('count', 0) * filt_props:
                 this_props.append((prop_labels[k], v))
 
         # Sort via number, highest first and add
@@ -426,7 +441,7 @@ if __name__ == "__main__":
 
     # these are the special nodes that will have their external ID counts displayed,
     # the labels aren't, outputted, only used for monitoring status
-    attribute_nodes = {
+    seed_nodes = {
         'Q12136': 'disease',
         'Q7187': 'gene',
         'Q8054': 'protein',
@@ -460,11 +475,7 @@ if __name__ == "__main__":
     # skip edge searches for: scientific article, taxon
     skip_types = {'Q13442814', 'Q16521'}
 
-    # seed nodes get everything that links off of them.
-    seed_nodes = dict(attribute_nodes.items())
-    seed_nodes = {k: v for k, v in seed_nodes.items() if k not in skip_types}
-
-    type_count, type_prop_id, spo, spo_in = search_metagraph_from_seeds(seed_nodes, skip_types, 200, 200000)
+    type_count, type_prop_id, spo, spo_in = search_metagraph_from_seeds(seed_nodes, skip_types, min_counts, 200000)
     G = create_graph(type_count, type_prop_id, spo, spo_in, 200, 0.005)
     filename = "tmp.graphml"
     write_graphml(G, filename)
