@@ -1,5 +1,8 @@
+import os
+import sys
 import functools
 from tqdm import tqdm
+from copy import deepcopy
 import xml.etree.ElementTree as ET
 
 from get_counts import determine_node_type_and_get_counts, determine_p
@@ -167,10 +170,10 @@ def update_node_counts(node_info_to_update, return_type_info=False):
     :return: Dict, data of the same structure as node_info_to_update, with updated counts.
     """
 
+    node_info_updated = deepcopy(node_info_to_update)
     node_name_mapper = {k: v['NodeLabel'] for k, v in node_info_to_update.items()}
     new_counts, subclass, expand = determine_node_type_and_get_counts(node_info_to_update.keys(),
                                                                       node_name_mapper)
-    node_info_updated = node_info_to_update.copy()
     for qid, new_count in new_counts.items():
         node_info_updated[qid]['count'] = new_count
 
@@ -190,23 +193,26 @@ def update_edge_counts(edge_info_to_update, subclass=dict(), expand=dict()):
     """
     Updates the counts for the edges
 
-    :param edge_info_to_update: list of dicts containing {'s', 'p', 'o', and 'c'} keys where:
-        's' - subject qid
-        'p' - predicate pid
-        'o' - object qid
-        'c' - int counts for spo triple
+    :param edge_info_to_update: dict with key = tuple (s, p, o) and val = int counts of the edge:
+        s - subject qid
+        p - predicate pid
+        o - object qid
     :param subclass: dict, qid -> bool, wheather members of the qid is a 'sublcass of' (True) or 'instance of' (False)
         the parent
     :param expand: dict, qid -> bool, weather to expand down 'subclass of' links... e.g. wdt:P31/wdt:P279* for 'instance
         of' or wdt:P279* for 'subclass of'. If false, will limit to direct 'instance of' or 'subclass of' links
 
-    :return: same data structure as input, with updated 'c' values...
+    :return: same data structure as input, with updated count values...
     """
     updated_edge_info = dict()
     for edge_key, counts in tqdm(edge_info_to_update.items()):
         s = edge_key[0]
         p = edge_key[1]
         o = edge_key[2]
+
+        if s is None or p is None or o is None:
+            updated_edge_info[(s, p, o)] = None
+            continue
 
         # Default is 'instance_of' and to not expand /wdt:P279*....
         new_counts = count_edges(s, p, o, s_subclass=subclass.get(s, False), s_expand=expand.get(s, False),
@@ -387,3 +393,56 @@ def update_edge_graphics_label(edge, e_id_map):
                 return None
             else:
                 elem.text = edge_label
+
+
+def update_graphml_file(filename, outname=None, add_new_props=False):
+
+    # Read the graphml file and break into nodes and edged
+    tree = read_graphml(filename)
+    root = tree.getroot()
+    graph = get_graph(root)
+    nodes = get_nodes(graph)
+    edges = get_edges(graph)
+
+    # Get info specific to this WikiData items from the graph
+    n_id_map, e_id_map = get_node_edge_attrib_mappers(root)
+    n_to_qid = get_node_id_to_qid(nodes, n_id_map)
+    node_info = get_node_info_to_update(nodes, n_id_map)
+    edge_info = get_edge_info_to_update(edges, n_to_qid, e_id_map)
+
+    # Query wikidata instance for updated count info
+    new_node_info, sub, ext = update_node_counts(node_info, True)
+    new_edge_info = update_edge_counts(edge_info, sub, ext)
+
+    # Apply new count data to nodes
+    for node in nodes:
+        prop_names = determine_prop_names(node, n_id_map)
+        update_node_data(node, new_node_info, n_to_qid, n_id_map, prop_names)
+        update_graphics_labels_from_node_data(node, n_id_map, add_new_props)
+
+    # Aooly new count data to edges
+    for edge in edges:
+        update_edge_data(edge, new_edge_info, e_id_map, n_to_qid)
+        update_edge_graphics_label(edge, e_id_map)
+
+    # Write out the file
+    if outname is None:
+        outname = os.path.splitext(filename)
+        outname = outname[0] + '_out' + outname[1]
+    tree.write(outname)
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print('Please run again with filename....')
+        print('Usage: ')
+        print('\t$ python update_graphml.py input-graphml-filename (output-filename)')
+        exit()
+
+    filename = sys.argv[1]
+    if len(sys.argv) < 3:
+        outname = None
+    else:
+        outname = sys.argv[2]
+
+    update_graphml_file(filename, outname)
