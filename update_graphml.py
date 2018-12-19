@@ -52,7 +52,8 @@ def get_node_edge_attrib_mappers(root):
     n_id_to_attrib = dict()
     e_id_to_attrib = dict()
     for child in root:
-        attrib = child.attrib.get('attr.name')
+        # Desired attributes either have names, or 'yfiles.type' (typically graphical elements from yEd)
+        attrib = child.attrib.get('attr.name', child.attrib.get('yfiles.type'))
         if attrib and child.attrib.get('for') == 'node':
             n_id_to_attrib[child.attrib.get('id')] = attrib
         elif attrib and child.attrib.get('for') == 'edge':
@@ -75,12 +76,16 @@ def get_node_info(node, n_id_to_attrib, collect_nodes=('NodeLabel', 'count', 'UR
     for child in node.getchildren():
         prop = n_id_to_attrib.get(child.attrib.get('key'), None)
         if prop in collect_nodes:
-            node_info[prop] = child.text
+            # Collect numeric props as integers
+            try:
+                node_info[prop] = int(child.text)
+            except (ValueError, TypeError):
+                node_info[prop] = child.text
         elif type(prop) == str and prop.startswith('P'):
             # Wikidata Props (e.g. P31) will have counts... ensure you can cast to int...
             try:
                 props[prop] = int(child.text)
-            except ValueError:
+            except (ValueError, TypeError):
                 pass
     # not all counted nodes have properties, so returning empty dict if none...
     node_info['props'] = props
@@ -103,18 +108,23 @@ def get_node_info_to_update(nodes, n_id_to_attrib, collect_nodes=('NodeLabel', '
 
 
 def get_edge_info_to_update(edges, node_id_to_qid, e_id_to_attrib):
-    edge_info_to_update = []
+    edge_info_to_update = dict()
     for edge in edges:
-        s = node_id_to_qid[edge.attrib.get('source')]
-        o = node_id_to_qid[edge.attrib.get('target')]
+        s = node_id_to_qid.get(edge.attrib.get('source'))
+        o = node_id_to_qid.get(edge.attrib.get('target'))
+
+        # Some nodes may have been removed from the map, so no need to count them...
+        if not s or not o:
+            continue
+
         p = ''
         count = ''
         for c in edge.getchildren():
-            if e_id_to_attrib.get(c.attrib.get('key')) == 'URL':
-                p = c.text.split(':')[-1]
+            if e_id_to_attrib.get(c.attrib.get('key')) == 'pid':
+                p = c.text
             if e_id_to_attrib.get(c.attrib.get('key')) == 'count':
-                count = c.text
-        edge_info_to_update.append({'s': s, 'p': p, 'o': o, 'c': count})
+                count = int(c.text)
+        edge_info_to_update[(s, p, o)] = count
     return edge_info_to_update
 
 
@@ -192,16 +202,188 @@ def update_edge_counts(edge_info_to_update, subclass=dict(), expand=dict()):
 
     :return: same data structure as input, with updated 'c' values...
     """
-    updated_edge_info = []
-    for edge_info in tqdm(edge_info_to_update):
-        s = edge_info['s']
-        p = edge_info['p']
-        o = edge_info['o']
+    updated_edge_info = dict()
+    for edge_key, counts in tqdm(edge_info_to_update.items()):
+        s = edge_key[0]
+        p = edge_key[1]
+        o = edge_key[2]
 
         # Default is 'instance_of' and to not expand /wdt:P279*....
         new_counts = count_edges(s, p, o, s_subclass=subclass.get(s, False), s_expand=expand.get(s, False),
                                  o_subclass=subclass.get(o, False), o_expand=expand.get(o, False))
-        updated_edge_info.append({'s': s, 'p': p, 'o': o, 'c': new_counts})
+        updated_edge_info[(s, p, o)] = new_counts
 
     return updated_edge_info
 
+
+def parse_prop_text(prop_text):
+    ### TODO: Some sort of contingincey for if theres two of the same count.....
+    count_names = dict()
+    for identifier in prop_text.split('\n'):
+        line_split = identifier.split(': ')
+        name = line_split[0]
+        count = int(line_split[1].replace(',', ''))
+        count_names[count] = name
+    return count_names
+
+
+def determine_prop_names(node, n_id_map):
+    # Get info needed to update label
+    props = dict()
+    prop_text = None
+    for child in node.getchildren():
+        prop = n_id_map.get(child.attrib.get('key'))
+
+        if type(prop) != str:
+            continue
+
+        if prop == 'node_prop_text':
+            prop_text = child.text
+        elif prop.startswith('P'):
+            try:
+                props[prop] = int(child.text)
+            except ValueError:
+                pass
+
+    # Return nothing if no prop_text...
+    if not prop_text:
+        return dict()
+
+    count_names = parse_prop_text(prop_text)
+
+    prop_to_name = {k: count_names[v] for k, v in props.items() if v in count_names}
+    return prop_to_name
+
+
+def format_prop_counts_to_text(prop_counts):
+    prop_text = []
+    for k, v in sorted(prop_counts.items(), key=lambda x: x[1], reverse=True):
+        prop_text.append(k + ': ' + '{:,}'.format(v))
+
+    return '\n'.join(prop_text)
+
+
+def update_node_data(node, node_info, n_to_qid, n_id_map, prop_names):
+    """
+    Warning, updates will be made inplace
+    """
+
+    # Update the counts
+    nid = node.attrib.get('id')
+    qid = n_to_qid.get(nid, None)
+
+    # Some nodes don't have any new info to update... so skip
+    if qid not in node_info or qid is None:
+        return None
+
+    for child in node.getchildren():
+        prop = n_id_map.get(child.attrib.get('key'))
+
+        if type(prop) != str:
+            continue
+
+        # Update Aquired Data
+        if prop in node_info[qid]:
+            child.text = str(node_info[qid][prop])
+        elif prop in node_info[qid]['props']:
+            child.text = str(node_info[qid]['props'][prop])
+
+        # Special Labeling Props that need updating
+        elif prop == 'labelcount':
+            child.text = node_info[qid]['NodeLabel'] + '\n' + '{:,}'.format(node_info[qid]['count'])
+        elif prop == 'node_prop_text':
+            prop_text = []
+            for k, v in sorted(node_info[qid]['props'].items(), key=lambda x: x[1], reverse=True):
+                if k in prop_names:
+                    prop_text.append(prop_names[k] + ': ' + '{:,}'.format(v))
+
+            node_props = {prop_names[k]: v for k, v in node_info[qid]['props'].items() if k in prop_names}
+            child.text = format_prop_counts_to_text(node_props)
+
+
+def select_child(item, mapper, text):
+    for child in item.getchildren():
+        if mapper.get(child.attrib.get('key')) == text:
+            return child
+
+
+def update_graphics_labels_from_node_data(node, n_id_map, add_new_props=False):
+    """Updates the graphics labels so they match the node-data"""
+
+    gfx = select_child(node, n_id_map, 'nodegraphics').getchildren()[0].getchildren()
+    node_label = select_child(node, n_id_map, 'labelcount').text
+    node_props = select_child(node, n_id_map, 'node_prop_text').text
+
+    i = 0
+    for elem in gfx:
+        if elem.tag.endswith('NodeLabel'):
+            if i == 0:
+                elem.text = node_label
+                i += 1
+            # not all nodes have a props-label
+            elif i == 1 and node_props:
+                # Add all properties to the label text, even if new
+                if add_new_props:
+                    elem.text = node_props
+                # Otherwise only update the counts of those already there...
+                elif not elem.text.strip():
+                    # Or not there in this case...
+                    continue
+                else:
+                    elem_prop_counts = parse_prop_text(elem.text)
+                    node_prop_counts = parse_prop_text(node_props)
+                    # Filter out previously removed properties
+                    node_prop_counts = {v: k for k, v in node_prop_counts.items() if v in elem_prop_counts.values()}
+
+                    # Update with the new counts
+                    elem.text = format_prop_counts_to_text(node_prop_counts)
+
+
+def get_key(edge, n_to_qid, e_id_map):
+    s = n_to_qid.get(edge.attrib.get('source'))
+    o = n_to_qid.get(edge.attrib.get('target'))
+    p = select_child(edge, e_id_map, 'pid').text
+
+    if s is None or p is None or o is None:
+        return None
+
+    return (s, p, o)
+
+
+def update_edge_data(edge, edge_info, e_id_map, n_to_qid):
+    edge_key = get_key(edge, n_to_qid, e_id_map)
+
+    # Check to see if key is in updated edeges, otherwise, nothing to update
+    if edge_key not in edge_info:
+        return None
+
+    count = select_child(edge, e_id_map, 'count')
+    # Sometimes no data in the edge either...
+    if count is None:
+        return None
+    count.text = str(edge_info[edge_key])
+
+    label = select_child(edge, e_id_map, 'labelcount')
+    # Ensure there's data in teh edge
+    if label is None:
+        return None
+    label.text = select_child(edge, e_id_map, 'label').text + ' ({:,})'.format(edge_info[edge_key])
+
+
+def update_edge_graphics_label(edge, e_id_map):
+    gfx = select_child(edge, e_id_map, 'edgegraphics').getchildren()[0].getchildren()
+    edge_label = select_child(edge, e_id_map, 'labelcount').text
+
+    # Some edges have no label, so skip
+    if not edge_label:
+        return None
+
+    for elem in gfx:
+        if elem.tag.endswith('EdgeLabel'):
+            if elem.text is None:
+                return None
+            # No parantheses means no counts, so don't update.... May have been manually adjusted
+            elif '(' not in elem.text or ')' not in elem.text:
+                return None
+            else:
+                elem.text = edge_label
