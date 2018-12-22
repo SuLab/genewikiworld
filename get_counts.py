@@ -223,9 +223,9 @@ def determine_node_type_and_get_counts(node_ids, name_map=dict(), max_size_for_e
     expand_nodes = {q: False for q in ['Q11173', 'Q2996394', 'Q14860489', 'Q5058355', 'Q13442814', 'Q16521']}
 
     time.sleep(0.5)  # Sometimes TQDM prints early, so sleep will endure messages are printed before TQDM starts
-    t = tqdm(seed_nodes.keys())
+    t = tqdm(node_ids)
     for qid in t:
-        t.set_description(seed_nodes[qid])
+        t.set_description(name_map[qid])
         t.refresh()
         is_sub, count = is_subclass(qid, True)
 
