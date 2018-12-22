@@ -3,6 +3,7 @@ Get counts for all items we care about, and some we don't ....
 """
 import time
 import functools
+from copy import deepcopy
 import numpy as np
 
 import requests
@@ -217,15 +218,20 @@ def determine_node_type_and_get_counts(node_ids, name_map=dict(), max_size_for_e
     expand_nodes = dict()
     type_count = dict()
 
-    t = tqdm(node_ids)
+    # These nodes we've seeded and are all 'instance_of' or they are very large and should waste time expanding
+    # Down subclasses.
+    expand_nodes = {q: False for q in ['Q11173', 'Q2996394', 'Q14860489', 'Q5058355', 'Q13442814', 'Q16521']}
+
+    time.sleep(0.5)  # Sometimes TQDM prints early, so sleep will endure messages are printed before TQDM starts
+    t = tqdm(seed_nodes.keys())
     for qid in t:
-        t.set_description(name_map.get(qid, qid))
+        t.set_description(seed_nodes[qid])
         t.refresh()
         is_sub, count = is_subclass(qid, True)
-        subclass_nodes[qid] = is_sub
 
-        # Don't extend subclasses (e.g. P279* or P31/P279*) for large nodes... results in memory error
-        expand_nodes[qid] = count <= max_size_for_expansion
+        subclass_nodes[qid] = is_sub
+        if qid not in expand_nodes:
+            expand_nodes[qid] = count <= max_size_for_expansion
         if expand_nodes[qid]:
             # Small number of nodes, so expand the sublcass...
             count_ext = get_type_count(qid, use_subclass=is_sub, extend_subclass=True)
@@ -325,53 +331,135 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
     return type_count, type_prop_id, spo, spo_in
 
 
-def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_edge=0.01, filt_props=0.05):
+def remove_overlap(spo, spo_in, qid, p, p_in, filt_val=None):
+
+    overlap = set(spo[qid][p]).intersection(set(spo_in[qid][p_in].keys()))
+    for obj in overlap:
+        out_c =  spo[qid][p][obj]
+        in_c = spo_in[qid][p_in][obj]
+
+        # Dont filter if it don't meet the 'closeness threshold'
+        if filt_val:
+            if not 1 >= out_c / in_c > filt_val or not 1 >= in_c / out_c > filt_val:
+                continue
+
+        # Remove the one with smaller counts...
+        if in_c > out_c:
+            spo[qid][p].pop(obj)
+        else:
+            spo_in[qid][p_in].pop(obj)
+
+    return spo, spo_in
+
+
+def remove_reciprocal_edges(spo, spo_in, recip_rels, filt_val=.95):
+
+    filt_spo = deepcopy(spo)
+    filt_spo_in = deepcopy(spo_in)
+
+    for qid in spo:
+        p_out = filt_spo[qid].keys()
+        p_in = filt_spo_in[qid].keys()
+
+        for p1 in p_out:
+            # First remove reciprocal edges
+            p2 = recip_rels.get(p1)
+            if p2 and p2 in p_in:
+                filt_spo, filt_spo_in = remove_overlap(filt_spo, filt_spo_in, qid, p1, p2, None)
+
+            # Secondly  look for the same edge in and out and only keep the larger instance...
+            if p1 in p_in:
+                filt_spo, filt_spo_in = remove_overlap(filt_spo, filt_spo_in, qid, p1, p1, filt_val=filt_val)
+
+    return filt_spo, filt_spo_in
+
+
+def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_props=0.05, recip_rels=None):
     ############
     # construct the network
     ############
-    prop_labels = get_prop_labels()
-
     # new nx 2.X we need unique keys for each edge
     def genkeys(total=100000000000000000):
         for i in range(total):
             yield i
+
     keygen = genkeys()
 
+    # White and blacklists for nodes and edges... edit if changes are needed
+    banned_nodes = ['Q4167836', 'Q47461807', 'Q24017414', 'Q47461827']
+    banned_edges = ['P921', 'P910', 'P301']
+    whitelisted_nodes = ['Q30612', 'Q930752', 'Q7251477']
+
+    # Reciprical relationships to replace with a single edge
+    if recip_rels is None:
+        recip_rels = {'P527': 'P361',
+                      'P361': 'P527',
+                      'P2176': 'P2175',
+                      'P2175': 'P2176',
+                      'P702': 'P688',
+                      'P688': 'P702',
+                      'P1343': 'P4510',
+                      'P4510': 'P1343',
+                      'P828': 'P1542',
+                      'P1542': 'P828',
+                      'P3781': 'P3780',
+                      'P3780': 'P3781'}
+
+    prop_labels = get_prop_labels()
+    update_labels = {}
+
+    for r in recip_rels:
+        prop_l = prop_labels[r]
+        recip_prop_l = prop_labels[recip_rels[r]]
+        update_labels[r] = prop_l + ' / ' + recip_prop_l
+
+    prop_labels = {**prop_labels, **update_labels}
+
+    # Start building the graph
     G = nx.MultiDiGraph()
     for qid, count in type_count.items():
         G.add_node(qid, count=count)
 
-    # this may be unnecessary... need to test...
     for qid, props in type_prop_id.items():
         G.node[qid].update({k: v for k, v in props.items() if v > min_counts})
         if len(props) <= 2:
             G.node[qid].update(props)
-    for qid, pid_conn_types in spo.items():
+
+    filt_spo, filt_spo_in = remove_reciprocal_edges(spo, spo_in, recip_rels)
+
+    for qid, pid_conn_types in filt_spo.items():
         for pid, conn_types in pid_conn_types.items():
+            # Don't add blacklisted edges
+            if pid in banned_edges:
+                continue
             for conn_qid, conn_count in conn_types.items():
 
                 # must have more than Min_counts and more than filt_val * num_nodes... for either seed node...
-                if (qid, pid, conn_qid) in special_edges or \
-                        (conn_count > min_counts and
-                            (conn_count > type_count[qid] * filt_edge or
-                             conn_count > type_count.get(conn_qid, conn_count / filt_edge + 1) * filt_edge)):
-
+                if (qid, pid, conn_qid) in special_edges or conn_count > min_counts:
                     G.add_edge(qid, conn_qid, key=next(keygen), count=conn_count, label=prop_labels[pid], pid=pid,
                                URL="https://www.wikidata.org/wiki/Property:" + pid)
-    for qid, pid_conn_types in spo_in.items():
+    for qid, pid_conn_types in filt_spo_in.items():
         for pid, conn_types in pid_conn_types.items():
             for conn_qid, conn_count in conn_types.items():
-                if conn_qid in spo and pid in spo[conn_qid] and qid in spo[conn_qid][pid]:
+                if conn_qid in filt_spo and pid in filt_spo[conn_qid] and qid in filt_spo[conn_qid][pid]:
                     # don't add duplicate edges
                     continue
 
-                if (conn_qid, pid, qid) in special_edges or \
-                        (conn_count > min_counts and
-                            (conn_count > type_count[qid] * filt_edge or
-                             conn_count > type_count.get(conn_qid, conn_count / filt_edge + 1) * filt_edge)):
-
+                if (conn_qid, pid, qid) in special_edges or conn_count > min_counts:
                     G.add_edge(conn_qid, qid, key=next(keygen), count=conn_count, label=prop_labels[pid], pid=pid,
                                URL="https://www.wikidata.org/wiki/Property:" + pid)
+
+    # Remove dangling edges, unless whitelisted (assume all count edges are whitelist)
+    to_remove = []
+    for node_id, degree in G.degree:
+        if degree < 2 and node_id not in set(whitelisted_nodes).union(set(type_count.keys())):
+            to_remove.append(node_id)
+        elif node_id in banned_nodes:
+            to_remove.append(node_id)
+    for nid in to_remove:
+        G.remove_node(nid)
+
+    # Label everything
     node_labels = getConceptLabels(G.nodes())
     nx.set_node_attributes(G, {qid: "https://www.wikidata.org/wiki/" + qid for qid in node_labels}, 'URL')
     nx.set_node_attributes(G, node_labels, 'label')
@@ -469,13 +557,14 @@ if __name__ == "__main__":
         'Q50377224': 'pharmacologic action',  # Subclass
         'Q50379781': 'therapeutic use',
         'Q3271540': 'mechanism of action',  # Subclass
-        'Q21167512': 'chemical hazard'
+        'Q21167512': 'chemical hazard',
+        'Q21014462': 'cell line'
     }
 
     # skip edge searches for: scientific article, taxon
     skip_types = {'Q13442814', 'Q16521'}
 
     type_count, type_prop_id, spo, spo_in = search_metagraph_from_seeds(seed_nodes, skip_types, min_counts, 200000)
-    G = create_graph(type_count, type_prop_id, spo, spo_in, 200, 0.005)
+    G = create_graph(type_count, type_prop_id, spo, spo_in, 200)
     filename = "tmp.graphml"
     write_graphml(G, filename)
