@@ -136,7 +136,7 @@ def count_prop(qid, prop, is_subclass, expand):
     q_string = """
     SELECT (count(*) as ?count) WHERE {
         ?item {p} wd:{qid} .
-        ?item wdt:{prop} [] . }  
+        ?item wdt:{prop} [] . }
     """.replace('{p}', p).replace('{qid}', qid).replace('{prop}', prop)
     d = execute_sparql_query(q_string)['results']['bindings']
     return [int(x['count']['value']) for x in d][0]
@@ -316,7 +316,10 @@ def select_child(item, mapper, text):
 def update_graphics_labels_from_node_data(node, n_id_map, add_new_props=False):
     """Updates the graphics labels so they match the node-data"""
 
-    gfx = select_child(node, n_id_map, 'nodegraphics').getchildren()[0].getchildren()
+    try:
+        gfx = select_child(node, n_id_map, 'nodegraphics').getchildren()[0].getchildren()
+    except:
+        return None
     node_label = select_child(node, n_id_map, 'labelcount').text
     node_props = select_child(node, n_id_map, 'node_prop_text').text
 
@@ -377,7 +380,12 @@ def update_edge_data(edge, edge_info, e_id_map, n_to_qid):
 
 
 def update_edge_graphics_label(edge, e_id_map):
-    gfx = select_child(edge, e_id_map, 'edgegraphics').getchildren()[0].getchildren()
+    # get the edge grapthics
+    try:
+        gfx = select_child(edge, e_id_map, 'edgegraphics').getchildren()[0].getchildren()
+    # No graphics, then don't do anything
+    except:
+        return None
     edge_label = select_child(edge, e_id_map, 'labelcount').text
 
     # Some edges have no label, so skip
@@ -446,3 +454,4 @@ if __name__ == '__main__':
         outname = sys.argv[2]
 
     update_graphml_file(filename, outname)
+
