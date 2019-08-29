@@ -152,12 +152,36 @@ def count_prop(qid, prop, is_subclass, expand):
 def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
     p_sub = determine_p(s_subclass, s_expand)
     p_obj = determine_p(o_subclass, o_expand)
+
+    # test for reciprocal relationships that need to be collapsed
+    recip_rels = {'P527': 'P361',
+                      'P361': 'P527',
+                      'P2176': 'P2175',
+                      'P2175': 'P2176',
+                      'P702': 'P688',
+                      'P688': 'P702',
+                      'P1343': 'P4510',
+                      'P4510': 'P1343',
+                      'P828': 'P1542',
+                      'P1542': 'P828',
+                      'P3781': 'P3780',
+                      'P3780': 'P3781'}
+
+    if p in recip_rels.keys():
+       u =  """UNION
+               {?object wdt:"""+recip_rels[p]+""" ?subject .}"""
+    else:
+       u = ""
+
     q_string = """
     SELECT (count(distinct *) as ?count) WHERE {
         ?subject {p_sub} wd:{s} .
-        ?subject wdt:{p} ?object .
+        {
+            {?subject wdt:{p} ?object .}
+            {u}
+        }
         ?object {p_obj} wd:{o} }
-    """.replace('{p_sub}', p_sub).replace('{s}', s).replace('{p}', p).replace('{p_obj}', p_obj).replace('{o}', o)
+    """.replace('{p_sub}', p_sub).replace('{s}', s).replace('{p}', p).replace('{p_obj}', p_obj).replace('{o}', o).replace('{u}',u)
     print("B1: "+q_string)
     try :
         d = execute_sparql_query(q_string)['results']['bindings']
