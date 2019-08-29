@@ -1,6 +1,8 @@
 ## Gene Wiki World
 #### Generate a network of all items we care about, and some we don't....
 
+**CRITICAL NOTE**: in both `get_counts.py` and `update_graphml.py`, there is a line in the code to toggle between using the "official wikidata endpoint" and a local copy.  Default currently is to use a *local copy* (hardcoded to an internal scripps server)!
+
 ## Search Mode
 
 Search mode will take a set of seed node-types, count how many nodes are within that type,
