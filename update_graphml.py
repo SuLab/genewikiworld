@@ -145,7 +145,7 @@ def count_prop(qid, prop, is_subclass, expand):
         prop_count = [int(x['count']['value']) for x in d][0]
     except:
         prop_count = -1
-    print("A3: "+prop_count)
+    print("A3: "+str(prop_count))
     return prop_count
 
 
@@ -165,7 +165,7 @@ def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
         edge_count = [int(x['count']['value']) for x in d][0]
     except: 
         edge_count = -1
-    print("B3: "+edge_count)
+    print("B3: "+str(edge_count))
     return edge_count
 
 
