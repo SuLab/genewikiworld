@@ -138,9 +138,15 @@ def count_prop(qid, prop, is_subclass, expand):
         ?item {p} wd:{qid} .
         ?item wdt:{prop} [] . }
     """.replace('{p}', p).replace('{qid}', qid).replace('{prop}', prop)
-    print("A: "+q_string)
-    d = execute_sparql_query(q_string)['results']['bindings']
-    return [int(x['count']['value']) for x in d][0]
+    print("A1: "+q_string)
+    try:
+        d = execute_sparql_query(q_string)['results']['bindings']
+        print("A2: "+str(d))
+        prop_count = [int(x['count']['value']) for x in d][0]
+    except:
+        prop_count = -1
+    print("A3: "+prop_count)
+    return prop_count
 
 
 def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
@@ -152,14 +158,14 @@ def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
         ?subject wdt:{p} ?object .
         ?object {p_obj} wd:{o} }
     """.replace('{p_sub}', p_sub).replace('{s}', s).replace('{p}', p).replace('{p_obj}', p_obj).replace('{o}', o)
-    print("B: "+q_string)
+    print("B1: "+q_string)
     try :
         d = execute_sparql_query(q_string)['results']['bindings']
-        print("C: "+str(d))
+        print("B2: "+str(d))
         edge_count = [int(x['count']['value']) for x in d][0]
     except: 
         edge_count = -1
-    print("D: "+edge_count)
+    print("B3: "+edge_count)
     return edge_count
 
 
