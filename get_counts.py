@@ -21,8 +21,8 @@ config['BACKOFF_MAX_TRIES'] = 1
 
 execute_sparql_query = WDItemEngine.execute_sparql_query
 # comment this ---v out to use official wikidata endpoint
-execute_sparql_query = functools.partial(execute_sparql_query,
-                                         endpoint="http://avalanche.scripps.edu:9999/bigdata/sparql")
+#execute_sparql_query = functools.partial(execute_sparql_query,
+#                                         endpoint="http://avalanche.scripps.edu:9999/bigdata/sparql")
 
 # instance of subject, subclass of object
 special_edges = [('Q11173', 'P1542', 'Q21167512'),  # chemical, cause of, chemical hazard

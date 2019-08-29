@@ -14,8 +14,8 @@ config['BACKOFF_MAX_TRIES'] = 1
 
 execute_sparql_query = WDItemEngine.execute_sparql_query
 # comment this ---v out to use official wikidata endpoint
-execute_sparql_query = functools.partial(execute_sparql_query,
-                                         endpoint="http://avalanche.scripps.edu:9999/bigdata/sparql")
+#execute_sparql_query = functools.partial(execute_sparql_query,
+#                                         endpoint="http://avalanche.scripps.edu:9999/bigdata/sparql")
 
 
 def read_graphml(filename):
@@ -138,6 +138,7 @@ def count_prop(qid, prop, is_subclass, expand):
         ?item {p} wd:{qid} .
         ?item wdt:{prop} [] . }
     """.replace('{p}', p).replace('{qid}', qid).replace('{prop}', prop)
+    print("A: "+q_string)
     d = execute_sparql_query(q_string)['results']['bindings']
     return [int(x['count']['value']) for x in d][0]
 
@@ -151,8 +152,15 @@ def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
         ?subject wdt:{p} ?object .
         ?object {p_obj} wd:{o} }
     """.replace('{p_sub}', p_sub).replace('{s}', s).replace('{p}', p).replace('{p_obj}', p_obj).replace('{o}', o)
-    d = execute_sparql_query(q_string)['results']['bindings']
-    return [int(x['count']['value']) for x in d][0]
+    print("B: "+q_string)
+    try :
+        d = execute_sparql_query(q_string)['results']['bindings']
+        print("C: "+str(d))
+        edge_count = [int(x['count']['value']) for x in d][0]
+    except: 
+        edge_count = -1
+    print("D: "+edge_count)
+    return edge_count
 
 
 def update_node_counts(node_info_to_update, return_type_info=False):
