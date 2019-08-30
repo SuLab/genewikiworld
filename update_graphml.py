@@ -134,9 +134,10 @@ def get_edge_info_to_update(edges, node_id_to_qid, e_id_to_attrib):
 def count_prop(qid, prop, is_subclass, expand):
     p = determine_p(is_subclass, expand)
     q_string = """
-    SELECT (count(*) as ?count) WHERE {
-        ?item {p} wd:{qid} .
-        ?item wdt:{prop} [] . }
+    SELECT (count(?item) as ?count) where {
+        SELECT DISTINCT ?item WHERE {
+            ?item {p} wd:{qid} .
+            ?item wdt:{prop} [] . }}
     """.replace('{p}', p).replace('{qid}', qid).replace('{prop}', prop)
     print("A1: "+q_string)
     try:
