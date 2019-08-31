@@ -208,7 +208,11 @@ def update_node_counts(node_info_to_update, return_type_info=False):
 
     :return: Dict, data of the same structure as node_info_to_update, with updated counts.
     """
-
+#
+#  AS 2019-08-30: adapt this function to use get_external_ids from get_counts (which will get all external 
+#                 IDs with counts in one query) rather than count_prop (which queries each external ID 
+#                 individually)
+#
     node_info_updated = deepcopy(node_info_to_update)
     node_name_mapper = {k: v['NodeLabel'] for k, v in node_info_to_update.items()}
     new_counts, subclass, expand = determine_node_type_and_get_counts(node_info_to_update.keys(),
