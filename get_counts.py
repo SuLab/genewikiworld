@@ -67,7 +67,13 @@ def get_prop_labels():
         ?property a wikibase:Property .
         SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
     }"""
-    d = execute_sparql_query(s)['results']['bindings']
+    print("A1: "+s)
+    try: 
+        d = execute_sparql_query(s)['results']['bindings']
+#        print("A2: "+str(d))
+    except:
+        print("***** FAILED SPARQL *****")
+        d = []
     d = {x['property']['value'].replace("http://www.wikidata.org/entity/", ""):
                 x['propertyLabel']['value'] for x in d}
     return d
@@ -120,7 +126,12 @@ def get_type_count(qid, use_subclass=False, extend_subclass=True):
       ?item {p} {wds}
     }
     """.replace("{wds}", "wd:" + qid).replace("{p}", p)
-    d = execute_sparql_query(s)['results']['bindings']
+    try:
+        d = execute_sparql_query(s)['results']['bindings']
+    except:
+        d = []
+        print("***** FAILED SPARQL *****")
+
     return {qid: int(x['c']['value']) for x in d}.popitem()[1]
 
 
@@ -137,6 +148,7 @@ def get_type_edge_frequency(type_qid, direction='out', use_subclass=False, exten
     if direction == "in":
         subject = "object"
 
+    ### AS temporarily add limit of 1000000 for debugging only!!!
     s = """SELECT ?property ?count WHERE {
               {
               SELECT ?property (COUNT(*) AS ?count) WHERE {
@@ -146,9 +158,16 @@ def get_type_edge_frequency(type_qid, direction='out', use_subclass=False, exten
                  } GROUP BY ?property
               }
             } ORDER BY DESC (?count)""".replace("{xxx}", type_qid).replace("{p}", p).replace("{subject}", subject)
-    d = execute_sparql_query(s)['results']['bindings']
+    print("B1: "+s)
+    try:
+        d = execute_sparql_query(s)['results']['bindings']
+#        print("B2: "+str(d))
+    except:
+        print("***** FAILED SPARQL *****")
+        d = []
     r = {x['property']['value'].split('/')[-1]:
              int(x['count']['value']) for x in d if 'http://www.wikidata.org/prop/direct' in x['property']['value']}
+#    print("B3: "+str(r))
     return r
 
 
@@ -177,7 +196,12 @@ def get_external_ids(type_qid, use_subclass=False, extend_subclass=True):
     if not extend_subclass:
         s = s.replace('      {select distinct ?item ?propertyclaim where {\n', '').replace('}}', '')
 
-    d = execute_sparql_query(s)['results']['bindings']
+    print("Z1: "+s)
+    try:
+        d = execute_sparql_query(s)['results']['bindings']
+    except:
+        print("***** FAILED SPARQL *****")
+        d = []
     return [(x['property']['value'].replace("http://www.wikidata.org/entity/", ""),
              x['propertyLabel']['value'],
              int(x['count']['value'])) for x in d]
@@ -255,6 +279,9 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
                                                                                   seed_nodes,
                                                                                   max_size_for_expansion)
     print("Getting type counts: Done")
+    print("C1 type_count **** : "+str(type_count))
+    print("C2 subclass_nodes: "+str(subclass_nodes))
+    print("C3 expand_nodes: "+str(expand_nodes))
 
     # for each types of item, get the external ID props items of this type use
     print("Getting type external ids props")
@@ -268,6 +295,7 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
         props = {x[0]: x[2] for x in props}  # id: count
         type_prop_id[qid] = props
     print("Getting type external ids props: Done")
+    print("D1 type_prop_id ****: "+ str(type_prop_id))
 
     # for each types of item, get the WikibaseItem props it uses (using the seed nodes)
     print("Getting outgoing props for each type")
@@ -282,6 +310,7 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
         # remove external id props
         props = {k: v for k, v in props.items() if k not in type_prop_id[qid]}
         type_props_out[qid] = props
+    print("E1 type_props_out: "+ str(type_props_out))
 
     # and incoming
     print("Getting incoming props for each type")
@@ -295,6 +324,7 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
                                         extend_subclass=expand_nodes[qid])
         type_props_in[qid] = props
     print("Done")
+    print("F1 type_props_in: "+ str(type_props_in))
 
     # get the types of items that each subject -> property edge connects to
     print("Getting type of objects each (subject, predicate) connects to")
@@ -311,6 +341,8 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
             conn_types = get_connecting_types(qid, pid, direction='out', use_subclass_subject=subclass_nodes[qid],
                                               include_subclass_object=subclass_obj, extend_subclass=expand_nodes[qid])
             spo[qid][pid] = conn_types
+    print("G1 spo ****: "+str(spo))
+    
     # and incoming
     print("Getting type of objects each (subject, predicate) connects from")
     time.sleep(0.5)
@@ -327,6 +359,7 @@ def search_metagraph_from_seeds(seed_nodes, skip_types=('Q13442814', 'Q16521'), 
                                               include_subclass_object=subclass_obj, extend_subclass=expand_nodes[qid])
             spo_in[qid][pid] = conn_types
     print("Done")
+    print("H1 spo_in **** : "+str(spo_in))
 
     return type_count, type_prop_id, spo, spo_in
 
@@ -375,6 +408,11 @@ def remove_reciprocal_edges(spo, spo_in, recip_rels, filt_val=.95):
 
 
 def create_graph(type_count, type_prop_id, spo, spo_in, min_counts=200, filt_props=0.05, recip_rels=None):
+#
+# AS 2019-08-30: I think for a given node (object type), a property is only listed in the node_prop_text
+#                node attribute if it is used more than _both_ min_counts and the number of items * filt_props
+#
+
     ############
     # construct the network
     ############
@@ -530,35 +568,35 @@ if __name__ == "__main__":
     # these are the special nodes that will have their external ID counts displayed,
     # the labels aren't, outputted, only used for monitoring status
     seed_nodes = {
-        'Q12136': 'disease',
-        'Q7187': 'gene',
-        'Q8054': 'protein',
-        'Q37748': 'chromosome',
-        'Q215980': 'ribosomal RNA',
-        'Q11173': 'chemical_compound',
-        'Q12140': 'pharmaceutical_drug',
+#        'Q12136': 'disease',
+#        'Q7187': 'gene',
+#        'Q8054': 'protein',
+#        'Q37748': 'chromosome',
+#        'Q215980': 'ribosomal RNA',
+#        'Q11173': 'chemical_compound',
+        'Q12140': 'medication',
         'Q28885102': 'pharmaceutical_product',
-        'Q417841': 'protein_family',
-        'Q898273': 'protein_domain',
-        'Q2996394': 'biological_process',
-        'Q14860489': 'molecular_function',
-        'Q5058355': 'cellular_component',
-        'Q3273544': 'structural_motif',
-        'Q7644128': 'supersecondary_structure',
-        'Q616005': 'binding_site',
-        'Q423026': 'active_site',
-        'Q16521': 'taxon',
-        'Q13442814': 'scientific_article',
-        'Q4936952': 'anatomical structure',
-        'Q169872': 'symptom',
-        'Q621636': 'route of admin',
+#        'Q417841': 'protein_family',
+#        'Q898273': 'protein_domain',
+#        'Q2996394': 'biological_process',
+#        'Q14860489': 'molecular_function',
+#        'Q5058355': 'cellular_component',
+#        'Q3273544': 'structural_motif',
+#        'Q7644128': 'supersecondary_structure',
+#        'Q616005': 'binding_site',
+#        'Q423026': 'active_site',
+#        'Q16521': 'taxon',
+##        'Q13442814': 'scientific_article',
+#        'Q4936952': 'anatomical structure',
+#        'Q169872': 'symptom',
+##        'Q621636': 'route of admin',
         'Q15304597': 'sequence variant',
-        'Q4915012': 'biological pathway',
-        'Q50377224': 'pharmacologic action',  # Subclass
-        'Q50379781': 'therapeutic use',
-        'Q3271540': 'mechanism of action',  # Subclass
-        'Q21167512': 'chemical hazard',
-        'Q21014462': 'cell line'
+#        'Q4915012': 'biological pathway',
+#        'Q50377224': 'pharmacologic action',  # Subclass
+#        'Q50379781': 'therapeutic use',
+#        'Q3271540': 'mechanism of action',  # Subclass
+##        'Q21167512': 'chemical hazard',
+##        'Q21014462': 'cell line'
     }
 
     # skip edge searches for: scientific article, taxon
