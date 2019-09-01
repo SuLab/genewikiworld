@@ -5,7 +5,7 @@ from tqdm import tqdm
 from copy import deepcopy
 import xml.etree.ElementTree as ET
 
-from get_counts import determine_node_type_and_get_counts, determine_p
+from get_counts import determine_node_type_and_get_counts, determine_p, get_external_ids
 from wikidataintegrator.wdi_core import WDItemEngine
 from wikidataintegrator.wdi_config import config
 
@@ -208,11 +208,6 @@ def update_node_counts(node_info_to_update, return_type_info=False):
 
     :return: Dict, data of the same structure as node_info_to_update, with updated counts.
     """
-#
-#  AS 2019-08-30: adapt this function to use get_external_ids from get_counts (which will get all external 
-#                 IDs with counts in one query) rather than count_prop (which queries each external ID 
-#                 individually)
-#
     node_info_updated = deepcopy(node_info_to_update)
     node_name_mapper = {k: v['NodeLabel'] for k, v in node_info_to_update.items()}
     new_counts, subclass, expand = determine_node_type_and_get_counts(node_info_to_update.keys(),
@@ -226,6 +221,39 @@ def update_node_counts(node_info_to_update, return_type_info=False):
             updated_props[prop] = count_prop(qid, prop, subclass[qid], expand[qid])
         node_info_updated[qid]['props'] = updated_props
 
+    # Sometimes we'll need the subclass and expand info for other functions and don't want to have to re-run
+    if return_type_info:
+        return node_info_updated, subclass, expand
+    return node_info_updated
+
+
+def update_node_properties_and_counts(node_info_to_update, return_type_info=False, min_counts=200, filt_props=0.05):
+    """
+    Updates the counts for the nodes of the graphs *and the property list. Data structure for this 
+    update is a little weird....
+
+    :param node_info_to_update: dict, key = QID of node, val = output of get_node_info()
+        structure of val:  {'NodeLabel': - str name of node,
+                            'count': - int counts for the node,
+                            'URL': str, url on WikiData for node,
+                            'props': dict - {key = 'PID for WikiData Prop', val = int, counts}
+                            }
+    :param return_type_info: boolean, return the subclass_dict and expand_dict if True, in addition to update node_info
+
+    :return: Dict, data of the same structure as node_info_to_update, with updated counts.
+    """
+    node_info_updated = deepcopy(node_info_to_update)
+    node_name_mapper = {k: v['NodeLabel'] for k, v in node_info_to_update.items()}
+    new_counts, subclass, expand = determine_node_type_and_get_counts(node_info_to_update.keys(),
+                                                                      node_name_mapper)
+    for qid, new_count in new_counts.items():
+        node_info_updated[qid]['count'] = new_count
+    for qid, node_info in node_info_updated.items():
+        node_external_ids = get_external_ids(qid)
+        prop_count_thresh = max(node_info_updated[qid]['count']*filt_props,min_counts)
+        for pid, label, prop_count in node_external_ids:
+            if (prop_count > prop_count_thresh):
+                node_info_updated[qid]['props'][pid] = prop_count
     # Sometimes we'll need the subclass and expand info for other functions and don't want to have to re-run
     if return_type_info:
         return node_info_updated, subclass, expand
@@ -293,6 +321,10 @@ def determine_prop_names(node, n_id_map):
                 props[prop] = int(child.text)
             except ValueError:
                 pass
+            except:
+                print("ERROR: "+prop)
+                pass
+
 
     # Return nothing if no prop_text...
     if not prop_text:
@@ -462,7 +494,7 @@ def update_graphml_file(filename, outname=None, add_new_props=False):
     edge_info = get_edge_info_to_update(edges, n_to_qid, e_id_map)
 
     # Query wikidata instance for updated count info
-    new_node_info, sub, ext = update_node_counts(node_info, True)
+    new_node_info, sub, ext = update_node_properties_and_counts(node_info, True)
     new_edge_info = update_edge_counts(edge_info, sub, ext)
 
     # Apply new count data to nodes
