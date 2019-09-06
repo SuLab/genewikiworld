@@ -64,6 +64,30 @@ def get_node_edge_attrib_mappers(root):
     return n_id_to_attrib, e_id_to_attrib
 
 
+def create_new_property_count(wd_prop_id, new_id):
+    """Creates a new XML tag for a property that can be inserted into the proper locaiton"""
+    prop = ET.Element('key')
+    prop.attrib['attr.name'] = wd_prop
+    prop.attrib['attr.type'] = "int"
+    prop.attrib['for'] = "node"
+    prop.attrib['id'] = new_id
+
+    return prop
+
+def get_max_prop(root):
+    """Returns the number of the mx property in the current GraphML file"""
+    return max(int(c.get('id', 'd000')[1:]) for c in root if c.get('id') != 'G')
+
+
+def insert_prop(prop, root):
+    """Insert new property into the root graphml"""
+    # insert at the correct line number
+    insert_line_num = int(prop.attrib.get('id')[1:])
+    # Ensure newline and proper indent level
+    prop.tail = root[insert_line_num - 1].tail
+    root.insert(insert_line_num, prop)
+
+
 def get_node_id_to_qid(nodes, n_id_to_attrib):
     node_id_to_qid = dict()
     for node in nodes:
@@ -188,7 +212,7 @@ def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
         d = execute_sparql_query(q_string)['results']['bindings']
         print("B2: "+str(d))
         edge_count = [int(x['count']['value']) for x in d][0]
-    except: 
+    except:
         edge_count = -1
     print("B3: "+str(edge_count))
     return edge_count
@@ -229,7 +253,7 @@ def update_node_counts(node_info_to_update, return_type_info=False):
 
 def update_node_properties_and_counts(node_info_to_update, return_type_info=False, min_counts=200, filt_props=0.05):
     """
-    Updates the counts for the nodes of the graphs *and the property list. Data structure for this 
+    Updates the counts for the nodes of the graphs *and the property list. Data structure for this
     update is a little weird....
 
     :param node_info_to_update: dict, key = QID of node, val = output of get_node_info()
