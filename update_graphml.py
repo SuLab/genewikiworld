@@ -122,7 +122,7 @@ def get_node_id_to_qid(nodes, n_id_to_attrib):
     return node_id_to_qid
 
 
-def get_node_info(node, n_id_to_attrib, collect_nodes=('NodeLabel', 'count', 'URL')):
+def get_node_info(node, n_id_to_attrib, prop_names=None, collect_nodes=('NodeLabel', 'count', 'URL', 'node_prop_text')):
     node_info = dict()
     props = dict()
     for child in node.getchildren():
@@ -139,18 +139,22 @@ def get_node_info(node, n_id_to_attrib, collect_nodes=('NodeLabel', 'count', 'UR
                 props[prop] = int(child.text)
             except (ValueError, TypeError):
                 pass
+    # Filter the props to only the ones aleady dispalyed in the node label text
+    if prop_names is not None:
+        props = {p: c for p, c in props.items() if prop_names.get(p, '') in node_info['node_prop_text']}
     # not all counted nodes have properties, so returning empty dict if none...
+    node_info.pop('node_prop_text')
     node_info['props'] = props
     if node_info.get('URL'):
         qid = node_info['URL'].split('/')[-1]
         return qid, node_info
 
 
-def get_node_info_to_update(nodes, n_id_to_attrib, collect_nodes=('NodeLabel', 'count', 'URL')):
+def get_node_info_to_update(nodes, n_id_to_attrib, prop_names, collect_nodes=('NodeLabel', 'count', 'URL', 'node_prop_text')):
     node_info_to_update = dict()
     node_id_to_qid = dict()
     for node in nodes:
-        node_info = get_node_info(node, n_id_to_attrib, collect_nodes)
+        node_info = get_node_info(node, n_id_to_attrib, prop_names, collect_nodes)
         if node_info:
             node_id_to_qid[node.attrib.get('id')] = node_info[0]
             # Only need to update info on nodes with counts
@@ -345,17 +349,6 @@ def update_edge_counts(edge_info_to_update, subclass=dict(), expand=dict()):
     return updated_edge_info
 
 
-def parse_prop_text(prop_text):
-    ### TODO: Some sort of contingincey for if theres two of the same count.....
-    count_names = dict()
-    for identifier in prop_text.split('\n'):
-        line_split = identifier.split(': ')
-        name = line_split[0]
-        count = int(line_split[1].replace(',', ''))
-        count_names[count] = name
-    return count_names
-
-
 def format_prop_counts_to_text(prop_counts):
     prop_text = []
     for k, v in sorted(prop_counts.items(), key=lambda x: x[1], reverse=True):
@@ -479,20 +472,7 @@ def update_graphics_labels_from_node_data(node, n_id_map, add_new_props):
             elif i == 1 and node_props:
                 # Add all properties to the label text, even if new
                 elem.text = node_props
-                if add_new_props:
-                    elem.text = node_props
-                # Otherwise only update the counts of those already there...
-                elif not elem.text.strip():
-                    # Or not there in this case...
-                    continue
-                else:
-                    elem_prop_counts = parse_prop_text(elem.text)
-                    node_prop_counts = parse_prop_text(node_props)
-                    # Filter out previously removed properties
-                    node_prop_counts = {v: k for k, v in node_prop_counts.items() if v in elem_prop_counts.values()}
 
-                    # Update with the new counts
-                    elem.text = format_prop_counts_to_text(node_prop_counts)
 
 def get_key(edge, n_to_qid, e_id_map):
     s = n_to_qid.get(edge.attrib.get('source'))
@@ -562,10 +542,12 @@ def update_graphml_file(filename, outname=None, add_new_props=False, min_counts=
     nodes = get_nodes(graph)
     edges = get_edges(graph)
 
+    prop_names = gc.get_prop_labels()
+
     # Get info specific to this WikiData items from the graph
     n_id_map, e_id_map = get_node_edge_attrib_mappers(root)
     n_to_qid = get_node_id_to_qid(nodes, n_id_map)
-    node_info = get_node_info_to_update(nodes, n_id_map)
+    node_info = get_node_info_to_update(nodes, n_id_map, prop_names)
     edge_info = get_edge_info_to_update(edges, n_to_qid, e_id_map)
 
     # Query wikidata instance for updated count info
@@ -588,7 +570,6 @@ def update_graphml_file(filename, outname=None, add_new_props=False, min_counts=
                 max_prop += 1
 
     reverse_nid_map = {v: k for k, v in n_id_map.items()}
-    prop_names = gc.get_prop_labels()
 
     # Apply new count data to nodes
     for node in nodes:
