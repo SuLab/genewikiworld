@@ -1,11 +1,13 @@
 import os
 import sys
+import argparse
 import functools
 from tqdm import tqdm
 from copy import deepcopy
+from itertools import chain
 import xml.etree.ElementTree as ET
 
-from get_counts import determine_node_type_and_get_counts, determine_p, get_external_ids
+from get_counts import determine_node_type_and_get_counts, determine_p, get_external_ids, get_prop_labels
 from wikidataintegrator.wdi_core import WDItemEngine
 from wikidataintegrator.wdi_config import config
 
@@ -64,13 +66,13 @@ def get_node_edge_attrib_mappers(root):
     return n_id_to_attrib, e_id_to_attrib
 
 
-def create_new_property_count(wd_prop_id, new_id):
+def create_new_graph_property(wd_prop_id, new_id):
     """Creates a new XML tag for a property that can be inserted into the proper locaiton"""
     prop = ET.Element('key')
-    prop.attrib['attr.name'] = wd_prop
+    prop.attrib['attr.name'] = wd_prop_id
     prop.attrib['attr.type'] = "int"
     prop.attrib['for'] = "node"
-    prop.attrib['id'] = new_id
+    prop.attrib['id'] = 'd'+str(new_id)
 
     return prop
 
@@ -87,6 +89,24 @@ def insert_prop(prop, root):
     prop.tail = root[insert_line_num - 1].tail
     root.insert(insert_line_num, prop)
 
+
+def is_prop_id(prop_id):
+    """Prop IDs: P123, etc..."""
+    # Ensure After P is an integer...
+    try:
+       int(prop_id[1:])
+    except (ValueError, TypeError):
+        return False
+    # Ensure starts with P
+    return prop_id.startswith('P')
+
+
+def determine_new_props_for_graph(root, node_info_updated):
+    """Finds the properties that are new to the graphml"""
+    all_orig_props = set(c.attrib['attr.name'] for c in root if is_prop_id(c.attrib.get('attr.name')))
+    all_new_props = set(list(chain(*[n.get('props', dict()).keys() for n in node_info_updated.values()])))
+
+    return all_new_props - all_orig_props
 
 def get_node_id_to_qid(nodes, n_id_to_attrib):
     node_id_to_qid = dict()
@@ -218,40 +238,35 @@ def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
     return edge_count
 
 
-def update_node_counts(node_info_to_update, return_type_info=False):
-    """
-    Updates the counts for the nodes of the graphs. Data structure for this update is a little weird....
+def update_node_props(node_info_updated, min_counts, filt_props):
+    """ Updates all current properties and counts for nodes"""
+    for qid, node_info in node_info_updated.items():
+        # Query for the properties and counts
+        node_external_ids = get_external_ids(qid)
 
-    :param node_info_to_update: dict, key = QID of node, val = output of get_node_info()
-        structure of val:  {'NodeLabel': - str name of node,
-                            'count': - int counts for the node,
-                            'URL': str, url on WikiData for node,
-                            'props': dict - {key = 'PID for WikiData Prop', val = int, counts}
-                            }
-    :param return_type_info: boolean, return the subclass_dict and expand_dict if True, in addition to update node_info
+        # Format results into proper data structure
+        prop_results = dict()
+        for pid, label, prop_count in node_external_ids:
+            prop_results[pid] = prop_count
 
-    :return: Dict, data of the same structure as node_info_to_update, with updated counts.
-    """
-    node_info_updated = deepcopy(node_info_to_update)
-    node_name_mapper = {k: v['NodeLabel'] for k, v in node_info_to_update.items()}
-    new_counts, subclass, expand = determine_node_type_and_get_counts(node_info_to_update.keys(),
-                                                                      node_name_mapper)
-    for qid, new_count in new_counts.items():
-        node_info_updated[qid]['count'] = new_count
+        # Filter the props
+        prop_count_thresh = max(node_info_updated[qid]['count']*filt_props,min_counts)
+        node_info_updated[qid]['props'] = {k: v for k, v in prop_results.items() if v > prop_count_thresh}
 
+    return node_info_updated
+
+
+def update_prop_counts(node_info_updated):
     for qid, node_info in node_info_updated.items():
         updated_props = dict()
         for prop, count in tqdm(node_info['props'].items(), desc=node_name_mapper[qid]):
             updated_props[prop] = count_prop(qid, prop, subclass[qid], expand[qid])
         node_info_updated[qid]['props'] = updated_props
-
-    # Sometimes we'll need the subclass and expand info for other functions and don't want to have to re-run
-    if return_type_info:
-        return node_info_updated, subclass, expand
     return node_info_updated
 
 
-def update_node_properties_and_counts(node_info_to_update, return_type_info=False, min_counts=200, filt_props=0.05):
+def update_node_properties_and_counts(node_info_to_update, return_type_info=False, add_new_props=False,
+                                      min_counts=200, filt_props=0.05):
     """
     Updates the counts for the nodes of the graphs *and the property list. Data structure for this
     update is a little weird....
@@ -263,8 +278,15 @@ def update_node_properties_and_counts(node_info_to_update, return_type_info=Fals
                             'props': dict - {key = 'PID for WikiData Prop', val = int, counts}
                             }
     :param return_type_info: boolean, return the subclass_dict and expand_dict if True, in addition to update node_info
+    :param add_new_pros: boolean, set True, will return all current props and counts for the node, filtered
+        according to min_counts, and filt_props. If False, will only update counts for properties already
+        existing within the .graphml file, without querying for new ones.'
+    :param min_counts: int, the minimum number of counts a property needs to be included. Only used if add_new_props is
+        True.
+    :param filt_props: float, fraction of nodes a prop must be present on to be included. Only used if add_new_pros is
+        True.
 
-    :return: Dict, data of the same structure as node_info_to_update, with updated counts.
+    :return: dict, data of the same structure as node_info_to_update, with updated counts.
     """
     node_info_updated = deepcopy(node_info_to_update)
     node_name_mapper = {k: v['NodeLabel'] for k, v in node_info_to_update.items()}
@@ -272,12 +294,13 @@ def update_node_properties_and_counts(node_info_to_update, return_type_info=Fals
                                                                       node_name_mapper)
     for qid, new_count in new_counts.items():
         node_info_updated[qid]['count'] = new_count
-    for qid, node_info in node_info_updated.items():
-        node_external_ids = get_external_ids(qid)
-        prop_count_thresh = max(node_info_updated[qid]['count']*filt_props,min_counts)
-        for pid, label, prop_count in node_external_ids:
-            if (prop_count > prop_count_thresh):
-                node_info_updated[qid]['props'][pid] = prop_count
+
+    # Update the properties, either getting a revised count, or searching for new properties and getting counts.
+    if add_new_props:
+        node_info_updated = update_node_props(node_info_updated, min_counts, filt_props)
+    else:
+        node_info_updated = update_prop_counts(node_info_updated)
+
     # Sometimes we'll need the subclass and expand info for other functions and don't want to have to re-run
     if return_type_info:
         return node_info_updated, subclass, expand
@@ -328,38 +351,6 @@ def parse_prop_text(prop_text):
     return count_names
 
 
-def determine_prop_names(node, n_id_map):
-    # Get info needed to update label
-    props = dict()
-    prop_text = None
-    for child in node.getchildren():
-        prop = n_id_map.get(child.attrib.get('key'))
-
-        if type(prop) != str:
-            continue
-
-        if prop == 'node_prop_text':
-            prop_text = child.text
-        elif prop.startswith('P'):
-            try:
-                props[prop] = int(child.text)
-            except ValueError:
-                pass
-            except:
-                print("ERROR: "+prop)
-                pass
-
-
-    # Return nothing if no prop_text...
-    if not prop_text:
-        return dict()
-
-    count_names = parse_prop_text(prop_text)
-
-    prop_to_name = {k: count_names[v] for k, v in props.items() if v in count_names}
-    return prop_to_name
-
-
 def format_prop_counts_to_text(prop_counts):
     prop_text = []
     for k, v in sorted(prop_counts.items(), key=lambda x: x[1], reverse=True):
@@ -368,7 +359,26 @@ def format_prop_counts_to_text(prop_counts):
     return '\n'.join(prop_text)
 
 
-def update_node_data(node, node_info, n_to_qid, n_id_map, prop_names):
+def determine_new_props_for_single_node(node, node_info, n_id_map):
+    """ Figure out which props in a node are new and will need to be inserted"""
+    new_props = set(node_info.get('props', dict()).keys())
+    old_props = set(n_id_map.get(prop.attrib.get('key', ''), None) for prop in node)
+    old_props = set(p for p in old_props if is_prop_id(p))
+
+    return new_props - old_props
+
+
+def create_node_property(graph_key, count, tail):
+    """Creates a new XML tag for a property that can be inserted into the proper locaiton"""
+    prop = ET.Element('data')
+    prop.attrib['key'] = graph_key
+    prop.attrib['xml:space'] = "preserve"
+    prop.text = count
+    prop.tail = tail
+
+    return prop
+
+def update_node_data(node, node_info, n_to_qid, n_id_map, reverse_nid_map, prop_names):
     """
     Warning, updates will be made inplace
     """
@@ -381,6 +391,11 @@ def update_node_data(node, node_info, n_to_qid, n_id_map, prop_names):
     if qid not in node_info or qid is None:
         return None
 
+    # Find properties that haven't been found before
+    new_props = determine_new_props_for_single_node(node, node_info[qid], n_id_map)
+    to_remove = []
+
+    # Start with in-place update for props that are not new
     for child in node.getchildren():
         prop = n_id_map.get(child.attrib.get('key'))
 
@@ -392,6 +407,8 @@ def update_node_data(node, node_info, n_to_qid, n_id_map, prop_names):
             child.text = str(node_info[qid][prop])
         elif prop in node_info[qid]['props']:
             child.text = str(node_info[qid]['props'][prop])
+        elif is_prop_id(prop):
+            to_remove.append(node)
 
         # Special Labeling Props that need updating
         elif prop == 'labelcount':
@@ -405,6 +422,29 @@ def update_node_data(node, node_info, n_to_qid, n_id_map, prop_names):
             node_props = {prop_names[k]: v for k, v in node_info[qid]['props'].items() if k in prop_names}
             child.text = format_prop_counts_to_text(node_props)
 
+    # remove properties that are no longer represented on this node
+    for r in to_remove:
+        node.remove(r)
+
+    # Some prerequsities before adding new properites
+    if new_props:
+        max_prop = 0
+        # Get the largest index of a property (so we can insert directly after)
+        for i, p in enumerate(node):
+            if is_prop_id(n_id_map.get(p.attrib.get('key', ''))):
+                max_prop = i
+
+        # Save the tail for the tag
+        tail = node[max_prop].tail
+
+    # insert the new properties
+    for prop in new_props:
+        max_prop += 1
+        graph_key = reverse_nid_map[prop]
+        count = node_info[qid]['props'][prop]
+        new_prop = create_node_property(graph_key, count, tail)
+        node.insert(max_prop, new_prop)
+
 
 def select_child(item, mapper, text):
     for child in item.getchildren():
@@ -412,7 +452,7 @@ def select_child(item, mapper, text):
             return child
 
 
-def update_graphics_labels_from_node_data(node, n_id_map, add_new_props=False):
+def update_graphics_labels_from_node_data(node, n_id_map, add_new_props):
     """Updates the graphics labels so they match the node-data"""
 
     try:
@@ -422,6 +462,8 @@ def update_graphics_labels_from_node_data(node, n_id_map, add_new_props=False):
     node_label = select_child(node, n_id_map, 'labelcount').text
     node_props = select_child(node, n_id_map, 'node_prop_text').text
 
+    # Nodes have either 0, 1, or 2 node labels. If 1, its just title and count
+    # If 2, the first one is title count, second is properties and counts
     i = 0
     for elem in gfx:
         if elem.tag.endswith('NodeLabel'):
@@ -431,6 +473,7 @@ def update_graphics_labels_from_node_data(node, n_id_map, add_new_props=False):
             # not all nodes have a props-label
             elif i == 1 and node_props:
                 # Add all properties to the label text, even if new
+                elem.text = node_props
                 if add_new_props:
                     elem.text = node_props
                 # Otherwise only update the counts of those already there...
@@ -445,7 +488,6 @@ def update_graphics_labels_from_node_data(node, n_id_map, add_new_props=False):
 
                     # Update with the new counts
                     elem.text = format_prop_counts_to_text(node_prop_counts)
-
 
 def get_key(edge, n_to_qid, e_id_map):
     s = n_to_qid.get(edge.attrib.get('source'))
@@ -502,7 +544,7 @@ def update_edge_graphics_label(edge, e_id_map):
                 elem.text = edge_label
 
 
-def update_graphml_file(filename, outname=None, add_new_props=False):
+def update_graphml_file(filename, outname=None, add_new_props=False, min_counts=200, filt_props=0.05):
 
     # Read the graphml file and break into nodes and edged
     tree = read_graphml(filename)
@@ -518,13 +560,30 @@ def update_graphml_file(filename, outname=None, add_new_props=False):
     edge_info = get_edge_info_to_update(edges, n_to_qid, e_id_map)
 
     # Query wikidata instance for updated count info
-    new_node_info, sub, ext = update_node_properties_and_counts(node_info, True)
+    new_node_info, sub, ext = update_node_properties_and_counts(node_info, True, add_new_props, min_counts, filt_props)
     new_edge_info = update_edge_counts(edge_info, sub, ext)
+
+    # Add any new properites to the graphml
+    if add_new_props:
+        # Find the new properties
+        new_props = determine_new_props_for_graph(root, new_node_info)
+        if new_props:
+            # Find the highest datakey in the graph
+            max_prop = get_max_prop(root)+1
+            for prop in new_props:
+                # Create the new element and insert into the graphml
+                new_prop = create_new_graph_property(prop, str(max_prop))
+                insert_prop(new_prop, root)
+                # Add the new property to the map
+                n_id_map['d'+str(max_prop)] = prop
+                max_prop += 1
+
+    reverse_nid_map = {v: k for k, v in n_id_map.items()}
+    prop_names = get_prop_labels()
 
     # Apply new count data to nodes
     for node in nodes:
-        prop_names = determine_prop_names(node, n_id_map)
-        update_node_data(node, new_node_info, n_to_qid, n_id_map, prop_names)
+        update_node_data(node, new_node_info, n_to_qid, n_id_map, reverse_nid_map, prop_names)
         update_graphics_labels_from_node_data(node, n_id_map, add_new_props)
 
     # Aooly new count data to edges
@@ -536,21 +595,29 @@ def update_graphml_file(filename, outname=None, add_new_props=False):
     if outname is None:
         outname = os.path.splitext(filename)
         outname = outname[0] + '_out' + outname[1]
+    print('Writing file to:', outname)
     tree.write(outname)
 
 
+parser = argparse.ArgumentParser(description='Update the counts on a .graphml file from WikiData (or antoher Wikibase)')
+parser.add_argument('filename', help="The name of the graphml file that will be updated", type=str)
+parser.add_argument('-o', '--outname', help="The name of the output file", type=str, default=None)
+parser.add_argument('-p', '--add_new_props', help='Search for new x-refs on node info', action='store_true')
+parser.add_argument('-c', '--min_counts', help="The mininum nubmer of counts a new property must have"+
+                                               " to be included (defaults 200)", type=int, default=200)
+parser.add_argument('-f', '--filt_props', help="The fraction of the total number of counts for a node that a"+
+                                               " property must have to be included (default 0.05)",
+                                               type=float, default=0.05)
+
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print('Please run again with filename....')
-        print('Usage: ')
-        print('\t$ python update_graphml.py input-graphml-filename (output-filename)')
-        exit()
+    # Unpack commandline arguments
+    args = parser.parse_args()
+    filename = args.filename
+    outname = args.outname
+    add_new_props = args.add_new_props
+    min_counts = args.min_counts
+    filt_props = args.filt_props
 
-    filename = sys.argv[1]
-    if len(sys.argv) < 3:
-        outname = None
-    else:
-        outname = sys.argv[2]
-
-    update_graphml_file(filename, outname)
+    # run the routine
+    update_graphml_file(filename, outname, add_new_props, min_counts, filt_props)
 
