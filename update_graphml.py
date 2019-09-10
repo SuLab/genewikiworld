@@ -261,7 +261,7 @@ def update_node_props(node_info_updated, min_counts, filt_props):
     return node_info_updated
 
 
-def update_prop_counts(node_info_updated):
+def update_prop_counts(node_info_updated, node_name_mapper, subclass, expand):
     for qid, node_info in node_info_updated.items():
         updated_props = dict()
         for prop, count in tqdm(node_info['props'].items(), desc=node_name_mapper[qid]):
@@ -304,7 +304,7 @@ def update_node_properties_and_counts(node_info_to_update, return_type_info=Fals
     if add_new_props:
         node_info_updated = update_node_props(node_info_updated, min_counts, filt_props)
     else:
-        node_info_updated = update_prop_counts(node_info_updated)
+        node_info_updated = update_prop_counts(node_info_updated, node_name_mapper, subclass, expand)
 
     # Sometimes we'll need the subclass and expand info for other functions and don't want to have to re-run
     if return_type_info:
