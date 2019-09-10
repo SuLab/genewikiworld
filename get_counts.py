@@ -32,6 +32,12 @@ special_edges = [('Q11173', 'P1542', 'Q21167512'),  # chemical, cause of, chemic
 
 special_starts = [q[:2] for q in special_edges]
 
+
+def change_endpoint(endpoint):
+    global execute_sparql_query
+    execute_sparql_query = functools.partial(execute_sparql_query, endpoint=endpoint)
+
+
 def chunks(l, n):
     """Yield successive n-sized chunks from l."""
     for i in range(0, len(l), n):
@@ -68,7 +74,7 @@ def get_prop_labels():
         SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
     }"""
     print("A1: "+s)
-    try: 
+    try:
         d = execute_sparql_query(s)['results']['bindings']
 #        print("A2: "+str(d))
     except:

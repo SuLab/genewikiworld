@@ -6,21 +6,26 @@ from tqdm import tqdm
 from copy import deepcopy
 from itertools import chain
 import xml.etree.ElementTree as ET
+import get_counts as gc
 
-from get_counts import determine_node_type_and_get_counts, determine_p, get_external_ids, get_prop_labels
-from wikidataintegrator.wdi_core import WDItemEngine
-from wikidataintegrator.wdi_config import config
 
-# don't retry failed sparql queries. let them time out, and we'll skip
-config['BACKOFF_MAX_TRIES'] = 1
+def change_endpoint(endpoint):
+    gc.change_endpoint(endpoint)
 
-execute_sparql_query = WDItemEngine.execute_sparql_query
-# comment this ---v out to use official wikidata endpoint
-#execute_sparql_query = functools.partial(execute_sparql_query,
-#                                         endpoint="http://avalanche.scripps.edu:9999/bigdata/sparql")
 
+def get_namespaces(filename):
+    from lxml import etree
+    root = etree.parse(filename).getroot()
+    return list(root.nsmap.items())
 
 def read_graphml(filename):
+
+    ns_map = get_namespaces(filename)
+    for prefix, ns in ns_map:
+        if prefix is None:
+            ET.register_namespace('', ns)
+        else:
+            ET.register_namespace(prefix, ns)
     tree = ET.parse(filename)
     return tree
 
@@ -176,7 +181,7 @@ def get_edge_info_to_update(edges, node_id_to_qid, e_id_to_attrib):
 
 
 def count_prop(qid, prop, is_subclass, expand):
-    p = determine_p(is_subclass, expand)
+    p = gc.determine_p(is_subclass, expand)
     q_string = """
     SELECT (count(?item) as ?count) where {
         SELECT DISTINCT ?item WHERE {
@@ -185,7 +190,7 @@ def count_prop(qid, prop, is_subclass, expand):
     """.replace('{p}', p).replace('{qid}', qid).replace('{prop}', prop)
     print("A1: "+q_string)
     try:
-        d = execute_sparql_query(q_string)['results']['bindings']
+        d = gc.execute_sparql_query(q_string)['results']['bindings']
         print("A2: "+str(d))
         prop_count = [int(x['count']['value']) for x in d][0]
     except:
@@ -195,8 +200,8 @@ def count_prop(qid, prop, is_subclass, expand):
 
 
 def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
-    p_sub = determine_p(s_subclass, s_expand)
-    p_obj = determine_p(o_subclass, o_expand)
+    p_sub = gc.determine_p(s_subclass, s_expand)
+    p_obj = gc.determine_p(o_subclass, o_expand)
 
     # test for reciprocal relationships that need to be collapsed
     recip_rels = {'P527': 'P361',
@@ -229,7 +234,7 @@ def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
     """.replace('{p_sub}', p_sub).replace('{s}', s).replace('{p}', p).replace('{p_obj}', p_obj).replace('{o}', o).replace('{u}',u)
     print("B1: "+q_string)
     try :
-        d = execute_sparql_query(q_string)['results']['bindings']
+        d = gc.execute_sparql_query(q_string)['results']['bindings']
         print("B2: "+str(d))
         edge_count = [int(x['count']['value']) for x in d][0]
     except:
@@ -242,7 +247,7 @@ def update_node_props(node_info_updated, min_counts, filt_props):
     """ Updates all current properties and counts for nodes"""
     for qid, node_info in node_info_updated.items():
         # Query for the properties and counts
-        node_external_ids = get_external_ids(qid)
+        node_external_ids = gc.get_external_ids(qid)
 
         # Format results into proper data structure
         prop_results = dict()
@@ -290,8 +295,8 @@ def update_node_properties_and_counts(node_info_to_update, return_type_info=Fals
     """
     node_info_updated = deepcopy(node_info_to_update)
     node_name_mapper = {k: v['NodeLabel'] for k, v in node_info_to_update.items()}
-    new_counts, subclass, expand = determine_node_type_and_get_counts(node_info_to_update.keys(),
-                                                                      node_name_mapper)
+    new_counts, subclass, expand = gc.determine_node_type_and_get_counts(node_info_to_update.keys(),
+                                                                         node_name_mapper)
     for qid, new_count in new_counts.items():
         node_info_updated[qid]['count'] = new_count
 
@@ -373,7 +378,7 @@ def create_node_property(graph_key, count, tail):
     prop = ET.Element('data')
     prop.attrib['key'] = graph_key
     prop.attrib['xml:space'] = "preserve"
-    prop.text = count
+    prop.text = str(count)
     prop.tail = tail
 
     return prop
@@ -408,7 +413,7 @@ def update_node_data(node, node_info, n_to_qid, n_id_map, reverse_nid_map, prop_
         elif prop in node_info[qid]['props']:
             child.text = str(node_info[qid]['props'][prop])
         elif is_prop_id(prop):
-            to_remove.append(node)
+            to_remove.append(child)
 
         # Special Labeling Props that need updating
         elif prop == 'labelcount':
@@ -544,7 +549,11 @@ def update_edge_graphics_label(edge, e_id_map):
                 elem.text = edge_label
 
 
-def update_graphml_file(filename, outname=None, add_new_props=False, min_counts=200, filt_props=0.05):
+def update_graphml_file(filename, outname=None, add_new_props=False, min_counts=200, filt_props=0.05, endpoint=None):
+
+    # Use the desired endpoint
+    if endpoint is not None:
+        gc.change_endpoint(endpoint)
 
     # Read the graphml file and break into nodes and edged
     tree = read_graphml(filename)
@@ -579,7 +588,7 @@ def update_graphml_file(filename, outname=None, add_new_props=False, min_counts=
                 max_prop += 1
 
     reverse_nid_map = {v: k for k, v in n_id_map.items()}
-    prop_names = get_prop_labels()
+    prop_names = gc.get_prop_labels()
 
     # Apply new count data to nodes
     for node in nodes:
@@ -596,20 +605,22 @@ def update_graphml_file(filename, outname=None, add_new_props=False, min_counts=
         outname = os.path.splitext(filename)
         outname = outname[0] + '_out' + outname[1]
     print('Writing file to:', outname)
-    tree.write(outname)
+    tree.write(outname, encoding='utf-8', xml_declaration=True)
 
-
-parser = argparse.ArgumentParser(description='Update the counts on a .graphml file from WikiData (or antoher Wikibase)')
-parser.add_argument('filename', help="The name of the graphml file that will be updated", type=str)
-parser.add_argument('-o', '--outname', help="The name of the output file", type=str, default=None)
-parser.add_argument('-p', '--add_new_props', help='Search for new x-refs on node info', action='store_true')
-parser.add_argument('-c', '--min_counts', help="The mininum nubmer of counts a new property must have"+
-                                               " to be included (defaults 200)", type=int, default=200)
-parser.add_argument('-f', '--filt_props', help="The fraction of the total number of counts for a node that a"+
-                                               " property must have to be included (default 0.05)",
-                                               type=float, default=0.05)
 
 if __name__ == '__main__':
+    # Command line Parsing
+    parser = argparse.ArgumentParser(description='Update the counts on a .graphml file from WikiData (or antoher Wikibase)')
+    parser.add_argument('filename', help="The name of the graphml file that will be updated", type=str)
+    parser.add_argument('-o', '--outname', help="The name of the output file", type=str, default=None)
+    parser.add_argument('-p', '--add_new_props', help='Search for new x-refs on node info', action='store_true')
+    parser.add_argument('-c', '--min_counts', help="The mininum nubmer of counts a new property must have"+
+                            " to be included (defaults 200)", type=int, default=200)
+    parser.add_argument('-f', '--filt_props', help="The fraction of the total number of counts for a node that a"+
+                            " property must have to be included (default 0.05)", type=float, default=0.05)
+    parser.add_argument('-e', '--endpoint', help='Use a wikibase endpoint other than standard wikidata', type=str,
+                        default=None)
+
     # Unpack commandline arguments
     args = parser.parse_args()
     filename = args.filename
@@ -617,7 +628,8 @@ if __name__ == '__main__':
     add_new_props = args.add_new_props
     min_counts = args.min_counts
     filt_props = args.filt_props
+    endpoint = args.endpoint
 
     # run the routine
-    update_graphml_file(filename, outname, add_new_props, min_counts, filt_props)
+    update_graphml_file(filename, outname, add_new_props, min_counts, filt_props, endpoint)
 
