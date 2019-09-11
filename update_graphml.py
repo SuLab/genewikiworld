@@ -260,11 +260,11 @@ def count_edges(s, p, o, s_subclass, s_expand, o_subclass, o_expand):
     return edge_count
 
 
-def update_node_props(node_info_updated, min_counts, filt_props):
+def update_node_props(node_info_updated, subclass, expand, min_counts, filt_props):
     """ Updates all current properties and counts for nodes"""
     for qid, node_info in node_info_updated.items():
         # Query for the properties and counts
-        node_external_ids = gc.get_external_ids(qid)
+        node_external_ids = gc.get_external_ids(qid, subclass[qid], expand[qid])
 
         # Format results into proper data structure
         prop_results = dict()
@@ -319,7 +319,7 @@ def update_node_properties_and_counts(node_info_to_update, return_type_info=Fals
 
     # Update the properties, either getting a revised count, or searching for new properties and getting counts.
     if add_new_props:
-        node_info_updated = update_node_props(node_info_updated, min_counts, filt_props)
+        node_info_updated = update_node_props(node_info_updated, subclass, expand, min_counts, filt_props)
     else:
         node_info_updated = update_prop_counts(node_info_updated, node_name_mapper, subclass, expand)
 
