@@ -1,7 +1,7 @@
 ## Gene Wiki World
 #### Generate a network of all items we care about, and some we don't....
 
-**CRITICAL NOTE**: in both `get_counts.py` and `update_graphml.py`, there is a line in the code to toggle between using the "official wikidata endpoint" and a local copy.  Default currently is to use a *local copy* (hardcoded to an internal scripps server)!
+**CRITICAL NOTE**: in both `get_counts.py` and `update_graphml.py`, there is a line in the code to toggle between using the "official wikidata endpoint" and a local copy.  Default currently is to use a *live wikidata endpoint*
 
 ## Search Mode
 
@@ -69,4 +69,46 @@ Additional Optional Flags:
 ### Output
 
 ![update.png](update.png)
+
+
+## Data Provenance
+
+New feature has been added to find counts for the reference information for statements represented in the graph.
+This can be achieved by running two different scripts.
+
+### Determine what items to query for reference information
+
+1. run ```python3 parse_graphml_connectivity.py <input_filename> -o <output_filename>```
+
+`input_filename` should be a graphml file.
+output csv will be written to `output_filename`, if None is give, the name `query_info.csv` is used.
+
+Additional Optional Flags:
+```
+  -e ENDPOINT, --endpoint ENDPOINT
+                        Use a wikibase endpoint other than standard wikidata
+```
+Endpoint is used soley to get accurate mappings from property P-identifiers to english names.
+
+### Query items for reference counts
+
+1. run ```python3 get_prov_counts.py <input_filename> -o <output_filename>```
+
+`input_filename` is the .csv output of `parse_graphml_connectivity.py`
+output csv will be written to `output_filename`, if none is given then `prov_counts.csv` will be used as default.
+
+This script will automatically write failed queries to a logfile.
+
+Additional optional commandline arguments:
+```
+
+  -l LOGFILE, --logfile LOGFILE
+                        Filename for log of failed queries. Unique filenmae will be used if none passed
+  -m ABSOLUTE_MIN, --absolute_min ABSOLUTE_MIN
+                        The mininum nubmer of counts a reference must have for a given group, to be included (default 10)
+  -f FILT_LEVEL, --filt_level FILT_LEVEL
+                        The fraction of the max counts for a group that a reference must must have to be included (default 0.05)
+  -e ENDPOINT, --endpoint ENDPOINT
+                        Use a wikibase endpoint other than standard wikidata
+```
 

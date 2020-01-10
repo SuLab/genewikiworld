@@ -1,3 +1,4 @@
+import argparse
 import datetime
 import pandas as pd
 import get_counts as gc
@@ -5,6 +6,29 @@ from collections import defaultdict
 
 
 LOGSTR = ""
+
+biological_properties = ['P780', # symptoms
+                         'P2176', # drug used for treatment
+                         'P2175', # medical condition treated
+                         'P2293', # genetic association
+                         'P927', # anatomical location
+                         'P703', # found in taxon
+                         'P684', # ortholog
+                         'P1057', # chromosome
+                         'P680', # molecular function
+                         'P681', # cell component
+                         'P702', # encoded by
+                         'P688', # encodes
+                         'P769', # significant drug interaction
+                         'P3781', # has active ingredient
+                         'P3780', # active ingredient in
+                         'P4044', # therapeutic area
+                         'P128', # regulates (molecular biology)
+                         'P3433', # biological variant of
+                         'P3354', # positive therapeutic predictor
+                         'P3355', # negative therapeutic predictor
+                         ]
+
 
 def write_log(logfile=None):
     global LOGSTR
@@ -111,8 +135,13 @@ def run_prov_queries(input_df):
     # Determine the query type
     edge_query = 'object_type_qid' in query_df
 
-    # If an edge query, only query for certain biological edges 1 time
-    if 'biological_edge' in query_df:
+    # For edge queries, biological edges will only be between to biomdeical typed nodes
+    # So we can get provinence for all instances of that property
+    if edge_query and 'biological_edge' not in query_df:
+        query_df['biological_edge'] = query_df['property_pid'].apply(lambda p: p in biological_properties)
+
+    # Make sure we're only querying these biological properties one time
+    if edge_query:
         bio_edges = query_df.query('biological_edge')
         not_bio_edges = query_df.query('biological_edge != True')
         bio_edges = bio_edges.drop_duplicates(subset=['property_pid']).copy()
@@ -171,23 +200,98 @@ def run_prov_queries(input_df):
     return prov_out
 
 
-def get_reference_info(query_info_file, outname, logfile=None):
+def filter_results(results_df, absolute_min=10, filt_level=0.05):
+    """
+    For a given minimum for group and given filter level, a subject predicat object group (or just subject predicate
+    if there is no object) will be removed it has fewer than the absolute_min or fewer than filt_level* the groups max.
+
+    if count >= absolute_min and count > max_for_group * filt_level: keep
+    """
+
+    # Quick check to ensure filtering is required
+    if absolute_min == 0 and filt_level == 0:
+        return results_df
+
+    # if only filtering by counts, a simple query is faster
+    if filt_level == 0:
+        return results_df.query('count >= @absolute_min').reset_index(drop=True)
+
+    # Determine if an edge query or a prop query by column names
+    group_on = ['subject_type_qid', 'property_pid']
+    if 'object_type_qid' in results_df:
+        group_on.append('object_type_qid')
+
+    # Group the resuts to determine the filtering cutoffs
+    grouped = results_df.groupby(group_on)
+    max_for_group = grouped['count'].apply(max)
+    group_cutoffs = (max_for_group * filt_level).to_dict()
+
+    # Perform the filtering
+    filtered = []
+    for row in results_df.itertuples(index=False):
+        if row.count > group_cutoffs[tuple(getattr(row, g) for g in group_on)] and row.count >= absolute_min:
+            filtered.append(row)
+
+    return pd.DataFrame(filtered)
+
+
+def get_reference_info(query_info_file, outname=None, endpoint=None, logfile=None, absolute_min=10, filt_level=0.05):
+    """
+    Run the pipline to get counts for the various references.
+
+    Set absolute min and filt level to 0 if no filtering desired.
+    """
+    if outname is None:
+        outname = "prov_counts.csv"
+
+    if endpoint is not None:
+        gc.change_endpound(endpoint)
 
     query_info = pd.read_csv(query_info_file)
+    out_cols = query_info.columns.tolist() + ['reference_name', 'reference_id', 'count']
 
+    # Determine the edge vs property queries
     prop_qs = query_info[query_info['object_type_qid'].isnull()]
     edge_qs = query_info[~query_info['object_type_qid'].isnull()]
 
+    # Run the proerpty queries
     prop_res = run_prov_queries(prop_qs)
-    prop_res.to_csv(outname, index=False)
-    prop_res = pd.DataFrame()
+    prop_res = filter_results(prop_res, absolute_min, filt_level)
 
-    edge_res = run_prov_queries(edge_qs)
-    pd.concat([prop_res, edge_res], sort=False, ignore_index=True).to_csv(outname, index=False)
+    # Run the edge queries
+    edge_res = run_prov_queries(edge_qs).fillna('None')
+    edge_res = filter_results(edge_res, absolute_min, filt_level)
 
+    # Write out the results
+    pd.concat([prop_res, edge_res], sort=False, ignore_index=True)[out_cols].to_csv(outname, index=False)
     write_log(logfile)
 
 
 if __name__ == '__main__':
-    get_reference_info('query_info.csv', 'test_prov.csv')
+
+    # Command line Parsing
+    parser = argparse.ArgumentParser(description='Query wikidata for data provinence')
+    parser.add_argument('filename', help="The .csv with query information (output of " + \
+                                          "parse_graphml_connectivity.py)", type=str)
+    parser.add_argument('-o', '--outname', help="The name of the output file. (Default 'prov_counts.csv')",
+                        type=str, default=None)
+    parser.add_argument('-l', '--logfile', help="Filename for log of failed queries. " + \
+                                                "Unique filenmae will be used if none passed", type=str, default=None)
+    parser.add_argument('-m', '--absolute_min', help="The mininum nubmer of counts a reference must have for a given"+
+                            " group, to be included (default 10)", type=int, default=10)
+    parser.add_argument('-f', '--filt_level', help="The fraction of the max counts for a group that a reference must"+
+                            " must have to be included (default 0.05)", type=float, default=0.05)
+    parser.add_argument('-e', '--endpoint', help='Use a wikibase endpoint other than standard wikidata', type=str,
+                        default=None)
+
+    # Unpack commandline arguments
+    args = parser.parse_args()
+    filename = args.filename
+    outname = args.outname
+    logfile = args.logfile
+    absolute_min = args.absolute_min
+    filt_level = args.filt_level
+    endpoint = args.endpoint
+
+    get_reference_info(filename, outname, endpoint, logfile, absolute_min, filt_level)
 

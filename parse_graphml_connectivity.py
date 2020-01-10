@@ -1,3 +1,4 @@
+import argparse
 import pandas as pd
 import get_counts as gc
 import update_graphml as ug
@@ -93,11 +94,29 @@ def get_info_from_graphml(filename, outname=None, endpoint=None):
                               'property_name': p_names, 'property_pid': p_ids,
                               'object_type_name': n2_names, 'object_type_qid': n2_ids})
 
-    out = pd.concat([nodes_out, edges_out], sort=False)
+    out = pd.concat([nodes_out, edges_out], sort=False).drop('count', axis=1)
     if outname is None:
         outname = 'query_info.csv'
     out.to_csv(outname, index=False)
 
 
 if __name__ == "__main__":
-    get_info_from_graphml('demo.graphml', outname=None, endpoint=None):
+    # Command line Parsing
+    parser = argparse.ArgumentParser(description='Parse a complete .graphml to get arguments for querying data'+
+                                                 ' provenance. (input to get_prov_counts.py)')
+    parser.add_argument('filename', help="The .graphml to parse for subject, predicate, object and property" + \
+                                          " identifiers and information", type=str)
+    parser.add_argument('-o', '--outname', help="The name of the output file. (Default 'query_info.csv')",
+                        type=str, default=None)
+    parser.add_argument('-e', '--endpoint', help='Use a wikibase endpoint other than standard wikidata', type=str,
+                        default=None)
+
+    #Unpack the CLI args
+    args = parser.parse_args()
+    filename = args.filename
+    outname = args.outname
+    endpoint = args.endpoint
+
+    # run the pipeline
+    get_info_from_graphml(filename, outname=outname, endpoint=None)
+
