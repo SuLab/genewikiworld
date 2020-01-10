@@ -16,8 +16,9 @@ from matplotlib import pyplot as plt
 
 from wikidataintegrator.wdi_config import config
 
-# don't retry failed sparql queries. let them time out, and we'll skip
-config['BACKOFF_MAX_TRIES'] = 1
+# Sometimes cacheing allows a failed sparql query to finish on on subsequent attems
+# For this reason we ill run 3 times
+config['BACKOFF_MAX_TRIES'] = 3
 
 execute_sparql_query = WDItemEngine.execute_sparql_query
 # comment this ---v out to use official wikidata endpoint
