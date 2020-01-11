@@ -104,6 +104,7 @@ Additional optional commandline arguments:
 
   -l LOGFILE, --logfile LOGFILE
                         Filename for log of failed queries. Unique filenmae will be used if none passed
+  -a, --agg_objects     Aggreate results on object, if True, only unique subject and predicates will be queried
   -m ABSOLUTE_MIN, --absolute_min ABSOLUTE_MIN
                         The mininum nubmer of counts a reference must have for a given group, to be included (default 10)
   -f FILT_LEVEL, --filt_level FILT_LEVEL

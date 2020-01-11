@@ -16,6 +16,7 @@ biological_properties = ['P780', # symptoms
                          'P684', # ortholog
                          'P1057', # chromosome
                          'P680', # molecular function
+                         'P682', # biological process
                          'P681', # cell component
                          'P702', # encoded by
                          'P688', # encodes
@@ -35,7 +36,7 @@ def write_log(logfile=None):
 
     if logfile is None:
         now = datetime.datetime.now()
-        now = now.strftime('%Y-%M-%d_%H-%m-%S')
+        now = now.strftime('%Y-%m-%d_%H-%M-%S')
         logfile = 'failed_query_log_' + now + '.txt'
 
     if LOGSTR:
@@ -91,16 +92,16 @@ def get_edge_prov_counts(qid, pid, o_qid, use_subclass_sub=False, extend_subclas
     if biological_edge:
         bio_edge = ""
     else:
-        bio_edge = ("""?item {p_subj} wd:{qid}.
+        bio_edge = ("""          ?item {p_subj} wd:{qid}.
           ?obj {p_obj} wd:{o_qid}.""".replace('{p_subj}', p_subj).replace('{qid}', qid)
-                                    .replace('{p_obj}', p_obj).replace('{o_qid}', o_qid))
+                                     .replace('{p_obj}', p_obj).replace('{o_qid}', o_qid))
 
 
     edge_query = """
     SELECT ?ref ?refLabel ?count WHERE {
       {SELECT ?ref  (COUNT(*) AS ?count) WHERE {
         SELECT DISTINCT ?item ?obj ?ref WHERE  {
-          {bio_edge}
+{bio_edge}
           ?item p:{pid} [ps:{pid} ?obj;
                         prov:wasDerivedFrom
                         [pr:P248 ?ref;]
@@ -151,7 +152,6 @@ def run_prov_queries(input_df):
             if '_type_' in c:
                 bio_edges[c] = float('nan')
         query_df = pd.concat([not_bio_edges, bio_edges], sort=False, ignore_index=True)
-
 
     # Initialize the columns in the final dataframe
     out_data = defaultdict(list)
@@ -216,6 +216,9 @@ def filter_results(results_df, absolute_min=10, filt_level=0.05):
     if filt_level == 0:
         return results_df.query('count >= @absolute_min').reset_index(drop=True)
 
+    # Fill in any missing values
+    results_df = results_df.fillna('None')
+
     # Determine if an edge query or a prop query by column names
     group_on = ['subject_type_qid', 'property_pid']
     if 'object_type_qid' in results_df:
@@ -232,10 +235,11 @@ def filter_results(results_df, absolute_min=10, filt_level=0.05):
         if row.count > group_cutoffs[tuple(getattr(row, g) for g in group_on)] and row.count >= absolute_min:
             filtered.append(row)
 
-    return pd.DataFrame(filtered)
+    return pd.DataFrame(filtered).replace('None', float('nan'))
 
 
-def get_reference_info(query_info_file, outname=None, endpoint=None, logfile=None, absolute_min=10, filt_level=0.05):
+def get_reference_info(query_info_file, outname=None, agg_objects=True, endpoint=None,
+                       logfile=None, absolute_min=10, filt_level=0.05):
     """
     Run the pipline to get counts for the various references.
 
@@ -248,11 +252,23 @@ def get_reference_info(query_info_file, outname=None, endpoint=None, logfile=Non
         gc.change_endpound(endpoint)
 
     query_info = pd.read_csv(query_info_file)
-    out_cols = query_info.columns.tolist() + ['reference_name', 'reference_id', 'count']
 
     # Determine the edge vs property queries
     prop_qs = query_info[query_info['object_type_qid'].isnull()]
     edge_qs = query_info[~query_info['object_type_qid'].isnull()]
+
+    print(len(prop_qs), len(edge_qs))
+
+    # Aggregate results on objects (only subject and property are uniquely queried)
+    if agg_objects:
+        prop_qs = pd.concat([prop_qs, edge_qs.query('property_pid not in @biological_properties')], sort=False)
+        edge_qs = edge_qs.query('property_pid in @biological_properties')
+        prop_qs['object_type_qid'] = float('nan')
+        prop_qs['object_type_name'] = float('nan')
+        prop_qs = prop_qs.drop_duplicates(subset=['subject_type_qid', 'property_pid'])
+
+    # keep to retain proper column order after filtering
+    out_cols = query_info.columns.tolist() + ['reference_name', 'reference_id', 'count']
 
     # Run the proerpty queries
     prop_res = run_prov_queries(prop_qs)
@@ -262,8 +278,13 @@ def get_reference_info(query_info_file, outname=None, endpoint=None, logfile=Non
     edge_res = run_prov_queries(edge_qs).fillna('None')
     edge_res = filter_results(edge_res, absolute_min, filt_level)
 
-    # Write out the results
-    pd.concat([prop_res, edge_res], sort=False, ignore_index=True)[out_cols].to_csv(outname, index=False)
+    # Join results
+    out_data = pd.concat([prop_res, edge_res], sort=False, ignore_index=True)
+    out_data = out_data[[c for c in out_cols if c in out_data.columns]]
+    # Remove empty columns
+    out_data = out_data.T.dropna(how='all').T
+    # Write out data
+    out_data.fillna('Any').to_csv(outname, index=False)
     write_log(logfile)
 
 
@@ -277,6 +298,8 @@ if __name__ == '__main__':
                         type=str, default=None)
     parser.add_argument('-l', '--logfile', help="Filename for log of failed queries. " + \
                                                 "Unique filenmae will be used if none passed", type=str, default=None)
+    parser.add_argument('-a', '--agg_objects', help="Aggreate results on object, if True, only unique subject and " + \
+                                                "predicates will be queried", action='store_true')
     parser.add_argument('-m', '--absolute_min', help="The mininum nubmer of counts a reference must have for a given"+
                             " group, to be included (default 10)", type=int, default=10)
     parser.add_argument('-f', '--filt_level', help="The fraction of the max counts for a group that a reference must"+
@@ -288,10 +311,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     filename = args.filename
     outname = args.outname
+    agg_objects = args.agg_objects
     logfile = args.logfile
     absolute_min = args.absolute_min
     filt_level = args.filt_level
     endpoint = args.endpoint
 
-    get_reference_info(filename, outname, endpoint, logfile, absolute_min, filt_level)
+    get_reference_info(filename, outname, agg_objects, endpoint, logfile, absolute_min, filt_level)
 
