@@ -24,10 +24,10 @@ for other connected node types, returning both edge types and counts.
 ### Output
 
 Original output is messy and needs some manual editing
-![data/search.png](data/search.png)
+![img/search.png](img/search.png)
 
 However, with editing in yEd, the following graph can be produced.
-![data/wikidata-update-Dec-21-2018.png](data/wikidata-update-Dec-21-2018.png)
+![img/wikidata-update-Dec-21-2018.png](img/wikidata-update-Dec-21-2018.png)
 
 ## Update Mode
 
@@ -68,7 +68,7 @@ Additional Optional Flags:
 
 ### Output
 
-![data/update.png](data/update.png)
+![img/update.png](img/update.png)
 
 
 ## Data Provenance
