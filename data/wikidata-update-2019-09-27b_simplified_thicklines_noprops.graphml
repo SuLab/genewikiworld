@@ -1,0 +1,1953 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yEd 3.19.1.1-->
+  <key for="port" id="d0" yfiles.type="portgraphics"/>
+  <key for="port" id="d1" yfiles.type="portgeometry"/>
+  <key for="port" id="d2" yfiles.type="portuserdata"/>
+  <key attr.name="P3289" attr.type="int" for="node" id="d3"/>
+  <key attr.name="P3331" attr.type="int" for="node" id="d4"/>
+  <key attr.name="P3329" attr.type="int" for="node" id="d5"/>
+  <key attr.name="P1554" attr.type="int" for="node" id="d6"/>
+  <key attr.name="P1323" attr.type="int" for="node" id="d7"/>
+  <key attr.name="P3982" attr.type="int" for="node" id="d8"/>
+  <key attr.name="P3332" attr.type="int" for="node" id="d9"/>
+  <key attr.name="P4028" attr.type="int" for="node" id="d10"/>
+  <key attr.name="P6201" attr.type="int" for="node" id="d11"/>
+  <key attr.name="P4109" attr.type="int" for="node" id="d12"/>
+  <key attr.name="P1154" attr.type="int" for="node" id="d13"/>
+  <key attr.name="P1610" attr.type="int" for="node" id="d14"/>
+  <key attr.name="P888" attr.type="int" for="node" id="d15"/>
+  <key attr.name="P2007" attr.type="int" for="node" id="d16"/>
+  <key attr.name="P2880" attr.type="int" for="node" id="d17"/>
+  <key attr.name="P818" attr.type="int" for="node" id="d18"/>
+  <key attr.name="P5315" attr.type="int" for="node" id="d19"/>
+  <key attr.name="P3181" attr.type="int" for="node" id="d20"/>
+  <key attr.name="P5875" attr.type="int" for="node" id="d21"/>
+  <key attr.name="P932" attr.type="int" for="node" id="d22"/>
+  <key attr.name="P356" attr.type="int" for="node" id="d23"/>
+  <key attr.name="P698" attr.type="int" for="node" id="d24"/>
+  <key attr.name="P6039" attr.type="int" for="node" id="d25"/>
+  <key attr.name="P3795" attr.type="int" for="node" id="d26"/>
+  <key attr.name="P4798" attr.type="int" for="node" id="d27"/>
+  <key attr.name="P6049" attr.type="int" for="node" id="d28"/>
+  <key attr.name="P3606" attr.type="int" for="node" id="d29"/>
+  <key attr.name="P3222" attr.type="int" for="node" id="d30"/>
+  <key attr.name="P6139" attr.type="int" for="node" id="d31"/>
+  <key attr.name="P6176" attr.type="int" for="node" id="d32"/>
+  <key attr.name="P3100" attr.type="int" for="node" id="d33"/>
+  <key attr.name="P1076" attr.type="int" for="node" id="d34"/>
+  <key attr.name="P6045" attr.type="int" for="node" id="d35"/>
+  <key attr.name="P1296" attr.type="int" for="node" id="d36"/>
+  <key attr.name="P6142" attr.type="int" for="node" id="d37"/>
+  <key attr.name="P5626" attr.type="int" for="node" id="d38"/>
+  <key attr.name="P6040" attr.type="int" for="node" id="d39"/>
+  <key attr.name="P1940" attr.type="int" for="node" id="d40"/>
+  <key attr.name="P5003" attr.type="int" for="node" id="d41"/>
+  <key attr.name="P1761" attr.type="int" for="node" id="d42"/>
+  <key attr.name="P4311" attr.type="int" for="node" id="d43"/>
+  <key attr.name="P6042" attr.type="int" for="node" id="d44"/>
+  <key attr.name="P4567" attr.type="int" for="node" id="d45"/>
+  <key attr.name="P244" attr.type="int" for="node" id="d46"/>
+  <key attr.name="P6159" attr.type="int" for="node" id="d47"/>
+  <key attr.name="P6033" attr.type="int" for="node" id="d48"/>
+  <key attr.name="P6053" attr.type="int" for="node" id="d49"/>
+  <key attr.name="P687" attr.type="int" for="node" id="d50"/>
+  <key attr.name="P3102" attr.type="int" for="node" id="d51"/>
+  <key attr.name="P3099" attr.type="int" for="node" id="d52"/>
+  <key attr.name="P4715" attr.type="int" for="node" id="d53"/>
+  <key attr.name="P6019" attr.type="int" for="node" id="d54"/>
+  <key attr.name="P4333" attr.type="int" for="node" id="d55"/>
+  <key attr.name="P2426" attr.type="int" for="node" id="d56"/>
+  <key attr.name="P3322" attr.type="int" for="node" id="d57"/>
+  <key attr.name="P4526" attr.type="int" for="node" id="d58"/>
+  <key attr.name="P4433" attr.type="int" for="node" id="d59"/>
+  <key attr.name="P6044" attr.type="int" for="node" id="d60"/>
+  <key attr.name="P6036" attr.type="int" for="node" id="d61"/>
+  <key attr.name="P6163" attr.type="int" for="node" id="d62"/>
+  <key attr.name="P5397" attr.type="int" for="node" id="d63"/>
+  <key attr.name="P6051" attr.type="int" for="node" id="d64"/>
+  <key attr.name="P6105" attr.type="int" for="node" id="d65"/>
+  <key attr.name="P6161" attr.type="int" for="node" id="d66"/>
+  <key attr.name="P2455" attr.type="int" for="node" id="d67"/>
+  <key attr.name="P6025" attr.type="int" for="node" id="d68"/>
+  <key attr.name="P6030" attr.type="int" for="node" id="d69"/>
+  <key attr.name="P4664" attr.type="int" for="node" id="d70"/>
+  <key attr.name="P4301" attr.type="int" for="node" id="d71"/>
+  <key attr.name="P4753" attr.type="int" for="node" id="d72"/>
+  <key attr.name="P1744" attr.type="int" for="node" id="d73"/>
+  <key attr.name="P3746" attr.type="int" for="node" id="d74"/>
+  <key attr.name="P1743" attr.type="int" for="node" id="d75"/>
+  <key attr.name="P5862" attr.type="int" for="node" id="d76"/>
+  <key attr.name="P6034" attr.type="int" for="node" id="d77"/>
+  <key attr.name="P4122" attr.type="int" for="node" id="d78"/>
+  <key attr.name="P6103" attr.type="int" for="node" id="d79"/>
+  <key attr.name="P6055" attr.type="int" for="node" id="d80"/>
+  <key attr.name="P3459" attr.type="int" for="node" id="d81"/>
+  <key attr.name="P4630" attr.type="int" for="node" id="d82"/>
+  <key attr.name="P5179" attr.type="int" for="node" id="d83"/>
+  <key attr.name="P4855" attr.type="int" for="node" id="d84"/>
+  <key attr.name="P3105" attr.type="int" for="node" id="d85"/>
+  <key attr.name="P6137" attr.type="int" for="node" id="d86"/>
+  <key attr.name="P4194" attr.type="int" for="node" id="d87"/>
+  <key attr.name="P6094" attr.type="int" for="node" id="d88"/>
+  <key attr.name="P6047" attr.type="int" for="node" id="d89"/>
+  <key attr.name="P3594" attr.type="int" for="node" id="d90"/>
+  <key attr.name="P6052" attr.type="int" for="node" id="d91"/>
+  <key attr.name="P3130" attr.type="int" for="node" id="d92"/>
+  <key attr.name="P6061" attr.type="int" for="node" id="d93"/>
+  <key attr.name="P3398" attr.type="int" for="node" id="d94"/>
+  <key attr.name="P5036" attr.type="int" for="node" id="d95"/>
+  <key attr.name="P5945" attr.type="int" for="node" id="d96"/>
+  <key attr.name="P2026" attr.type="int" for="node" id="d97"/>
+  <key attr.name="P6096" attr.type="int" for="node" id="d98"/>
+  <key attr.name="P5698" attr.type="int" for="node" id="d99"/>
+  <key attr.name="P5473" attr.type="int" for="node" id="d100"/>
+  <key attr.name="P2946" attr.type="int" for="node" id="d101"/>
+  <key attr.name="P3420" attr.type="int" for="node" id="d102"/>
+  <key attr.name="P4125" attr.type="int" for="node" id="d103"/>
+  <key attr.name="P1745" attr.type="int" for="node" id="d104"/>
+  <key attr.name="P5257" attr.type="int" for="node" id="d105"/>
+  <key attr.name="P1832" attr.type="int" for="node" id="d106"/>
+  <key attr.name="P3444" attr.type="int" for="node" id="d107"/>
+  <key attr.name="P959" attr.type="int" for="node" id="d108"/>
+  <key attr.name="P3101" attr.type="int" for="node" id="d109"/>
+  <key attr.name="P2833" attr.type="int" for="node" id="d110"/>
+  <key attr.name="P1727" attr.type="int" for="node" id="d111"/>
+  <key attr.name="P6056" attr.type="int" for="node" id="d112"/>
+  <key attr.name="P2040" attr.type="int" for="node" id="d113"/>
+  <key attr.name="P3060" attr.type="int" for="node" id="d114"/>
+  <key attr.name="P6177" attr.type="int" for="node" id="d115"/>
+  <key attr.name="P1746" attr.type="int" for="node" id="d116"/>
+  <key attr.name="P6050" attr.type="int" for="node" id="d117"/>
+  <key attr.name="P1992" attr.type="int" for="node" id="d118"/>
+  <key attr.name="P938" attr.type="int" for="node" id="d119"/>
+  <key attr.name="P4728" attr.type="int" for="node" id="d120"/>
+  <key attr.name="P842" attr.type="int" for="node" id="d121"/>
+  <key attr.name="P3088" attr.type="int" for="node" id="d122"/>
+  <key attr.name="P1772" attr.type="int" for="node" id="d123"/>
+  <key attr.name="P4902" attr.type="int" for="node" id="d124"/>
+  <key attr.name="P1747" attr.type="int" for="node" id="d125"/>
+  <key attr.name="P2464" attr.type="int" for="node" id="d126"/>
+  <key attr.name="P4024" attr.type="int" for="node" id="d127"/>
+  <key attr.name="P5263" attr.type="int" for="node" id="d128"/>
+  <key attr.name="P5984" attr.type="int" for="node" id="d129"/>
+  <key attr.name="P3288" attr.type="int" for="node" id="d130"/>
+  <key attr.name="P3405" attr.type="int" for="node" id="d131"/>
+  <key attr.name="P2036" attr.type="int" for="node" id="d132"/>
+  <key attr.name="P838" attr.type="int" for="node" id="d133"/>
+  <key attr.name="P3031" attr.type="int" for="node" id="d134"/>
+  <key attr.name="P1939" attr.type="int" for="node" id="d135"/>
+  <key attr.name="P3240" attr.type="int" for="node" id="d136"/>
+  <key attr.name="P2752" attr.type="int" for="node" id="d137"/>
+  <key attr.name="P1391" attr.type="int" for="node" id="d138"/>
+  <key attr.name="P962" attr.type="int" for="node" id="d139"/>
+  <key attr.name="P6018" attr.type="int" for="node" id="d140"/>
+  <key attr.name="P1895" attr.type="int" for="node" id="d141"/>
+  <key attr.name="P3591" attr.type="int" for="node" id="d142"/>
+  <key attr.name="P3186" attr.type="int" for="node" id="d143"/>
+  <key attr.name="P4807" attr.type="int" for="node" id="d144"/>
+  <key attr.name="P3064" attr.type="int" for="node" id="d145"/>
+  <key attr.name="P5037" attr.type="int" for="node" id="d146"/>
+  <key attr.name="P850" attr.type="int" for="node" id="d147"/>
+  <key attr.name="P1070" attr.type="int" for="node" id="d148"/>
+  <key attr.name="P960" attr.type="int" for="node" id="d149"/>
+  <key attr.name="P685" attr.type="int" for="node" id="d150"/>
+  <key attr.name="P961" attr.type="int" for="node" id="d151"/>
+  <key attr.name="P815" attr.type="int" for="node" id="d152"/>
+  <key attr.name="P3151" attr.type="int" for="node" id="d153"/>
+  <key attr.name="P5055" attr.type="int" for="node" id="d154"/>
+  <key attr.name="P830" attr.type="int" for="node" id="d155"/>
+  <key attr.name="P846" attr.type="int" for="node" id="d156"/>
+  <key attr.name="P3519" attr.type="int" for="node" id="d157"/>
+  <key attr.name="P3937" attr.type="int" for="node" id="d158"/>
+  <key attr.name="P686" attr.type="int" for="node" id="d159"/>
+  <key attr.name="P2926" attr.type="int" for="node" id="d160"/>
+  <key attr.name="P3637" attr.type="int" for="node" id="d161"/>
+  <key attr.name="P1014" attr.type="int" for="node" id="d162"/>
+  <key attr.name="P628" attr.type="int" for="node" id="d163"/>
+  <key attr.name="P2085" attr.type="int" for="node" id="d164"/>
+  <key attr.name="P695" attr.type="int" for="node" id="d165"/>
+  <key attr.name="P5076" attr.type="int" for="node" id="d166"/>
+  <key attr.name="P3636" attr.type="int" for="node" id="d167"/>
+  <key attr.name="P657" attr.type="int" for="node" id="d168"/>
+  <key attr.name="P267" attr.type="int" for="node" id="d169"/>
+  <key attr.name="P4168" attr.type="int" for="node" id="d170"/>
+  <key attr.name="P1578" attr.type="int" for="node" id="d171"/>
+  <key attr.name="P2115" attr.type="int" for="node" id="d172"/>
+  <key attr.name="P2064" attr.type="int" for="node" id="d173"/>
+  <key attr.name="P679" attr.type="int" for="node" id="d174"/>
+  <key attr.name="P2057" attr.type="int" for="node" id="d175"/>
+  <key attr.name="P595" attr.type="int" for="node" id="d176"/>
+  <key attr.name="P2063" attr.type="int" for="node" id="d177"/>
+  <key attr.name="P3345" attr.type="int" for="node" id="d178"/>
+  <key attr.name="P715" attr.type="int" for="node" id="d179"/>
+  <key attr.name="P2566" attr.type="int" for="node" id="d180"/>
+  <key attr.name="P665" attr.type="int" for="node" id="d181"/>
+  <key attr.name="P1579" attr.type="int" for="node" id="d182"/>
+  <key attr.name="P232" attr.type="int" for="node" id="d183"/>
+  <key attr.name="P3117" attr.type="int" for="node" id="d184"/>
+  <key attr.name="P4964" attr.type="int" for="node" id="d185"/>
+  <key attr.name="P592" attr.type="int" for="node" id="d186"/>
+  <key attr.name="P652" attr.type="int" for="node" id="d187"/>
+  <key attr.name="P231" attr.type="int" for="node" id="d188"/>
+  <key attr.name="P683" attr.type="int" for="node" id="d189"/>
+  <key attr.name="P661" attr.type="int" for="node" id="d190"/>
+  <key attr.name="P662" attr.type="int" for="node" id="d191"/>
+  <key attr.name="P234" attr.type="int" for="node" id="d192"/>
+  <key attr.name="P235" attr.type="int" for="node" id="d193"/>
+  <key attr.name="P2249" attr.type="int" for="node" id="d194"/>
+  <key attr.name="P638" attr.type="int" for="node" id="d195"/>
+  <key attr.name="P705" attr.type="int" for="node" id="d196"/>
+  <key attr.name="P352" attr.type="int" for="node" id="d197"/>
+  <key attr.name="P637" attr.type="int" for="node" id="d198"/>
+  <key attr.name="P3406" attr.type="int" for="node" id="d199"/>
+  <key attr.name="P3382" attr.type="int" for="node" id="d200"/>
+  <key attr.name="P3860" attr.type="int" for="node" id="d201"/>
+  <key attr.name="P3852" attr.type="int" for="node" id="d202"/>
+  <key attr.name="P3870" attr.type="int" for="node" id="d203"/>
+  <key attr.name="P354" attr.type="int" for="node" id="d204"/>
+  <key attr.name="P353" attr.type="int" for="node" id="d205"/>
+  <key attr.name="P3853" attr.type="int" for="node" id="d206"/>
+  <key attr.name="P671" attr.type="int" for="node" id="d207"/>
+  <key attr.name="P2394" attr.type="int" for="node" id="d208"/>
+  <key attr.name="P594" attr.type="int" for="node" id="d209"/>
+  <key attr.name="P704" attr.type="int" for="node" id="d210"/>
+  <key attr.name="P2393" attr.type="int" for="node" id="d211"/>
+  <key attr.name="P639" attr.type="int" for="node" id="d212"/>
+  <key attr.name="P351" attr.type="int" for="node" id="d213"/>
+  <key attr.name="node_type" attr.type="string" for="node" id="d214"/>
+  <key attr.name="node_prop_text" attr.type="string" for="node" id="d215"/>
+  <key attr.name="labelcount" attr.type="string" for="node" id="d216"/>
+  <key attr.name="NodeLabel" attr.type="string" for="node" id="d217"/>
+  <key attr.name="label" attr.type="string" for="node" id="d218"/>
+  <key attr.name="URL" attr.type="string" for="node" id="d219"/>
+  <key attr.name="P2924" attr.type="int" for="node" id="d220"/>
+  <key attr.name="P563" attr.type="int" for="node" id="d221"/>
+  <key attr.name="P227" attr.type="int" for="node" id="d222"/>
+  <key attr.name="P349" attr.type="int" for="node" id="d223"/>
+  <key attr.name="P3219" attr.type="int" for="node" id="d224"/>
+  <key attr.name="P4746" attr.type="int" for="node" id="d225"/>
+  <key attr.name="P3471" attr.type="int" for="node" id="d226"/>
+  <key attr.name="P508" attr.type="int" for="node" id="d227"/>
+  <key attr.name="P2581" attr.type="int" for="node" id="d228"/>
+  <key attr.name="P3417" attr.type="int" for="node" id="d229"/>
+  <key attr.name="P3841" attr.type="int" for="node" id="d230"/>
+  <key attr.name="P1417" attr.type="int" for="node" id="d231"/>
+  <key attr.name="P604" attr.type="int" for="node" id="d232"/>
+  <key attr.name="P493" attr.type="int" for="node" id="d233"/>
+  <key attr.name="P673" attr.type="int" for="node" id="d234"/>
+  <key attr.name="P3827" attr.type="int" for="node" id="d235"/>
+  <key attr.name="P494" attr.type="int" for="node" id="d236"/>
+  <key attr.name="P557" attr.type="int" for="node" id="d237"/>
+  <key attr.name="P646" attr.type="int" for="node" id="d238"/>
+  <key attr.name="P4317" attr.type="int" for="node" id="d239"/>
+  <key attr.name="P672" attr.type="int" for="node" id="d240"/>
+  <key attr.name="P492" attr.type="int" for="node" id="d241"/>
+  <key attr.name="P1550" attr.type="int" for="node" id="d242"/>
+  <key attr.name="P486" attr.type="int" for="node" id="d243"/>
+  <key attr.name="P4229" attr.type="int" for="node" id="d244"/>
+  <key attr.name="P699" attr.type="int" for="node" id="d245"/>
+  <key attr.name="P2892" attr.type="int" for="node" id="d246"/>
+  <key attr.name="P5270" attr.type="int" for="node" id="d247"/>
+  <key attr.name="count" attr.type="int" for="node" id="d248"/>
+  <key attr.name="P6689" attr.type="int" for="node" id="d249"/>
+  <key attr.name="url" attr.type="string" for="node" id="d250"/>
+  <key attr.name="description" attr.type="string" for="node" id="d251"/>
+  <key for="node" id="d252" yfiles.type="nodegraphics"/>
+  <key for="graphml" id="d253" yfiles.type="resources"/>
+  <key attr.name="labelcount" attr.type="string" for="edge" id="d254"/>
+  <key attr.name="URL" attr.type="string" for="edge" id="d255"/>
+  <key attr.name="pid" attr.type="string" for="edge" id="d256"/>
+  <key attr.name="label" attr.type="string" for="edge" id="d257"/>
+  <key attr.name="count" attr.type="int" for="edge" id="d258"/>
+  <key attr.name="url" attr.type="string" for="edge" id="d259"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d260"/>
+  <key for="edge" id="d261" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <node id="n0">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[MonDO ID: 11,914
+UMLS CUI: 11,441
+Disease Ontology ID: 9,509
+ICD-10-CM: 6,805
+Orphanet ID: 6,745
+MeSH descriptor ID: 6,019
+OMIM ID: 5,975
+MeSH code: 3,325
+GARD rare disease ID: 2,984
+Freebase ID: 2,601
+DiseasesDB: 2,099
+ICD-10: 1,801
+JSTOR topic ID: 1,593
+ICD-9: 1,554
+eMedicine: 1,472
+Encyclopædia Britannica Online ID: 1,398
+Human Phenotype Ontology ID: 1,125
+MedlinePlus ID: 1,105
+Quora topic ID: 934]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[disease
+17,080]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[disease]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[disease]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q12136]]></data>
+      <data key="d229" xml:space="preserve">934</data>
+      <data key="d230" xml:space="preserve">1125</data>
+      <data key="d231" xml:space="preserve">1398</data>
+      <data key="d232" xml:space="preserve">1105</data>
+      <data key="d233" xml:space="preserve">1554</data>
+      <data key="d234" xml:space="preserve">1472</data>
+      <data key="d235" xml:space="preserve">1593</data>
+      <data key="d236" xml:space="preserve">1801</data>
+      <data key="d237" xml:space="preserve">2099</data>
+      <data key="d238" xml:space="preserve">2601</data>
+      <data key="d239" xml:space="preserve">2984</data>
+      <data key="d240" xml:space="preserve">3325</data>
+      <data key="d241" xml:space="preserve">5975</data>
+      <data key="d242" xml:space="preserve">6745</data>
+      <data key="d243" xml:space="preserve">6019</data>
+      <data key="d244" xml:space="preserve">6805</data>
+      <data key="d245" xml:space="preserve">9509</data>
+      <data key="d246" xml:space="preserve">11441</data>
+      <data key="d247" xml:space="preserve">11914</data>
+      <data key="d248" xml:space="preserve">17080</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="255.71875" x="23.260645947606577" y="1510.9335890755037"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="255.71875" x="0.0" xml:space="preserve" y="0.0">disease
+17,080</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n1">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[gene
+1,176,028]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[gene]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[gene]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q7187]]></data>
+      <data key="d248" xml:space="preserve">1176028</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="240.8359375" x="929.6358759960558" y="1290.7974592526873"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="240.8359375" x="0.0" xml:space="preserve" y="0.0">gene
+1,176,028</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n2">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[protein
+961,210]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[protein]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[protein]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q8054]]></data>
+      <data key="d248" xml:space="preserve">961210</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="182.939453125" x="887.8679442622633" y="2211.913658051015"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="182.939453125" x="0.0" xml:space="preserve" y="0.0">protein
+961,210</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="62.8046875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="182.939453125" x="0.0" xml:space="preserve" y="46.0">RefSeq Protein ID: 750,780
+UniProt protein ID: 646,506
+Ensembl Protein ID: 251,125
+PDB structure ID: 44,732</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n3">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[chemical compound
+163,252]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[chemical compound]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[chemical compound]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q11173]]></data>
+      <data key="d248" xml:space="preserve">163252</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="294.847719147552" x="-617.0299442187456" y="2212.5232731456845"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="294.847719147552" x="0.0" xml:space="preserve" y="0.0">chemical compound
+163,252</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n4">
+      <data key="d36" xml:space="preserve">229</data>
+      <data key="d166" xml:space="preserve">320</data>
+      <data key="d167" xml:space="preserve">226</data>
+      <data key="d169" xml:space="preserve">1773</data>
+      <data key="d170" xml:space="preserve">275</data>
+      <data key="d172" xml:space="preserve">1805</data>
+      <data key="d174" xml:space="preserve">214</data>
+      <data key="d175" xml:space="preserve">617</data>
+      <data key="d176" xml:space="preserve">1327</data>
+      <data key="d178" xml:space="preserve">2254</data>
+      <data key="d179" xml:space="preserve">2419</data>
+      <data key="d180" xml:space="preserve">1915</data>
+      <data key="d181" xml:space="preserve">2233</data>
+      <data key="d182" xml:space="preserve">1387</data>
+      <data key="d183" xml:space="preserve">1916</data>
+      <data key="d184" xml:space="preserve">1855</data>
+      <data key="d185" xml:space="preserve">922</data>
+      <data key="d186" xml:space="preserve">2468</data>
+      <data key="d187" xml:space="preserve">2664</data>
+      <data key="d188" xml:space="preserve">2775</data>
+      <data key="d189" xml:space="preserve">1928</data>
+      <data key="d190" xml:space="preserve">2503</data>
+      <data key="d191" xml:space="preserve">2579</data>
+      <data key="d192" xml:space="preserve">2469</data>
+      <data key="d193" xml:space="preserve">2535</data>
+      <data key="d195" xml:space="preserve">544</data>
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[CAS Registry Number: 2,775
+UNII: 2,664
+PubChem CID: 2,579
+InChIKey: 2,535
+ChemSpider ID: 2,503
+InChI: 2,469
+ChEMBL ID: 2,468
+DrugBank ID: 2,419
+RxNorm CUI: 2,254
+KEGG ID: 2,233
+MeSH descriptor ID: 1,966
+ChEBI ID: 1,928
+EC number: 1,916
+ECHA InfoCard ID: 1,915
+DSSTOX substance identifier: 1,855
+NDF-RT ID: 1,805
+ATC code: 1,773
+Freebase ID: 1,621
+Reaxys registry number: 1,387
+Guide to Pharmacology Ligand ID: 1,327
+UMLS CUI: 1,265
+SPLASH: 922
+MassBank Accession ID: 778
+HMDB ID: 617
+PDB structure ID: 544
+Encyclopædia Britannica Online ID: 444
+Quora topic ID: 364
+Römpp online ID: 320
+IEDB Epitope ID: 275
+Gran Enciclopèdia Catalana ID: 229
+PDB ligand ID: 226
+ZVG number: 214]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[medication
+3,869]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[medication]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[medication]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q12140]]></data>
+      <data key="d229" xml:space="preserve">364</data>
+      <data key="d231" xml:space="preserve">444</data>
+      <data key="d238" xml:space="preserve">1621</data>
+      <data key="d243" xml:space="preserve">1966</data>
+      <data key="d246" xml:space="preserve">1265</data>
+      <data key="d248" xml:space="preserve">3869</data>
+      <data key="d249" xml:space="preserve">778</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="177.24676082652286" width="251.59375" x="359.25566009954446" y="1863.26223226976"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="251.59375" x="0.0" xml:space="preserve" y="0.0">medication
+3,869</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="251.59375" x="0.0" xml:space="preserve" y="46.0">CAS Registry Number: 2,775
+UNII: 2,664
+PubChem CID: 2,579
+InChIKey: 2,535
+ChemSpider ID: 2,503
+InChI: 2,469
+ChEMBL ID: 2,468
+...</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n5">
+      <data key="d161" xml:space="preserve">1068</data>
+      <data key="d178" xml:space="preserve">2046</data>
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[RxNorm CUI: 2,046
+European Medicines Agency product number: 1,068]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[pharmaceutical product
+2,731]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[pharmaceutical product]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[pharmaceutical product]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q28885102]]></data>
+      <data key="d248" xml:space="preserve">2731</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="318.408203125" x="4.688706045231015" y="1237.9236468516324"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="318.408203125" x="0.0" xml:space="preserve" y="0.0">pharmaceutical product
+2,731</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n6">
+      <data key="d160" xml:space="preserve">22025</data>
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[InterPro ID: 22,025]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[protein family
+27,431]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[protein family]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[protein family]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q417841]]></data>
+      <data key="d248" xml:space="preserve">27431</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="66.1328125" width="127.474609375" x="879.5626024239374" y="1670.6734196485174"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="127.474609375" x="0.0" xml:space="preserve" y="0.0">protein family
+27,431</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="127.474609375" x="0.0" xml:space="preserve" y="46.0">InterPro ID: 22,025</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n7">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[binding site
+77]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[binding site]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[binding site]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q616005]]></data>
+      <data key="d248" xml:space="preserve">77</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="66.1328125" width="103.96875" x="870.8109758133969" y="1953.5696910346294"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="103.96875" x="0.0" xml:space="preserve" y="0.0">binding site
+77</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="103.96875" x="0.0" xml:space="preserve" y="46.0">InterPro ID: 76</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n8">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[active site
+132]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[active site]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[active site]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q423026]]></data>
+      <data key="d248" xml:space="preserve">132</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="66.1328125" width="108.501953125" x="697.3725360963549" y="1817.0469865051239"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="108.501953125" x="0.0" xml:space="preserve" y="0.0">active site
+132</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="108.501953125" x="0.0" xml:space="preserve" y="46.0">InterPro ID: 132</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n9">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[taxon
+2,600,217]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[taxon]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[taxon]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q16521]]></data>
+      <data key="d248" xml:space="preserve">2600217</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="324.583984375" x="456.01816699238816" y="1183.1740788394259"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="324.583984375" x="0.0" xml:space="preserve" y="0.0">taxon
+2,600,217</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n10">
+      <data key="d6" xml:space="preserve">1187</data>
+      <data key="d7" xml:space="preserve">1353</data>
+      <data key="d8" xml:space="preserve">1363</data>
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[Freebase ID: 1,462
+TA98 Latin term: 1,363
+Terminologia Anatomica 98 ID: 1,353
+UBERON ID: 1,187
+Encyclopædia Britannica Online ID: 743
+MeSH descriptor ID: 693
+UMLS CUI: 616
+JSTOR topic ID: 493
+MeSH code: 402
+WikiSkripta ID: 264
+Quora topic ID: 250
+BNCF Thesaurus ID: 244
+GND ID: 231]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[anatomical structure
+120,184]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[anatomical structure]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[anatomical structure]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q4936952]]></data>
+      <data key="d222" xml:space="preserve">231</data>
+      <data key="d226" xml:space="preserve">264</data>
+      <data key="d227" xml:space="preserve">244</data>
+      <data key="d229" xml:space="preserve">250</data>
+      <data key="d231" xml:space="preserve">743</data>
+      <data key="d235" xml:space="preserve">493</data>
+      <data key="d238" xml:space="preserve">1462</data>
+      <data key="d240" xml:space="preserve">402</data>
+      <data key="d243" xml:space="preserve">693</data>
+      <data key="d246" xml:space="preserve">616</data>
+      <data key="d248" xml:space="preserve">120184</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="187.16059024413607" width="244.333984375" x="435.15287166831035" y="2164.1541377453113"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="244.333984375" x="0.0" xml:space="preserve" y="0.0">anatomical structure
+120,184</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="121.609375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="244.333984375" x="0.0" xml:space="preserve" y="46.0">Freebase ID: 1,462
+TA98 Latin term: 1,363
+Terminologia Anatomica 98 ID: 1,353
+UBERON ID: 1,187
+Encyclopædia Britannica Online ID: 743
+MeSH descriptor ID: 693
+UMLS CUI: 616
+...</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n11">
+      <data key="d4" xml:space="preserve">820</data>
+      <data key="d5" xml:space="preserve">1398</data>
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[CIViC variant ID: 1,398
+HGVS nomenclature: 820]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[sequence variant
+1,502]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[sequence variant]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[sequence variant]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q15304597]]></data>
+      <data key="d248" xml:space="preserve">1502</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="80.265625" width="161.880859375" x="-55.041656178083485" y="2264.2049224056905"/>
+          <y:Fill color="#FF9900" color2="#DDCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="161.880859375" x="0.0" xml:space="preserve" y="0.0">sequence variant
+1,502</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="161.880859375" x="0.0" xml:space="preserve" y="46.0">CIViC variant ID: 1,398
+HGVS nomenclature: 820</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n12">
+      <data key="d158" xml:space="preserve">2250</data>
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[Reactome ID: 2,250]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[biological pathway
+2,994]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[biological pathway]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[biological pathway]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q4915012]]></data>
+      <data key="d248" xml:space="preserve">2994</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="66.1328125" width="156.640625" x="684.8863626219813" y="1626.0148728053737"/>
+          <y:Fill color="#FF9900" color2="#DDCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="156.640625" x="0.0" xml:space="preserve" y="0.0">biological pathway
+2,994</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="156.640625" x="0.0" xml:space="preserve" y="46.0">Reactome ID: 2,250</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n13">
+      <data key="d168" xml:space="preserve">21</data>
+      <data key="d174" xml:space="preserve">30</data>
+      <data key="d180" xml:space="preserve">192</data>
+      <data key="d181" xml:space="preserve">192</data>
+      <data key="d182" xml:space="preserve">163</data>
+      <data key="d183" xml:space="preserve">192</data>
+      <data key="d184" xml:space="preserve">171</data>
+      <data key="d185" xml:space="preserve">114</data>
+      <data key="d186" xml:space="preserve">193</data>
+      <data key="d187" xml:space="preserve">214</data>
+      <data key="d188" xml:space="preserve">230</data>
+      <data key="d189" xml:space="preserve">359</data>
+      <data key="d190" xml:space="preserve">212</data>
+      <data key="d191" xml:space="preserve">212</data>
+      <data key="d192" xml:space="preserve">209</data>
+      <data key="d193" xml:space="preserve">211</data>
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[MeSH descriptor ID: 658
+Freebase ID: 490
+ChEBI ID: 359
+CAS Registry Number: 230
+UNII: 214
+ChemSpider ID: 212
+PubChem CID: 212
+InChIKey: 211
+InChI: 209
+ChEMBL ID: 193
+ECHA InfoCard ID: 192
+KEGG ID: 192
+EC number: 192
+DSSTOX substance identifier: 171
+Reaxys registry number: 163
+SPLASH: 114
+MassBank Accession ID: 105
+ZVG number: 30
+RTECS number: 21]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[pharmacologic action
+1,332]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[pharmacologic action]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[pharmacologic action]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q50377224]]></data>
+      <data key="d238" xml:space="preserve">490</data>
+      <data key="d243" xml:space="preserve">658</data>
+      <data key="d248" xml:space="preserve">1332</data>
+      <data key="d249" xml:space="preserve">105</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="211.50390625" x="-515.7065045756397" y="1669.061573095884"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="211.50390625" x="0.0" xml:space="preserve" y="0.0">pharmacologic action
+1,332</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n14">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[therapeutic use
+803]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[therapeutic use]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[therapeutic use]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q50379781]]></data>
+      <data key="d248" xml:space="preserve">803</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="211.50390625" x="-515.7065045756395" y="1237.9236468516324"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="211.50390625" x="0.0" xml:space="preserve" y="0.0">therapeutic use
+803</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n15">
+      <data key="d214" xml:space="preserve"><![CDATA[detail]]></data>
+      <data key="d215" xml:space="preserve"/>
+      <data key="d216" xml:space="preserve"><![CDATA[mechanism of action
+182]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[mechanism of action]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[mechanism of action]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q3271540]]></data>
+      <data key="d248" xml:space="preserve">182</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="80.265625" width="173.6953125" x="171.71329346331515" y="2335.873566706884"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="173.6953125" x="0.0" xml:space="preserve" y="0.0">mechanism of action
+182</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="173.6953125" x="0.0" xml:space="preserve" y="46.0">MeSH Code: 288
+MeSH ID: 168</y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n16">
+      <data key="d214" xml:space="preserve"><![CDATA[simple]]></data>
+      <data key="d215" xml:space="preserve"><![CDATA[UMLS CUI: 473
+Freebase ID: 404
+MeSH descriptor ID: 370
+Orphanet ID: 279
+Disease Ontology ID: 264
+ICD-10-CM: 261
+MeSH code: 256
+MonDO ID: 252
+DiseasesDB: 248
+OMIM ID: 246
+GARD rare disease ID: 239]]></data>
+      <data key="d216" xml:space="preserve"><![CDATA[symptom
+1,089]]></data>
+      <data key="d217" xml:space="preserve"><![CDATA[symptom]]></data>
+      <data key="d218" xml:space="preserve"><![CDATA[symptom]]></data>
+      <data key="d219" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Q169872]]></data>
+      <data key="d237" xml:space="preserve">248</data>
+      <data key="d238" xml:space="preserve">404</data>
+      <data key="d239" xml:space="preserve">239</data>
+      <data key="d240" xml:space="preserve">256</data>
+      <data key="d241" xml:space="preserve">246</data>
+      <data key="d242" xml:space="preserve">279</data>
+      <data key="d243" xml:space="preserve">370</data>
+      <data key="d244" xml:space="preserve">261</data>
+      <data key="d245" xml:space="preserve">264</data>
+      <data key="d246" xml:space="preserve">473</data>
+      <data key="d247" xml:space="preserve">252</data>
+      <data key="d248" xml:space="preserve">1089</data>
+      <data key="d252">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="52.0" width="84.2734375" x="381.4170059108519" y="1677.7398258985174"/>
+          <y:Fill color="#FF9900" color2="#FFFF00" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#FF6600" borderDistance="0.0" fontFamily="Dialog" fontSize="16" fontStyle="plain" height="43.203125" horizontalTextPosition="center" iconTextGap="4" lineColor="#000000" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="84.2734375" x="0.0" xml:space="preserve" y="0.0">symptom
+1,089</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="node_width" borderDistance="46.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="84.2734375" x="0.0" y="46.0"/>
+        </y:GenericNode>
+      </data>
+    </node>
+    <edge id="e0" source="n0" target="n0">
+      <data key="d254" xml:space="preserve"><![CDATA[subclass of (41,199)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P279]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P279]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subclass of]]></data>
+      <data key="d258" xml:space="preserve">41199</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-30.813306961666456" sy="-22.729068064560373" tx="105.79243454628988" ty="-14.58149580209946">
+            <y:Point x="120.30671398594012" y="1457.7249537277103"/>
+            <y:Point x="130.60715974330424" y="1442.2480430920511"/>
+            <y:Point x="311.26815170288063" y="1442.2480430920511"/>
+            <y:Point x="319.5997188346636" y="1457.7523772138343"/>
+            <y:Point x="319.5997188346636" y="1549.8546060478484"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="112.05859375" x="44.60164192914712" xml:space="preserve" y="-92.37585827513635">subclass of (41,199)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="n0" target="n0">
+      <data key="d254" xml:space="preserve"><![CDATA[instance of (2,335)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P31]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P31]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[instance of]]></data>
+      <data key="d258" xml:space="preserve">2335</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-19.445488057015552" sy="-23.768057364534716" tx="100.00446644421652" ty="-16.530931709345978">
+            <y:Point x="131.67453289059102" y="1476.4768864578284"/>
+            <y:Point x="139.74624015966089" y="1468.510573031472"/>
+            <y:Point x="300.9976946308651" y="1468.510573031472"/>
+            <y:Point x="313.3829231668729" y="1477.5230871042636"/>
+            <y:Point x="313.3829231668729" y="1543.2097752786492"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="103.392578125" x="37.001148303466124" xml:space="preserve" y="-66.09892403884055">instance of (2,335)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="n0" target="n0">
+      <data key="d254" xml:space="preserve"><![CDATA[symptoms (685)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P780]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P780]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[symptoms]]></data>
+      <data key="d258" xml:space="preserve">685</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-6.263724574069556" sy="-22.382738297902254" tx="109.2652154075339" ty="-19.143224423719793">
+            <y:Point x="144.85629637353702" y="1500.5368207650783"/>
+            <y:Point x="152.86159497818818" y="1491.1653039721327"/>
+            <y:Point x="293.160828894431" y="1491.1653039721327"/>
+            <y:Point x="308.76718722001243" y="1504.3594864658926"/>
+            <y:Point x="308.76718722001243" y="1534.3055363949284"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="90.021484375" x="33.14417702420022" xml:space="preserve" y="-43.44639036380477">symptoms (685)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e3" source="n0" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[drug used for treatment /
+medical condition treated (6,823)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2176]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2176]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[drug used for treatment /
+medical condition treated]]></data>
+      <data key="d258" xml:space="preserve">6823</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="4.796022836626662" sy="0.22932912831895286" tx="92.63326573210409" ty="-8.01836271391436"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-264.59428347945436" anchorY="352.4687378516837" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.7928732389311437" upY="0.6093865989557349" verticalTextPosition="bottom" visible="true" width="178.767578125" x="-373.5328499166017" xml:space="preserve" y="352.4687378516837">drug used for treatment /
+medical condition treated (6,823)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999997089" distanceToCenter="false" position="left" ratio="0.7276493587795974" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e4" source="n0" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[drug used for treatment /
+medical condition treated (9,626)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2176]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2176]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[drug used for treatment /
+medical condition treated]]></data>
+      <data key="d258" xml:space="preserve">9626</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="110.41376532778929" sy="22.2655845497364" tx="2.573755163092301" ty="-28.281512087544183"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="19.92493547592443" anchorY="22.63023941780716" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.8497340453409563" upY="-0.5272115819938837" verticalTextPosition="bottom" visible="true" width="178.767578125" x="19.92493547592443" xml:space="preserve" y="5.020136927066147">drug used for treatment /
+medical condition treated (9,626)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e5" source="n0" target="n1">
+      <data key="d254" xml:space="preserve"><![CDATA[genetic association (13,614)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2293]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2293]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[genetic association]]></data>
+      <data key="d258" xml:space="preserve">13614</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="127.86322402954102" sy="0.0" tx="-75.96240105439188" ty="-0.48668529291311147"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="254.71647968626212" anchorY="-86.09116124121783" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.3025212649150675" upY="-0.9531426358495289" verticalTextPosition="bottom" visible="true" width="154.09375" x="249.05897751524304" xml:space="preserve" y="-150.5326816611366">genetic association (13,614)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="5.0" distanceToCenter="false" position="left" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e6" source="n0" target="n10">
+      <data key="d254" xml:space="preserve"><![CDATA[anatomical location (959)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P927]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P927]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[anatomical location]]></data>
+      <data key="d258" xml:space="preserve">959</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="-120.60728985801916" ty="-93.59879595530265">
+            <y:Point x="127.01084529505613" y="1921.3044226475251"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="10.910899942775927" anchorY="431.75987958008136" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" rotationAngle="0.2058180421590805" textColor="#000000" upX="0.6170264965349301" upY="-0.7869423756373969" verticalTextPosition="bottom" visible="true" width="76.708984375" x="10.910899942775927" xml:space="preserve" y="405.25748461738317">anatomical 
+location (959)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="3.5068763356718318" distanceToCenter="false" position="right" ratio="0.31467787474579656" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e7" source="n0" target="n16">
+      <data key="d254" xml:space="preserve"><![CDATA[symptoms (636)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P780]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P780]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[symptoms]]></data>
+      <data key="d258" xml:space="preserve">636</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="93.52546122293472" sy="7.209700508560489" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="40.83751695296746" anchorY="29.72918275226766" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.6656838990122376" upY="-0.7462338417653444" verticalTextPosition="bottom" visible="true" width="90.021484375" x="40.83751695296746" xml:space="preserve" y="15.773735418472404">symptoms (636)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e8" source="n0" target="n9">
+      <data key="d254" xml:space="preserve"><![CDATA[has cause /
+has effect (578)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P828]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P828]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has cause /
+has effect]]></data>
+      <data key="d258" xml:space="preserve">578</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="127.83550692268557" sy="-4.531184171027878" tx="-151.51377130959622" ty="15.71481266732975">
+            <y:Point x="412.534186913354" y="1536.6325875548466"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="47.51401225736538" anchorY="-3.497833011963394" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.03165223483941866" upY="-0.9994989424855187" verticalTextPosition="bottom" visible="true" width="87.37890625" x="47.51401225736538" xml:space="preserve" y="-36.88344026662617">has cause /
+has effect (578)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e9" source="n1" target="n9">
+      <data key="d254" xml:space="preserve"><![CDATA[found in taxon (795,773)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P703]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P703]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[found in taxon]]></data>
+      <data key="d258" xml:space="preserve">795773</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="5.160872739500746" anchorY="-23.13993287517428" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.24187447742218843" upY="0.9703075477248145" verticalTextPosition="bottom" visible="true" width="134.095703125" x="-129.47653629460092" xml:space="preserve" y="-55.574260993094576">found in taxon (795,773)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e10" source="n1" target="n1">
+      <data key="d254" xml:space="preserve"><![CDATA[ortholog (-1)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P684]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P684]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[ortholog]]></data>
+      <data key="d258" xml:space="preserve">-1</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="58.208984375" sy="-20.082599207952804" tx="90.2410425021875" ty="-16.141442289587644">
+            <y:Point x="1108.2628291210558" y="1277.7974592526873"/>
+            <y:Point x="1114.2628291210558" y="1271.7974592526873"/>
+            <y:Point x="1181.4718134960558" y="1271.7974592526873"/>
+            <y:Point x="1187.4718134960558" y="1277.7974592526873"/>
+            <y:Point x="1187.4718134960558" y="1324.1294905026873"/>
+            <y:Point x="1181.4718134960558" y="1330.1294905026873"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="112.076171875" x="-16.433582011756698" xml:space="preserve" y="-42.669947973875196">ortholog (3,711,264)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e11" source="n2" target="n6">
+      <data key="d254" xml:space="preserve"><![CDATA[part of / has part (278,089)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P361]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P361]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[part of / has part]]></data>
+      <data key="d258" xml:space="preserve">278089</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="40.03202614493989" sy="-14.867336107548237" tx="38.79044214258977" ty="33.034766680183566"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="1.5943708938334566" anchorY="-289.26858597713135" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.9970742356333249" upY="0.076439313420654" verticalTextPosition="bottom" visible="true" width="146.083984375" x="-28.21864522625815" xml:space="preserve" y="-434.92516303610506">part of / has part (278,089)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999997089" distanceToCenter="false" position="right" ratio="0.8893624299946847" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e12" source="n2" target="n2">
+      <data key="d254" xml:space="preserve"><![CDATA[cell component (907)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P681]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P681]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[cell component]]></data>
+      <data key="d258" xml:space="preserve">907</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-60.01510087261045" sy="18.757276493554663" tx="78.16359386423142" ty="22.917014006591028">
+            <y:Point x="919.3225699521529" y="2342.280026530161"/>
+            <y:Point x="927.7598130633127" y="2353.2823892318415"/>
+            <y:Point x="1092.5456028070168" y="2353.2823892318415"/>
+            <y:Point x="1092.5456028070168" y="2314.010286443377"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="116.060546875" x="32.79986369688345" xml:space="preserve" y="65.67862946621653">cell component (907)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e13" source="n2" target="n2">
+      <data key="d254" xml:space="preserve"><![CDATA[physically interacts with (675)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P129]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P129]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[physically interacts with]]></data>
+      <data key="d258" xml:space="preserve">675</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-65.80843006751104" sy="20.143855664566708" tx="84.10530486901644" ty="14.262764063757002">
+            <y:Point x="913.5292407572523" y="2353.2823892318415"/>
+            <y:Point x="928.6319257594292" y="2365.838554675221"/>
+            <y:Point x="1106.4005514513556" y="2365.838554675221"/>
+            <y:Point x="1106.4005514513556" y="2295.947660210527"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="160.7265625" x="23.623721515548596" xml:space="preserve" y="106.96892576897108">physically interacts with (675)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e14" source="n2" target="n7">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (10,925)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">10925</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="13.127018170458655" sy="-20.3716762737243" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="11.453926231740297" anchorY="-44.088952895219336" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.9573714037579714" upY="0.28885981940465744" verticalTextPosition="bottom" visible="true" width="139.41015625" x="-46.72003349569762" xml:space="preserve" y="-177.55624988239995">has part / part of (10,925)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="14.3505859375" distanceToCenter="true" position="right" ratio="0.7767951747757889" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e15" source="n2" target="n8">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (13,763)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">13763</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-21.814511398926243" sy="-0.3775160664136356" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-62.64341009381587" anchorY="-107.21620408378658" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.883038922082888" upY="0.46929975717731975" verticalTextPosition="bottom" visible="true" width="139.41015625" x="-144.5824252241799" xml:space="preserve" y="-230.32079818619357">has part / part of (13,763)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e16" source="n2" target="n1">
+      <data key="d254" xml:space="preserve"><![CDATA[encoded by /
+encodes (-1)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P702]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P702]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[encoded by /
+encodes]]></data>
+      <data key="d258" xml:space="preserve">-1</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="70.71617392129247" sy="-11.73559539271992" tx="0.0" ty="25.988202284768956"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="38.4023554882433" anchorY="-563.7801805008539" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.0" upY="-6.123233995736766E-17" verticalTextPosition="bottom" visible="true" width="114.080078125" x="5.000011738243302" xml:space="preserve" y="-677.8602586258539">encoded by /
+encodes (1,845,119)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.7499999999999974" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e17" source="n2" target="n9">
+      <data key="d254" xml:space="preserve"><![CDATA[found in taxon (581,407)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P703]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P703]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[found in taxon]]></data>
+      <data key="d258" xml:space="preserve">581407</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="73.58725497216392" sy="-11.752217311168925" tx="83.66927647902514" ty="-14.463289593388804">
+            <y:Point x="1207.4718134960558" y="2241.650766992307"/>
+            <y:Point x="1207.4718134960558" y="1222.4980124964543"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="26.56143568210473" anchorY="-1006.4990225897907" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.05488774135580849" upY="0.9984925316940823" verticalTextPosition="bottom" visible="true" width="134.095703125" x="-108.3585875054001" xml:space="preserve" y="-1013.859232859841">found in taxon (581,407)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e18" source="n2" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[physically interacts with (3,924)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P129]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P129]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[physically interacts with]]></data>
+      <data key="d258" xml:space="preserve">3924</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-77.01505732588294" sy="20.143855664567365" tx="88.68095011796788" ty="11.691523504608345">
+            <y:Point x="902.3226134988804" y="2426.7141860049555"/>
+            <y:Point x="-380.9251345270018" y="2426.7141860049555"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-1037.474610359705" anchorY="167.76862936433008" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.2246467991473532E-16" upY="1.0" verticalTextPosition="bottom" visible="true" width="170.734375" x="-1208.208985359705" xml:space="preserve" y="167.76862936433005">physically interacts with (3,924)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.8750000000000007" segment="1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e19" source="n2" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[physically interacts with (2,503)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P129]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P129]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[physically interacts with]]></data>
+      <data key="d258" xml:space="preserve">2503</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-48.03978555344668" sy="-12.480121091048781" tx="106.57840588929162" ty="-47.573234294971336"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-45.90108743361702" anchorY="-37.41953524780138" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.6858808889241186" upY="0.7277138216419013" verticalTextPosition="bottom" visible="true" width="170.734375" x="-182.97362834005625" xml:space="preserve" y="-154.5229801427052">physically interacts with (2,503)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="-0.0015258700846261242" distance="4.342154706092951" distanceToCenter="false" position="left" ratio="0.1439847700583212" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e20" source="n2" target="n10">
+      <data key="d254" xml:space="preserve"><![CDATA[cell component (15,310)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P681]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P681]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[cell component]]></data>
+      <data key="d258" xml:space="preserve">15310</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-62.06824742018057" sy="-11.93176109831567" tx="88.63855476408321" ty="-16.458398791394757"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-38.47586159044329" anchorY="7.176819349393099" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.05628188462695814" upY="0.9984149184897217" verticalTextPosition="bottom" visible="true" width="132.7421875" x="-171.00764190340314" xml:space="preserve" y="7.176819349393099">cell component (15,310)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e21" source="n3" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[significant drug interaction (1,725)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P769]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P769]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[significant drug interaction]]></data>
+      <data key="d258" xml:space="preserve">1725</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="53.238984822241264" sy="25.999016274354457" tx="-144.62782550962845" ty="16.18530670814939">
+            <y:Point x="-416.3670998227284" y="2407.6691331709535"/>
+            <y:Point x="-437.3943077965761" y="2443.0726929850803"/>
+            <y:Point x="-592.9428965663136" y="2443.0726929850803"/>
+            <y:Point x="-614.2339101545981" y="2416.8759539948474"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-6.4177171716792145" anchorY="183.51556407883027" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.2246467991473532E-16" upY="1.0" verticalTextPosition="bottom" visible="true" width="184.767578125" x="-191.18529529667921" xml:space="preserve" y="183.51556407883024">significant drug interaction (1,725)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e22" source="n3" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[stereoisomer of (642)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3364]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3364]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[stereoisomer of]]></data>
+      <data key="d258" xml:space="preserve">642</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="32.46055715855954" sy="26.00318936330236" tx="-128.76303201703774" ty="14.540310326590525">
+            <y:Point x="-437.1455274864101" y="2416.712833330443"/>
+            <y:Point x="-445.9588124032631" y="2433.526942575649"/>
+            <y:Point x="-587.6519560714087" y="2433.526942575649"/>
+            <y:Point x="-598.3691166620074" y="2416.8759539948474"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-20.63640840725776" anchorY="145.29940351314917" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.2246467991473532E-16" upY="1.0" verticalTextPosition="bottom" visible="true" width="118.046875" x="-138.68328340725776" xml:space="preserve" y="145.29940351314914">stereoisomer of (642)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e23" source="n3" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (676)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">676</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="128.60544668643712" sy="-5.971718596114663" tx="-96.90484769922512" ty="35.93218707275656"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="285.5128167337389" anchorY="-101.10470096770723" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.31819800308453705" upY="-0.9480242775546484" verticalTextPosition="bottom" visible="true" width="122.728515625" x="279.5621411877732" xml:space="preserve" y="-157.88583451733382">has part / part of (676)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e24" source="n3" target="n9">
+      <data key="d254" xml:space="preserve"><![CDATA[found in taxon (1,247)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P703]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P703]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[found in taxon]]></data>
+      <data key="d258" xml:space="preserve">1247</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-133.65747679885555" sy="-26.00255371556908" tx="-123.83371823144603" ty="-18.918431473055943">
+            <y:Point x="-603.2635614438252" y="1207.3122535119621"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="809.2991592276269" anchorY="-1022.7839349764038" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.01553605363432652" upY="-0.9998793082354847" verticalTextPosition="bottom" visible="true" width="120.748046875" x="809.0086168183522" xml:space="preserve" y="-1043.3587979064616">found in taxon (1,247)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.8750000000000002" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e25" source="n3" target="n13">
+      <data key="d254" xml:space="preserve"><![CDATA[subject has role (7,945)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2868]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2868]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subject has role]]></data>
+      <data key="d258" xml:space="preserve">7945</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-21.660576419072868" sy="-22.55995565296876" tx="-81.31210961340287" ty="21.06676296180859"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="23.701173408613727" anchorY="-298.3753929114396" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.0" upY="-6.123233995736766E-17" verticalTextPosition="bottom" visible="true" width="129.40234375" x="5.000001533613727" xml:space="preserve" y="-427.7777366614396">subject has role (7,945)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.8333333333333288" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e26" source="n3" target="n13">
+      <data key="d254" xml:space="preserve"><![CDATA[subclass of (221)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P279]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P279]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subclass of]]></data>
+      <data key="d258" xml:space="preserve">221</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="54.21119501740287" sy="-26.001165583758755" tx="-5.440338176927128" ty="23.478924151153173"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="23.701179708370717" anchorY="-4.99894365119053" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.0" upY="-2.83276944882399E-16" verticalTextPosition="bottom" visible="true" width="95.376953125" x="5.0000078333707165" xml:space="preserve" y="-100.37589677619053">subclass of (221)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e27" source="n3" target="n13">
+      <data key="d254" xml:space="preserve"><![CDATA[significant drug interaction (247)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P769]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P769]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[significant drug interaction]]></data>
+      <data key="d258" xml:space="preserve">247</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="18.131704282681596" sy="-25.9905527543654" tx="-41.5198289116484" ty="22.674870421371622"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="23.701156747086884" anchorY="-158.3301354729656" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.0" upY="-2.83276944882399E-16" verticalTextPosition="bottom" visible="true" width="174.759765625" x="4.999984872086884" xml:space="preserve" y="-333.0899010979656">significant drug interaction (247)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e28" source="n3" target="n15">
+      <data key="d254" xml:space="preserve"><![CDATA[subject has role (2,307)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2868]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2868]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subject has role]]></data>
+      <data key="d258" xml:space="preserve">2307</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="124.44785193725431" sy="21.962069803366912" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="178.07307266737578" anchorY="58.20535537719752" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.18793924466185102" upY="-0.9821806556412791" verticalTextPosition="bottom" visible="true" width="129.40234375" x="178.07307266737578" xml:space="preserve" y="39.83742612374977">subject has role (2,307)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e29" source="n3" target="n14">
+      <data key="d254" xml:space="preserve"><![CDATA[subject has role (5,052)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2868]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2868]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subject has role]]></data>
+      <data key="d258" xml:space="preserve">5052</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-78.20391778776877" sy="-21.09266565915507" tx="-94.1190355349994" ty="23.321736624001208">
+            <y:Point x="-547.8100024327384" y="1406.0413017543842"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="23.701167000855435" anchorY="-127.8013588049489" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.0" upY="-6.123233995736766E-17" verticalTextPosition="bottom" visible="true" width="129.40234375" x="4.999995125855435" xml:space="preserve" y="-257.2037025549489">subject has role (5,052)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.16666666666666693" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e30" source="n3" target="n14">
+      <data key="d254" xml:space="preserve"><![CDATA[significant drug interaction (246)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P769]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P769]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[significant drug interaction]]></data>
+      <data key="d258" xml:space="preserve">246</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-89.50854298713068" sy="-22.087618414780476" tx="-105.73969433783077" ty="18.013166196361166">
+            <y:Point x="-559.1146276321003" y="1387.9465534290252"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-5.000003608662837" anchorY="-188.04253764285522" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-1.0" upY="-6.123233995736766E-17" verticalTextPosition="bottom" visible="true" width="174.759765625" x="-23.701175483662837" xml:space="preserve" y="-362.8023032678552">significant drug interaction (246)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.24999999999999967" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e31" source="n4" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[significant drug interaction (2,320)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P769]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P769]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[significant drug interaction]]></data>
+      <data key="d258" xml:space="preserve">2320</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-27.405119820123105" sy="28.340915785866656" tx="127.47498416650092" ty="-1.660256655070598"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-255.61588316620737" anchorY="87.2742934424773" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.3055395565985337" upY="0.9521793840204541" verticalTextPosition="bottom" visible="true" width="184.767578125" x="-431.547761892221" xml:space="preserve" y="87.2742934424773">significant drug interaction (2,320)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e32" source="n4" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[significant drug interaction (3,130)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P769]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P769]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[significant drug interaction]]></data>
+      <data key="d258" xml:space="preserve">3130</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-25.221637226497705" sy="88.5830912704593" tx="113.36118100890883" ty="44.49684567457623">
+            <y:Point x="459.83089787304675" y="2095.9623043499278"/>
+            <y:Point x="472.41648130284915" y="2110.699866710042"/>
+            <y:Point x="643.734357601206" y="2110.699866710042"/>
+            <y:Point x="643.734357601206" y="2003.8281866028692"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="184.767578125" x="5.8607282899182565" xml:space="preserve" y="75.20401710066699">significant drug interaction (3,130)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e33" source="n4" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (1,093)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">1093</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-11.328690869908144" sy="88.5830912704593" tx="111.10025596903643" ty="66.97907450434938">
+            <y:Point x="473.7238442296363" y="2086.7251049938204"/>
+            <y:Point x="485.5940983385806" y="2095.9623043499278"/>
+            <y:Point x="630.6367234184976" y="2095.9623043499278"/>
+            <y:Point x="630.6367234184976" y="2027.5678995215294"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="132.736328125" x="18.023400380492205" xml:space="preserve" y="31.747216459302763">has part / part of (1,093)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e34" source="n4" target="n13">
+      <data key="d254" xml:space="preserve"><![CDATA[subject has role (4,315)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2868]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2868]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subject has role]]></data>
+      <data key="d258" xml:space="preserve">4315</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-83.62401198204338" sy="-10.884549302600583" tx="-1.315086987874679" ty="3.1689443119436222"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-287.90459221922936" anchorY="-80.78507729714875" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.28622396734165045" upY="0.9581627421890322" verticalTextPosition="bottom" visible="true" width="129.40234375" x="-417.2458203604177" xml:space="preserve" y="-117.82312950858177">subject has role (4,315)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="5.000000000002911" distanceToCenter="false" position="left" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e35" source="n4" target="n13">
+      <data key="d254" xml:space="preserve"><![CDATA[subclass of (306)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P279]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P279]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subclass of]]></data>
+      <data key="d258" xml:space="preserve">306</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-55.36244898363816" sy="-24.266828367941862" tx="49.73395176112297" ty="-0.4606126642361034"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-257.66493576402513" anchorY="-70.79625994334356" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.28293863672574454" upY="0.9591380129302441" verticalTextPosition="bottom" visible="true" width="95.376953125" x="-354.43588113916496" xml:space="preserve" y="-97.7820850355863">subclass of (306)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999997089" distanceToCenter="false" position="left" ratio="0.453835733210423" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e36" source="n4" target="n13">
+      <data key="d254" xml:space="preserve"><![CDATA[significant drug interaction (367)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P769]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P769]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[significant drug interaction]]></data>
+      <data key="d258" xml:space="preserve">367</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-89.27632458172434" sy="11.865325108479443" tx="37.84370927992222" ty="12.797610580692044"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-265.8919705448497" anchorY="-83.33591165102825" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.3161492660838791" upY="0.9487094610862825" verticalTextPosition="bottom" visible="true" width="174.759765625" x="-437.60057537369823" xml:space="preserve" y="-138.58608329436274">significant drug interaction (367)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="14.350585937502029" distanceToCenter="true" position="left" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e37" source="n4" target="n15">
+      <data key="d254" xml:space="preserve"><![CDATA[subject has role (1,418)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2868]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2868]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subject has role]]></data>
+      <data key="d258" xml:space="preserve">1418</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-37.96694361909363" sy="88.62698871008895" tx="69.44204103628715" ty="-19.473886383919307"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-86.62763198431213" anchorY="162.67607686207657" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.9357680788827353" upY="0.352616083785347" verticalTextPosition="bottom" visible="true" width="129.40234375" x="-132.2569796700824" xml:space="preserve" y="162.67607686207657">subject has role (1,418)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="1.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e38" source="n4" target="n0">
+      <data key="d254" xml:space="preserve"><![CDATA[pregnancy category (1,997)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3489]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3489]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[pregnancy category]]></data>
+      <data key="d258" xml:space="preserve">1997</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-39.81858933451531" sy="-55.046070218226745" tx="99.46812547075618" ty="26.005540394365923"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-102.04412281433946" anchorY="-165.12095387767317" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.86392463021757" upY="0.5036211207876761" verticalTextPosition="bottom" visible="true" width="150.75390625" x="-194.12337703982928" xml:space="preserve" y="-295.36096658855865">pregnancy category (1,997)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="1.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e39" source="n4" target="n14">
+      <data key="d254" xml:space="preserve"><![CDATA[subject has role (3,021)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2868]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2868]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subject has role]]></data>
+      <data key="d258" xml:space="preserve">3021</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-107.96682665509172" sy="-54.972200037788426" tx="-43.5331627524364" ty="17.81876569394907">
+            <y:Point x="-453.48771420307594" y="1535.3066838787847"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-647.1069804235194" anchorY="-309.49321632644615" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" rotationAngle="0.11509696394205093" textColor="#000000" upX="-0.399178983232105" upY="0.9168730224768219" verticalTextPosition="bottom" visible="true" width="129.40234375" x="-773.3555681704172" xml:space="preserve" y="-361.1628041788556">subject has role (3,021)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="6.493422368213777" distanceToCenter="false" position="right" ratio="0.8697627831353019" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e40" source="n4" target="n14">
+      <data key="d254" xml:space="preserve"><![CDATA[subclass of (277)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P279]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P279]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subclass of]]></data>
+      <data key="d258" xml:space="preserve">277</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-63.833569876782235" sy="-67.30530842440685" tx="6.350380043947382" ty="16.545557817667607">
+            <y:Point x="-403.60417140669216" y="1494.8926487910653"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-634.5014430798855" anchorY="-325.98334428055205" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.42717466418072814" upY="0.9041691248223875" verticalTextPosition="bottom" visible="true" width="95.376953125" x="-728.7270061306318" xml:space="preserve" y="-366.72596220230497">subclass of (277)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.875" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e41" source="n4" target="n14">
+      <data key="d254" xml:space="preserve"><![CDATA[significant drug interaction (365)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P769]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P769]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[significant drug interaction]]></data>
+      <data key="d258" xml:space="preserve">365</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-102.17885855301836" sy="-69.36082648884339" tx="-14.593322242069576" ty="17.394252518215534">
+            <y:Point x="-424.5478736927091" y="1517.8071240701722"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-606.7464717553544" anchorY="-303.7751968449443" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" rotationAngle="0.21603642404079437" textColor="#000000" upX="-0.41165766309174695" upY="0.9113385586146576" verticalTextPosition="bottom" visible="true" width="174.759765625" x="-774.0445971780691" xml:space="preserve" y="-375.7449095841688">significant drug interaction (365)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="7.71023228836265" distanceToCenter="false" position="right" ratio="0.8749464903894217" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e42" source="n5" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in (2,164)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3781]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3781]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in]]></data>
+      <data key="d258" xml:space="preserve">2164</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-64.60395179377838" sy="17.764316942492325" tx="84.75536819559066" ty="-13.068032370533846"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-45.73937128001784" anchorY="5.0272845469446565" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.8897576028261904" upY="0.45643335571909194" verticalTextPosition="bottom" visible="true" width="145.416015625" x="-112.1120912670365" xml:space="preserve" y="5.0272845469446565">has active ingredient /
+active ingredient in (2,164)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e43" source="n5" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in (3,030)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3781]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3781]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in]]></data>
+      <data key="d258" xml:space="preserve">3030</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="141.99112417521349" sy="15.691177838520352" tx="28.375431718116033" ty="-41.32762830276433">
+            <y:Point x="513.4279668176605" y="1566.999200625201"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="205.12089894656674" anchorY="284.00050889290515" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="1.0" upY="1.8369701987210297E-16" verticalTextPosition="bottom" visible="true" width="145.416015625" x="205.1208989465667" xml:space="preserve" y="284.00050889290515">has active ingredient /
+active ingredient in (3,030)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999999977" distanceToCenter="false" position="left" ratio="0.3642234773284014" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e44" source="n5" target="n0">
+      <data key="d254" xml:space="preserve"><![CDATA[therapeutic area (1,505)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P4044]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P4044]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[therapeutic area]]></data>
+      <data key="d258" xml:space="preserve">1505</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-38.7535083829257" sy="18.84478031915022" tx="-82.04721803143391" ty="-17.534121564688768"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-34.808325127716756" anchorY="44.10871032548016" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.973059716260049" upY="0.23055322290506616" verticalTextPosition="bottom" visible="true" width="132.080078125" x="-65.25981282098843" xml:space="preserve" y="44.10871032548016">therapeutic area (1,505)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e45" source="n5" target="n13">
+      <data key="d254" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in (252)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3781]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3781]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in]]></data>
+      <data key="d258" xml:space="preserve">252</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-147.16954071086434" sy="26.005254616716197" tx="47.456589418495014" ty="-18.08922622262475"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-40.89344996428613" anchorY="-13.135184678350925" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.7142878831056468" upY="0.6998519986743296" verticalTextPosition="bottom" visible="true" width="135.408203125" x="-135.65915155821696" xml:space="preserve" y="-13.135184678350925">has active ingredient /
+active ingredient in (252)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e46" source="n5" target="n14">
+      <data key="d254" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in (236)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3781]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3781]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has active ingredient /
+active ingredient in]]></data>
+      <data key="d258" xml:space="preserve">236</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-23.576796444940896" sy="-6.8432364608922835" tx="78.06289032571624" ty="-17.32492130590403"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-86.41083029119366" anchorY="-40.329935090565414" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.02219172658595932" upY="0.9997537333119262" verticalTextPosition="bottom" visible="true" width="135.408203125" x="-222.52694256630227" xml:space="preserve" y="-43.334876911811456">has active ingredient /
+active ingredient in (236)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e47" source="n6" target="n6">
+      <data key="d254" xml:space="preserve"><![CDATA[subclass of (6,276)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P279]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P279]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[subclass of]]></data>
+      <data key="d258" xml:space="preserve">6276</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-31.86865234375" sy="-22.503826350709915" tx="48.68433872335277" ty="-18.33439999412076">
+            <y:Point x="911.4312547676874" y="1645.9028026911533"/>
+            <y:Point x="918.7734191087728" y="1637.72675307875"/>
+            <y:Point x="986.3098520363404" y="1637.72675307875"/>
+            <y:Point x="991.9842458347902" y="1645.902802691153"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="105.384765625" x="-11.582021654005871" xml:space="preserve" y="-56.61736313218739">subclass of (6,276)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e48" source="n7" target="n6">
+      <data key="d254" xml:space="preserve"><![CDATA[part of / has part (220)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P361]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P361]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[part of / has part]]></data>
+      <data key="d258" xml:space="preserve">220</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="5.000015742824871" tx="0.0" ty="5.000015742824871"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-4.65242803042554" anchorY="-4.976207402870614" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.9973835692121107" upY="-0.07229118802254474" verticalTextPosition="bottom" visible="true" width="122.728515625" x="-23.30466958356218" xml:space="preserve" y="-128.73554229329497">part of / has part (220)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e49" source="n8" target="n6">
+      <data key="d254" xml:space="preserve"><![CDATA[part of / has part (275)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P361]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P361]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[part of / has part]]></data>
+      <data key="d258" xml:space="preserve">275</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="20.567040501565998" anchorY="14.115720947732598" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.6069201562950586" upY="-0.7947628098261654" verticalTextPosition="bottom" visible="true" width="122.728515625" x="9.216922344290245" xml:space="preserve" y="-75.23368484366999">part of / has part (275)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="1.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e50" source="n10" target="n10">
+      <data key="d254" xml:space="preserve"><![CDATA[part of / has part (-1)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P361]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P361]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[part of / has part]]></data>
+      <data key="d258" xml:space="preserve">-1</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="48.02415991936061" sy="85.1072730065928" tx="62.357394629259375" ty="47.11436957322181">
+            <y:Point x="606.189797052458" y="2363.889422963569"/>
+            <y:Point x="615.458325158737" y="2376.006379206884"/>
+            <y:Point x="685.2383174429038" y="2376.006379206884"/>
+            <y:Point x="694.5883310821088" y="2356.226960343655"/>
+            <y:Point x="694.5883310821088" y="2314.436281405928"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="122.728515625" x="-16.70191063277332" xml:space="preserve" y="29.65506084750905">part of / has part (726)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.5" segment="2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e51" source="n11" target="n1">
+      <data key="d254" xml:space="preserve"><![CDATA[biological variant of (1,534)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3433]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3433]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[biological variant of]]></data>
+      <data key="d258" xml:space="preserve">1534</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="106.80835621088431" ty="11.557663782389513">
+            <y:Point x="25.898773509416515" y="2444.7085693779904"/>
+            <y:Point x="1156.8622009569401" y="2444.7085693779904"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="1127.8447590108842" anchorY="-494.54564050257795" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.9999826415640208" upY="0.005892076937980925" verticalTextPosition="bottom" visible="true" width="148.08203125" x="1108.2714010377215" xml:space="preserve" y="-642.6251012801188">biological variant of (1,534)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="-0.005892111030631142" distance="3.118668752696626" distanceToCenter="false" position="left" ratio="0.6538521078986553" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e52" source="n11" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[positive therapeutic predictor (685)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3354]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3354]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[positive therapeutic predictor]]></data>
+      <data key="d258" xml:space="preserve">685</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-57.382864099527296" sy="23.933194918869503" tx="131.76665115214746" ty="7.957619982643209"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-28.348520447416092" anchorY="-2.3933545625209263" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.25794317300441016" upY="0.9661600899956575" verticalTextPosition="bottom" visible="true" width="188.763671875" x="-215.54828626641518" xml:space="preserve" y="-51.083655033921765">positive therapeutic predictor (685)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.33333333333333376" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e53" source="n11" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[negative therapeutic predictor (565)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3355]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3355]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[negative therapeutic predictor]]></data>
+      <data key="d258" xml:space="preserve">565</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-24.599451021377376" sy="16.019957279315804" tx="124.98387603253025" ty="5.636063552850232"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-26.368688078031937" anchorY="-30.077843586242125" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.21511925862497258" upY="0.9765877864117707" verticalTextPosition="bottom" visible="true" width="193.4453125" x="-219.30799983330834" xml:space="preserve" y="-71.69165579571828">negative therapeutic predictor (565)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.3333333333333328" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e54" source="n11" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[positive therapeutic predictor (697)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3354]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3354]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[positive therapeutic predictor]]></data>
+      <data key="d258" xml:space="preserve">697</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="68.32865870748952" sy="9.237182159698932" tx="-74.29559730050119" ty="77.68489775662245"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="17.48540594179363" anchorY="-22.40625536808102" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.6678308935119667" upY="-0.7443130374184025" verticalTextPosition="bottom" visible="true" width="188.763671875" x="4.996185618791518" xml:space="preserve" y="-162.3879930605268">positive therapeutic predictor (697)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e55" source="n11" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[negative therapeutic predictor (750)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P3355]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P3355]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[negative therapeutic predictor]]></data>
+      <data key="d258" xml:space="preserve">750</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="80.91410186273826" sy="19.829371639832516" tx="-49.425421861904624" ty="72.33198613048603"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="42.4662084552954" anchorY="-6.657156068622044" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.6739357745462266" upY="-0.7387899375240419" verticalTextPosition="bottom" visible="true" width="193.4453125" x="29.862819702795168" xml:space="preserve" y="-150.843110181804">negative therapeutic predictor (750)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999999273" distanceToCenter="false" position="right" ratio="0.15069035353300958" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e56" source="n12" target="n3">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (3,665)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">3665</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-78.289292816797" sy="14.945469245371669" tx="103.50508815374235" ty="-12.936387885492929"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-692.2828467679233" anchorY="336.5340145652865" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.46468561242420686" upY="0.8854757374462271" verticalTextPosition="bottom" visible="true" width="132.736328125" x="-809.817644800312" xml:space="preserve" y="336.5340145652865">has part / part of (3,665)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="false" ratio="0.7499999999999997" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e57" source="n12" target="n4">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (1,055)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">1055</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-54.78445890870489" sy="33.039548957392526" tx="67.82496867545217" ty="-67.71213174641838"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="-56.92969877000553" anchorY="32.63353803015889" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.7770993741688567" upY="0.629377917205848" verticalTextPosition="bottom" visible="true" width="132.736328125" x="-140.47101250287005" xml:space="preserve" y="32.63353803015889">has part / part of (1,055)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999999818" distanceToCenter="false" position="right" ratio="0.5981180898824271" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e58" source="n12" target="n1">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (30,332)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">30332</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="63.62574668770503" sy="-19.93234292778152" tx="-24.418182304013612" ty="9.751170057039094"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="43.51571825195151" anchorY="-77.74189956086911" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.843813339355295" upY="-0.536636793675262" verticalTextPosition="bottom" visible="true" width="139.41015625" x="27.73541996225044" xml:space="preserve" y="-205.41378595919505">has part / part of (30,332)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e59" source="n12" target="n12">
+      <data key="d254" xml:space="preserve"><![CDATA[has part / part of (2,278)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P527]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P527]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[has part / part of]]></data>
+      <data key="d258" xml:space="preserve">2278</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-43.70518138830971" sy="-6.126201501937885" tx="-65.02166471238934" ty="-19.888752009890595">
+            <y:Point x="651.9687947048344" y="1652.9550775534358"/>
+            <y:Point x="643.734357601206" y="1643.7724046852186"/>
+            <y:Point x="643.734357601206" y="1610.32264545128"/>
+            <y:Point x="649.6179053479352" y="1604.485448552055"/>
+            <y:Point x="698.185010409592" y="1604.485448552055"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.375" x="-50.69680872279889" xml:space="preserve" y="-86.871973322945">has part / 
+part of (2,278)<y:LabelModel><y:RotatedSliderEdgeLabelModel angle="0.0" autoRotationEnabled="true" distance="5.0" distanceRelativeToEdge="true" mode="side_slider"/></y:LabelModel><y:ModelParameter><y:RotatedSliderEdgeLabelModelParameter invertingSign="true" ratio="0.5" segment="-2"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e60" source="n12" target="n9">
+      <data key="d254" xml:space="preserve"><![CDATA[found in taxon (2,979)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P703]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P703]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[found in taxon]]></data>
+      <data key="d258" xml:space="preserve">2979</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="-25.52603629793316" sy="-33.04020019771133" tx="84.97222221545985" ty="16.927191122882334"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="23.22273147657961" anchorY="-6.57998164080459" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.9963216568806799" upY="0.08569221686090796" verticalTextPosition="bottom" visible="true" width="120.748046875" x="-5.75681888987434" xml:space="preserve" y="-126.88387576841059">found in taxon (2,979)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999997089" distanceToCenter="false" position="right" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e61" source="n13" target="n0">
+      <data key="d254" xml:space="preserve"><![CDATA[medical condition treated /
+drug used for treatment (1,112)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2175]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2175]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[medical condition treated /
+drug used for treatment]]></data>
+      <data key="d258" xml:space="preserve">1112</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="7.44982235861778" sy="-4.631147171103804" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="35.15023416062411" anchorY="30.10535905674078" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="-0.26717874271822234" upY="-0.9636469890159518" verticalTextPosition="bottom" visible="true" width="170.08984375" x="26.225837953657237" xml:space="preserve" y="-47.5270995262864">medical condition treated /
+drug used for treatment (1,112)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="4.999999999999636" distanceToCenter="false" position="right" ratio="0.0" segment="0"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e62" source="n14" target="n0">
+      <data key="d254" xml:space="preserve"><![CDATA[medical condition treated /
+drug used for treatment (1,022)]]></data>
+      <data key="d255" xml:space="preserve"><![CDATA[https://www.wikidata.org/wiki/Property:P2175]]></data>
+      <data key="d256" xml:space="preserve"><![CDATA[P2175]]></data>
+      <data key="d257" xml:space="preserve"><![CDATA[medical condition treated /
+drug used for treatment]]></data>
+      <data key="d258" xml:space="preserve">1022</data>
+      <data key="d261">
+        <y:PolyLineEdge>
+          <y:Path sx="89.12158400877763" sy="0.25475299179730443" tx="-79.76632172280199" ty="3.7749150316671978"/>
+          <y:LineStyle color="#000000" type="line" width="4.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" anchorX="22.644658021383293" anchorY="13.519497875864772" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="33.40234375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" upX="0.5762553704707118" upY="-0.8172696911079369" verticalTextPosition="bottom" visible="true" width="170.08984375" x="22.644658021383293" xml:space="preserve" y="-13.779225282978853">medical condition treated /
+drug used for treatment (1,022)<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="true" defaultAngle="0.0" defaultDistance="10.0"/></y:LabelModel><y:ModelParameter><y:SmartEdgeLabelModelParameter angle="0.0" distance="2.0" distanceToCenter="false" position="left" ratio="0.09504996491121437" segment="-1"/></y:ModelParameter><y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/></y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+  <data key="d253">
+    <y:Resources/>
+  </data>
+</graphml>
