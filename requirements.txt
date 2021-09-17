@@ -6,7 +6,7 @@ deepdiff==3.2.1
 idna==2.7
 jsonpickle==0.9.4
 lxml==4.2.5
-matplotlib==2.2.3
+matplotlib
 mwoauth==0.3.2
 networkx==2.1
 numpy==1.15.1
